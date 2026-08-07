@@ -1,0 +1,309 @@
+{
+ "meta": {
+  "title": "码上飞升 V0.2 成就",
+  "version": "0.2.0"
+ },
+ "achievements": {
+  "first_awaken": {
+   "name": "初醒之缘",
+   "icon": "🌅",
+   "desc": "完成新手机缘，唤醒灵牌。",
+   "condition": {
+    "type": "task_done",
+    "task_id": "tutorial_run"
+   },
+   "reward": {
+    "cultivation": 10
+   },
+   "title": ""
+  },
+  "qi1_hello": {
+   "name": "第一道真言",
+   "icon": "✨",
+   "desc": "突破至炼气一层，写出第一段代码。",
+   "condition": {
+    "type": "realm_reached",
+    "realm_key": "qi1"
+   },
+   "reward": {
+    "comprehension": 1
+   },
+   "title": "真言初成"
+  },
+  "first_debug": {
+   "name": "初战心魔",
+   "icon": "⚔️",
+   "desc": "在炼丹房修复第一道心魔代码。",
+   "condition": {
+    "type": "count",
+    "field": "debug_completed",
+    "op": ">=",
+    "value": 1
+   },
+   "reward": {
+    "debug_exp": 5
+   },
+   "title": "破魔新手"
+  },
+  "debug_four": {
+   "name": "除魔四境",
+   "icon": "🔥",
+   "desc": "尽破炼丹房四道心魔。",
+   "condition": {
+    "type": "count",
+    "field": "debug_completed",
+    "op": ">=",
+    "value": 4
+   },
+   "reward": {
+    "debug_exp": 20
+   },
+   "title": "炼心丹士"
+  },
+  "main_qi10": {
+   "name": "炼气大圆满",
+   "icon": "🌀",
+   "desc": "完成全部十层炼气主线。",
+   "condition": {
+    "type": "count",
+    "field": "completed_tasks",
+    "op": ">=",
+    "value": 10
+   },
+   "reward": {
+    "cultivation": 100
+   },
+   "title": ""
+  },
+  "branch_first": {
+   "name": "机缘初得",
+   "icon": "🍀",
+   "desc": "完成第一桩支线机缘。",
+   "condition": {
+    "type": "count",
+    "field": "branch_completed",
+    "op": ">=",
+    "value": 1
+   },
+   "reward": {
+    "cultivation": 30
+   },
+   "title": ""
+  },
+  "branch_all": {
+   "name": "机缘双收",
+   "icon": "🌟",
+   "desc": "完成全部支线机缘。",
+   "condition": {
+    "type": "count",
+    "field": "branch_completed",
+    "op": ">=",
+    "value": 2
+   },
+   "reward": {
+    "cultivation": 60
+   },
+   "title": "双缘得主"
+  },
+  "cult_1000": {
+   "name": "修为千重",
+   "icon": "💰",
+   "desc": "累计修为达到 1000。",
+   "condition": {
+    "type": "cultivation_ge",
+    "value": 1000
+   },
+   "reward": {},
+   "title": "灵力千钧"
+  },
+  "cult_3000": {
+   "name": "修为三千",
+   "icon": "💎",
+   "desc": "累计修为达到 3000。",
+   "condition": {
+    "type": "cultivation_ge",
+    "value": 3000
+   },
+   "reward": {},
+   "title": ""
+  },
+  "streak_3": {
+   "name": "三连破境",
+   "icon": "🎯",
+   "desc": "连续三次通过验证。",
+   "condition": {
+    "type": "streak_ge",
+    "value": 3
+   },
+   "reward": {},
+   "title": ""
+  },
+  "streak_5": {
+   "name": "五连破境",
+   "icon": "🏆",
+   "desc": "连续五次通过验证。",
+   "condition": {
+    "type": "streak_ge",
+    "value": 5
+   },
+   "reward": {},
+   "title": "行云流水"
+  },
+  "items_first": {
+   "name": "丹药初备",
+   "icon": "🧪",
+   "desc": "储物袋中拥有第一件道具。",
+   "condition": {
+    "type": "items_ge",
+    "value": 1
+   },
+   "reward": {},
+   "title": ""
+  },
+  "item_use": {
+   "name": "服丹悟道",
+   "icon": "💊",
+   "desc": "服下一枚丹药。",
+   "condition": {
+    "type": "event",
+    "flag": "item_used"
+   },
+   "reward": {},
+   "title": ""
+  },
+  "tech_5": {
+   "name": "功法五门",
+   "icon": "📚",
+   "desc": "参悟五门以上功法。",
+   "condition": {
+    "type": "count",
+    "field": "techniques",
+    "op": ">=",
+    "value": 5
+   },
+   "reward": {
+    "comprehension": 2
+   },
+   "title": ""
+  },
+  "waves_all": {
+   "name": "三劫尽渡",
+   "icon": "⚡",
+   "desc": "渡过筑基天劫全部三重劫难。",
+   "condition": {
+    "type": "count",
+    "field": "tribulation_passed",
+    "op": ">=",
+    "value": 3
+   },
+   "reward": {
+    "cultivation": 200
+   },
+   "title": ""
+  },
+  "foundation": {
+   "name": "筑基成道",
+   "icon": "🏯",
+   "desc": "渡过天劫，成功筑基。",
+   "condition": {
+    "type": "flag",
+    "key": "founded"
+   },
+   "reward": {
+    "cultivation": 300
+   },
+   "title": "筑基真人"
+  },
+  "realm_golden": {
+   "name": "金丹初成",
+   "icon": "🏮",
+   "desc": "结丹成功，踏入金丹大道。",
+   "condition": {
+    "type": "realm_reached",
+    "realm_key": "gold1"
+   },
+   "reward": {
+    "cultivation": 200
+   },
+   "title": "金丹修士"
+  },
+  "realm_nascent": {
+   "name": "元婴化形",
+   "icon": "👶",
+   "desc": "金丹化婴，神魂出窍。",
+   "condition": {
+    "type": "realm_reached",
+    "realm_key": "nas1"
+   },
+   "reward": {
+    "cultivation": 300
+   },
+   "title": "元婴老祖"
+  },
+  "realm_spirit": {
+   "name": "化神问道",
+   "icon": "✨",
+   "desc": "元婴化神，神游太虚。",
+   "condition": {
+    "type": "realm_reached",
+    "realm_key": "spr1"
+   },
+   "reward": {
+    "cultivation": 400
+   },
+   "title": "化神真君"
+  },
+  "secret_qingyun": {
+   "name": "青云初探",
+   "icon": "☁️",
+   "desc": "首通青云秘境，勘破云雾迷阵。",
+   "condition": {
+    "type": "secret_cleared",
+    "realm_id": "qingyun"
+   },
+   "reward": {
+    "cultivation": 80
+   },
+   "title": ""
+  },
+  "secret_wanxiang": {
+   "name": "万象归真",
+   "icon": "🌀",
+   "desc": "首通万象幻境，看破幻象万千。",
+   "condition": {
+    "type": "secret_cleared",
+    "realm_id": "wanxiang"
+   },
+   "reward": {
+    "cultivation": 120
+   },
+   "title": ""
+  },
+  "secret_tiangong": {
+   "name": "天宫登临",
+   "icon": "🏯",
+   "desc": "首通代码天宫，叩问天庭试炼。",
+   "condition": {
+    "type": "secret_cleared",
+    "realm_id": "tiangong"
+   },
+   "reward": {
+    "cultivation": 180
+   },
+   "title": ""
+  },
+  "secret_pilgrim": {
+   "name": "秘境行者",
+   "icon": "🧭",
+   "desc": "累计通关秘境三次，机缘与胆识俱佳。",
+   "condition": {
+    "type": "secret_count_ge",
+    "value": 3
+   },
+   "reward": {
+    "comprehension": 1
+   },
+   "title": "秘境行者"
+  }
+ }
+}

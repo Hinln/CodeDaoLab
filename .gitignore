@@ -1,0 +1,37 @@
+﻿# Python
+__pycache__/
+.pytest_cache/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# 运行时数据
+saves/
+dist/
+build/
+*.spec
+
+# 本地工具与测试产物
+.tools/
+
+# 编辑器
+.vscode/
+.idea/
+
+# 系统
+Thumbs.db
+.DS_Store
+
+
+# 提示词与任务文档（内部资料，禁止推送）
+提示词/
+*.md.tmp
+
+# 环境与密钥
+.env
+.env.*
+*.log
+
+# Node（若本地安装 E2E 依赖）
+node_modules/

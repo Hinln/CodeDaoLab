@@ -1,0 +1,1161 @@
+{
+ "tasks": {
+  "tutorial_run": {
+   "id": "tutorial_run",
+   "kind": "main",
+   "realm": "mortal",
+   "title": "唤醒灵牌",
+   "story": "你睁开眼，身处一间古朴洞府。案上的《Python 真解》自动翻开，浮现一行金字：「以真言唤醒灵牌——让灵牌显示『天地玄黄，宇宙洪荒。』」",
+   "hints": [
+    "print() 可以把内容显示出来",
+    "文字内容要用引号包裹，例如 print(\"你好\")",
+    "灵牌要求显示：天地玄黄，宇宙洪荒。"
+   ],
+   "starter_code": "print(\"\")",
+   "check": {
+    "mode": "output",
+    "expected": {
+     "exact": "天地玄黄，宇宙洪荒。"
+    }
+   },
+   "solution": "print(\"天地玄黄，宇宙洪荒。\")",
+   "reward": 50,
+   "time_limit": 5
+  },
+  "hello_world": {
+   "id": "hello_world",
+   "kind": "main",
+   "realm": "qi1",
+   "title": "第一道真言",
+   "story": "洞府外，守门石狮开口：「外来者，报上你的第一道真言。」它顿了顿：「我要听的不是古文，而是那句千古不变的——Hello, World!」",
+   "hints": [
+    "用 print() 输出 Hello, World!",
+    "注意大小写与标点必须完全一致"
+   ],
+   "starter_code": "print(\"\")",
+   "check": {
+    "mode": "output",
+    "expected": {
+     "exact": "Hello, World!"
+    }
+   },
+   "solution": "print(\"Hello, World!\")",
+   "reward": 50,
+   "time_limit": 5
+  },
+  "variable_intro": {
+   "id": "variable_intro",
+   "kind": "main",
+   "realm": "qi2",
+   "title": "灵力容器",
+   "story": "云中子师父的声音在耳边响起：「灵力需有容器承载——变量便是容器。将你的名号存入 name，将灵力值 100 存入 power，然后展示给为师看。」",
+   "hints": [
+    "用 = 给变量赋值",
+    "print(name) 会显示变量的值"
+   ],
+   "starter_code": "name = \"\"\npower = 0\nprint(name)\nprint(power)",
+   "check": {
+    "mode": "output",
+    "expected": {
+     "exact": "青云\n100"
+    }
+   },
+   "solution": "name = \"青云\"\npower = 100\nprint(name)\nprint(power)",
+   "reward": 60,
+   "time_limit": 5
+  },
+  "data_types": {
+   "id": "data_types",
+   "kind": "main",
+   "realm": "qi3",
+   "title": "万物有型",
+   "story": "藏经阁老者抚须：「古籍记载『108』是字符，不是数字。你能把它化为数字，再添一，报出结果吗？」",
+   "hints": [
+    "int() 可以把字符串转成整数",
+    "转成整数之后才能做加法"
+   ],
+   "starter_code": "num = \"108\"\n# 将 num 转为整数并加 1，打印结果",
+   "check": {
+    "mode": "output",
+    "expected": {
+     "exact": "109"
+    }
+   },
+   "solution": "num = int(\"108\")\nprint(num + 1)",
+   "reward": 60,
+   "time_limit": 5
+  },
+  "operators": {
+   "id": "operators",
+   "kind": "main",
+   "realm": "qi4",
+   "title": "灵力运算",
+   "story": "炼丹房主事递来丹方：「灵力增幅，乃基础灵力加上基础灵力乘以加成比例。写出功法 calculate，让它算出结果。」",
+   "hints": [
+    "定义函数用 def",
+    "return 返回计算结果",
+    "公式：基础 + 基础 × 加成比例"
+   ],
+   "starter_code": "def calculate(base, rate):\n    # 补全功法：返回 base + base * rate\n    pass",
+   "check": {
+    "mode": "function",
+    "func_name": "calculate",
+    "cases": [
+     {
+      "args": [
+       100,
+       0.5
+      ],
+      "expected": 150.0
+     },
+     {
+      "args": [
+       0,
+       0.2
+      ],
+      "expected": 0.0
+     },
+     {
+      "args": [
+       50,
+       1.0
+      ],
+      "expected": 100.0
+     }
+    ]
+   },
+   "solution": "def calculate(base, rate):\n    return base + base * rate",
+   "reward": 70,
+   "time_limit": 5
+  },
+  "input_output": {
+   "id": "input_output",
+   "kind": "main",
+   "realm": "qi5",
+   "title": "倾听天地",
+   "story": "渡口仙使拱手：「敢问道友名号？」你需要读取它的提问，并以「道友X，欢迎入道！」回应。",
+   "hints": [
+    "用 input() 读取输入",
+    "字符串用 + 拼接",
+    "输出格式：道友 + 名字 + ，欢迎入道！"
+   ],
+   "starter_code": "name = input()\nprint(\"\")",
+   "check": {
+    "mode": "output",
+    "inputs": [
+     "云中子"
+    ],
+    "expected": {
+     "exact": "道友云中子，欢迎入道！"
+    }
+   },
+   "solution": "name = input()\nprint(\"道友\" + name + \"，欢迎入道！\")",
+   "reward": 70,
+   "time_limit": 5
+  },
+  "conditionals": {
+   "id": "conditionals",
+   "kind": "main",
+   "realm": "qi6",
+   "title": "道心抉择",
+   "story": "掌门立于大殿之上：「修为≥1000 者，称筑基；≥100 者，称炼气；其余，皆凡人。写出 judge(修为)，道出你的判断。」",
+   "hints": [
+    "if / elif / else 依次判断",
+    "先判断最高条件 1000",
+    "return 返回称谓字符串"
+   ],
+   "starter_code": "def judge(power):\n    # 补全判断逻辑\n    pass",
+   "check": {
+    "mode": "function",
+    "func_name": "judge",
+    "cases": [
+     {
+      "args": [
+       999
+      ],
+      "expected": "炼气"
+     },
+     {
+      "args": [
+       1000
+      ],
+      "expected": "筑基"
+     },
+     {
+      "args": [
+       50
+      ],
+      "expected": "凡人"
+     },
+     {
+      "args": [
+       100
+      ],
+      "expected": "炼气"
+     },
+     {
+      "args": [
+       2000
+      ],
+      "expected": "筑基"
+     }
+    ]
+   },
+   "solution": "def judge(power):\n    if power >= 1000:\n        return \"筑基\"\n    elif power >= 100:\n        return \"炼气\"\n    else:\n        return \"凡人\"",
+   "reward": 80,
+   "time_limit": 5
+  },
+  "for_loop": {
+   "id": "for_loop",
+   "kind": "main",
+   "realm": "qi7",
+   "title": "周天搬运",
+   "story": "你在周天阵中盘坐。阵灵要求：用 for 循环依次搬运灵气，使灵牌显示出 1 到 5 五个数字。",
+   "hints": [
+    "range(1, 6) 生成 1~5",
+    "循环体要缩进"
+   ],
+   "starter_code": "# 用 for 循环打印 1 到 5",
+   "check": {
+    "mode": "output",
+    "expected": {
+     "exact": "1\n2\n3\n4\n5"
+    }
+   },
+   "solution": "for i in range(1, 6):\n    print(i)",
+   "reward": 80,
+   "time_limit": 5
+  },
+  "while_loop": {
+   "id": "while_loop",
+   "kind": "main",
+   "realm": "qi8",
+   "title": "不息之泉",
+   "story": "灵气如泉，用 while 循环让它流淌：从 1 数到 5。但务必设定止境，否则心魔将至！",
+   "hints": [
+    "while 条件为真时循环",
+    "循环内让 n 增大（n += 1）",
+    "n <= 5 时继续，n 增到 6 时停止"
+   ],
+   "starter_code": "n = 1\nwhile n <= 5:\n    print(n)\n    # 别忘了让 n 增大！",
+   "check": {
+    "mode": "output",
+    "expected": {
+     "exact": "1\n2\n3\n4\n5"
+    }
+   },
+   "solution": "n = 1\nwhile n <= 5:\n    print(n)\n    n += 1",
+   "reward": 90,
+   "time_limit": 5
+  },
+  "list_dict": {
+   "id": "list_dict",
+   "kind": "main",
+   "realm": "qi9",
+   "title": "万法之库",
+   "story": "你打开储物袋：三株灵药；又翻开名册：灵石 500。按要求取出：灵药数量、第二株灵药、灵石数量。",
+   "hints": [
+    "len(列表) 求数量",
+    "索引从 0 开始，第二株是 herbs[1]",
+    "字典用键取值：treasure[\"灵石\"]"
+   ],
+   "starter_code": "herbs = [\"灵芝\", \"朱果\", \"龙涎草\"]\ntreasure = {\"灵石\": 500, \"丹药\": 3}\n# 1. 打印灵药数量\n# 2. 打印第二株灵药\n# 3. 打印灵石数量",
+   "check": {
+    "mode": "output",
+    "expected": {
+     "exact": "3\n朱果\n500"
+    }
+   },
+   "solution": "herbs = [\"灵芝\", \"朱果\", \"龙涎草\"]\nprint(len(herbs))\nprint(herbs[1])\ntreasure = {\"灵石\": 500, \"丹药\": 3}\nprint(treasure[\"灵石\"])",
+   "reward": 100,
+   "time_limit": 5
+  },
+  "functions": {
+   "id": "functions",
+   "kind": "main",
+   "realm": "qi10",
+   "title": "功法真意",
+   "story": "大圆满在即。你自创第一门功法 double(攻击)：返回攻击的两倍。",
+   "hints": [
+    "def double(x):",
+    "return x * 2"
+   ],
+   "starter_code": "def double(x):\n    # 补全功法\n    pass",
+   "check": {
+    "mode": "function",
+    "func_name": "double",
+    "cases": [
+     {
+      "args": [
+       10
+      ],
+      "expected": 20
+     },
+     {
+      "args": [
+       0
+      ],
+      "expected": 0
+     },
+     {
+      "args": [
+       7
+      ],
+      "expected": 14
+     }
+    ]
+   },
+   "solution": "def double(x):\n    return x * 2",
+   "reward": 120,
+   "time_limit": 5
+  },
+  "debug_1": {
+   "id": "debug_1",
+   "kind": "debug",
+   "realm": "qi3",
+   "title": "缩进之乱",
+   "story": "炼丹房内，一道心魔潜入了你的功法玉简，把缩进全部抹去——功法无法运转。修复它，重铸道基。",
+   "hints": [
+    "Python 用缩进表示层级",
+    "def 与 if 下面的代码都要缩进（4 个空格）",
+    "两个 return 都属于函数体"
+   ],
+   "starter_code": "def check_element(element):\nif element == \"金\":\n    return \"金灵根\"\nreturn \"其他灵根\"",
+   "check": {
+    "mode": "function",
+    "func_name": "check_element",
+    "cases": [
+     {
+      "args": [
+       "金"
+      ],
+      "expected": "金灵根"
+     },
+     {
+      "args": [
+       "水"
+      ],
+      "expected": "其他灵根"
+     },
+     {
+      "args": [
+       "火"
+      ],
+      "expected": "其他灵根"
+     }
+    ]
+   },
+   "solution": "def check_element(element):\n    if element == \"金\":\n        return \"金灵根\"\n    return \"其他灵根\"",
+   "reward": 50,
+   "time_limit": 5
+  },
+  "debug_2": {
+   "id": "debug_2",
+   "kind": "debug",
+   "realm": "qi6",
+   "title": "永夜之环",
+   "story": "心魔设下永夜之环：一个 while 循环永不停歇，困住了你的神识。找到缺失的「止境」，破除心魔。（若运行超时，便是心魔作祟！）",
+   "hints": [
+    "循环内需要让 n 增大",
+    "n += 1 等价于 n = n + 1",
+    "n 增到 6 时，n <= 5 为 False，循环结束"
+   ],
+   "starter_code": "n = 1\nwhile n <= 5:\n    print(n)",
+   "check": {
+    "mode": "output",
+    "expected": {
+     "exact": "1\n2\n3\n4\n5"
+    }
+   },
+   "solution": "n = 1\nwhile n <= 5:\n    print(n)\n    n += 1",
+   "reward": 60,
+   "time_limit": 5
+  },
+  "debug_3": {
+   "id": "debug_3",
+   "kind": "debug",
+   "realm": "qi8",
+   "title": "真假倒错",
+   "story": "心魔篡改了你的偶数判断：凡偶数皆称奇数，凡奇数皆称偶数。拨乱反正！",
+   "hints": [
+    "偶数除以 2 余数为 0",
+    "心魔写成了 n % 2 == 1"
+   ],
+   "starter_code": "def is_even(n):\n    return n % 2 == 1",
+   "check": {
+    "mode": "function",
+    "func_name": "is_even",
+    "cases": [
+     {
+      "args": [
+       4
+      ],
+      "expected": true
+     },
+     {
+      "args": [
+       7
+      ],
+      "expected": false
+     },
+     {
+      "args": [
+       0
+      ],
+      "expected": true
+     }
+    ]
+   },
+   "solution": "def is_even(n):\n    return n % 2 == 0",
+   "reward": 60,
+   "time_limit": 5
+  },
+  "debug_4": {
+   "id": "debug_4",
+   "kind": "debug",
+   "realm": "qi10",
+   "title": "有去无回",
+   "story": "心魔偷走了你的 return——功法吸纳灵力，却再无回响。找回它！",
+   "hints": [
+    "函数需要 return 结果",
+    "心魔把结果藏在了变量 y 里"
+   ],
+   "starter_code": "def double(x):\n    y = x * 2",
+   "check": {
+    "mode": "function",
+    "func_name": "double",
+    "cases": [
+     {
+      "args": [
+       5
+      ],
+      "expected": 10
+     },
+     {
+      "args": [
+       0
+      ],
+      "expected": 0
+     },
+     {
+      "args": [
+       3
+      ],
+      "expected": 6
+     }
+    ]
+   },
+   "solution": "def double(x):\n    return x * 2",
+   "reward": 80,
+   "time_limit": 5
+  },
+  "wave_heart_demon": {
+   "id": "wave_heart_demon",
+   "kind": "wave",
+   "wave_key": "heart_demon",
+   "title": "心魔劫",
+   "story": "第一重天劫降临——心魔劫。你的护体功法被心魔篡改：血量恰为 0 时竟判「存活」。修复它！",
+   "hints": [
+    "血量为 0 应该算已陨落",
+    "条件应为 血量 <= 0"
+   ],
+   "starter_code": "def survive(hp):\n    if hp < 0:\n        return \"已陨落\"\n    return \"存活\"",
+   "check": {
+    "mode": "function",
+    "func_name": "survive",
+    "cases": [
+     {
+      "args": [
+       0
+      ],
+      "expected": "已陨落"
+     },
+     {
+      "args": [
+       10
+      ],
+      "expected": "存活"
+     },
+     {
+      "args": [
+       -5
+      ],
+      "expected": "已陨落"
+     }
+    ]
+   },
+   "solution": "def survive(hp):\n    if hp <= 0:\n        return \"已陨落\"\n    return \"存活\"",
+   "reward": 300,
+   "time_limit": 5
+  },
+  "wave_thunder": {
+   "id": "wave_thunder",
+   "kind": "wave",
+   "wave_key": "thunder",
+   "title": "九霄神雷劫",
+   "story": "第二重天劫——九霄神雷。以功法抵御：修为 ≥ 1000 且 护体法器 ≥ 2，方可「渡劫成功」，否则「渡劫失败」。",
+   "hints": [
+    "两个条件用 and 连接",
+    "满足条件返回 渡劫成功，否则返回 渡劫失败"
+   ],
+   "starter_code": "def cross_tribulation(power, artifacts):\n    # 补全渡劫判断\n    pass",
+   "check": {
+    "mode": "function",
+    "func_name": "cross_tribulation",
+    "cases": [
+     {
+      "args": [
+       1200,
+       2
+      ],
+      "expected": "渡劫成功"
+     },
+     {
+      "args": [
+       800,
+       1
+      ],
+      "expected": "渡劫失败"
+     },
+     {
+      "args": [
+       1000,
+       1
+      ],
+      "expected": "渡劫失败"
+     },
+     {
+      "args": [
+       999,
+       3
+      ],
+      "expected": "渡劫失败"
+     }
+    ]
+   },
+   "solution": "def cross_tribulation(power, artifacts):\n    if power >= 1000 and artifacts >= 2:\n        return \"渡劫成功\"\n    return \"渡劫失败\"",
+   "reward": 300,
+   "time_limit": 5
+  },
+  "wave_dao_heart": {
+   "id": "wave_dao_heart",
+   "kind": "wave",
+   "wave_key": "dao_heart",
+   "title": "道心劫",
+   "story": "第三重天劫——道心劫。你须在神识风暴中保持清明：先读取灵力数量 N，再读取 N 次灵力值，将总量道出。这是对你所学一切的综合考验。",
+   "hints": [
+    "int(input()) 读取数字",
+    "用 for 循环读取 N 次并累加",
+    "最后 print 总和"
+   ],
+   "starter_code": "n = int(input())\ntotal = 0\n# 补全：循环读取 n 次灵力值并累加\nprint(total)",
+   "check": {
+    "mode": "output",
+    "inputs": [
+     "3",
+     "10",
+     "20",
+     "30"
+    ],
+    "expected": {
+     "exact": "60"
+    }
+   },
+   "solution": "n = int(input())\ntotal = 0\nfor i in range(n):\n    total += int(input())\nprint(total)",
+   "reward": 400,
+   "time_limit": 5
+  },
+  "branch_herbs": {
+   "id": "branch_herbs",
+   "kind": "branch",
+   "realm": "qi7",
+   "title": "采药奇遇",
+   "story": "藏经阁长老玄机请你前往后山药圃，将三株灵药按序清点入册。以『周天搬运』（for 循环）逐一编号，输出每株药名。",
+   "hints": [
+    "用 for 循环遍历药草列表",
+    "range(len(列表)) 可拿到下标，或直接用 enumerate",
+    "输出格式：第1株：灵芝（每行一株）"
+   ],
+   "starter_code": "herbs = [\"灵芝\", \"朱果\", \"龙涎草\"]\n# 在这里编写循环",
+   "check": {
+    "mode": "output",
+    "inputs": [],
+    "expected": {
+     "exact": "第1株：灵芝\n第2株：朱果\n第3株：龙涎草"
+    }
+   },
+   "solution": "herbs = [\"灵芝\", \"朱果\", \"龙涎草\"]\nfor i in range(len(herbs)):\n    print(\"第\" + str(i + 1) + \"株：\" + herbs[i])",
+   "reward": 60,
+   "rewards": {
+    "cultivation": 60,
+    "comprehension": 1
+   },
+   "requires_realm": "qi7",
+   "time_limit": 5
+  },
+  "branch_pill": {
+   "id": "branch_pill",
+   "kind": "branch",
+   "realm": "qi10",
+   "title": "炼丹秘方",
+   "story": "丹尘子推演聚气丹方：总药力 = 火候 × 2 + 药性。编写函数 pill_ratio(fire, herb_power) 返回总药力，助他定火候。",
+   "hints": [
+    "定义函数 def pill_ratio(fire, herb_power):",
+    "返回 fire * 2 + herb_power",
+    "函数需要 return 结果"
+   ],
+   "starter_code": "def pill_ratio(fire, herb_power):\n    # 在这里编写",
+   "check": {
+    "mode": "function",
+    "func_name": "pill_ratio",
+    "cases": [
+     {
+      "args": [
+       3,
+       5
+      ],
+      "expected": 11
+     },
+     {
+      "args": [
+       1,
+       0
+      ],
+      "expected": 2
+     },
+     {
+      "args": [
+       0,
+       7
+      ],
+      "expected": 7
+     }
+    ]
+   },
+   "solution": "def pill_ratio(fire, herb_power):\n    return fire * 2 + herb_power",
+   "reward": 80,
+   "rewards": {
+    "cultivation": 80,
+    "debug_exp": 5
+   },
+   "requires_realm": "qi10",
+   "time_limit": 5
+  },
+  "str_essence": {
+   "id": "str_essence",
+   "kind": "main",
+   "realm": "gold1",
+   "title": "净字诀",
+   "story": "藏经阁深处有一卷被尘封的卷轴，上书一行字：「  python 修仙  」（首尾各带空格）。长老请你施展『净字诀』：先以 strip() 除净首尾尘埃，再以 title() 令英文单词首字母昂首，最后以 split() 与 '-' 将单词联结，向天地报出真言。",
+   "hints": [
+    "先用 s.strip() 去除首尾空白",
+    "再用 s.title() 让英文单词首字母大写",
+    "用 s.split() 按空格拆分，再用 \"-\".join(...) 连接"
+   ],
+   "starter_code": "s = \"  python 修仙  \"\n# 请施展净字诀，输出最终真言",
+   "check": {
+    "mode": "output",
+    "expected": {
+     "exact": "Python-修仙"
+    }
+   },
+   "solution": "s = \"  python 修仙  \"\nprint(\"-\".join(s.strip().title().split()))",
+   "reward": 150,
+   "rewards": {
+    "comprehension": 1
+   },
+   "time_limit": 5
+  },
+  "str_trial": {
+   "id": "str_trial",
+   "kind": "trial",
+   "realm": "gold1",
+   "title": "试炼：炼字成金",
+   "story": "金丹试炼：写一门功法 transform(text)，将传入的真言：去除首尾空白、字母全部大写、并把空格替换为下划线。",
+   "hints": [
+    "先 text.strip()",
+    "再 text.upper()",
+    "最后 text.replace(\" \", \"_\")"
+   ],
+   "starter_code": "def transform(text):\n    # 补全功法：strip -> upper -> replace\n    pass",
+   "check": {
+    "mode": "function",
+    "func_name": "transform",
+    "cases": [
+     {
+      "args": [
+       "  hello world  "
+      ],
+      "expected": "HELLO_WORLD"
+     },
+     {
+      "args": [
+       "code ascension"
+      ],
+      "expected": "CODE_ASCENSION"
+     }
+    ]
+   },
+   "reward": 200,
+   "rewards": {
+    "comprehension": 2
+   },
+   "no_solution": true,
+   "time_limit": 5
+  },
+  "exc_guard": {
+   "id": "exc_guard",
+   "kind": "main",
+   "realm": "gold2",
+   "title": "不灭金身",
+   "story": "金丹修士交手，难免遇到『零除之劫』——当除数恰好为 0 时，功法会当场崩毁。请你写一门护体功法 safe_divide(a, b)：正常时返回 a 除以 b 的结果；若 b 为 0，则以 except 捕获 ZeroDivisionError，返还「不可除零」，绝不让功法崩溃。",
+   "hints": [
+    "用 try: ... except ZeroDivisionError: ... 包裹除法",
+    "except 分支返回「不可除零」"
+   ],
+   "starter_code": "def safe_divide(a, b):\n    # 补全功法\n    pass",
+   "check": {
+    "mode": "function",
+    "func_name": "safe_divide",
+    "cases": [
+     {
+      "args": [
+       10,
+       2
+      ],
+      "expected": 5.0
+     },
+     {
+      "args": [
+       10,
+       0
+      ],
+      "expected": "不可除零"
+     },
+     {
+      "args": [
+       7,
+       3
+      ],
+      "expected": 2.3333333333333335
+     }
+    ]
+   },
+   "solution": "def safe_divide(a, b):\n    try:\n        return a / b\n    except ZeroDivisionError:\n        return \"不可除零\"",
+   "reward": 160,
+   "rewards": {
+    "comprehension": 1
+   },
+   "time_limit": 5
+  },
+  "exc_trial": {
+   "id": "exc_trial",
+   "kind": "trial",
+   "realm": "gold2",
+   "title": "试炼：镇魔印",
+   "story": "金丹试炼：写功法 take_essence(data, key)：从灵力字典 data 中取出 key 对应的宝物；若宝物不存在（key 缺失），必须主动 raise ValueError 以示警醒。",
+   "hints": [
+    "key in data 可判断是否存在",
+    "raise ValueError(\"...\") 主动抛异常"
+   ],
+   "starter_code": "def take_essence(data, key):\n    # 补全功法：缺失时 raise ValueError\n    pass",
+   "check": {
+    "mode": "function",
+    "func_name": "take_essence",
+    "cases": [
+     {
+      "args": [
+       {
+        "name": "青云",
+        "level": 1
+       },
+       "name"
+      ],
+      "expected": "青云"
+     },
+     {
+      "args": [
+       {
+        "name": "青云",
+        "level": 1
+       },
+       "level"
+      ],
+      "expected": 1
+     },
+     {
+      "args": [
+       {
+        "name": "青云"
+       },
+       "age"
+      ],
+      "raises": "ValueError"
+     }
+    ]
+   },
+   "reward": 220,
+   "rewards": {
+    "comprehension": 2
+   },
+   "no_solution": true,
+   "time_limit": 5
+  },
+  "mod_import": {
+   "id": "mod_import",
+   "kind": "main",
+   "realm": "nas1",
+   "title": "自创秘籍",
+   "story": "元婴之秘，在于将功法分门别类，藏于独立秘籍之中。请你亲手在洞府中写下秘籍 spells.py——内含功法 flash(x)，返回 x 的两倍——再以 import 将其引入，施展 spells.flash(21)，向天地报出结果。",
+   "hints": [
+    "用 open(\"spells.py\", \"w\", encoding=\"utf-8\") 写入秘籍",
+    "秘籍内容为函数定义，注意换行与缩进",
+    "写入后用 import spells 引入，调用 spells.flash(21)"
+   ],
+   "starter_code": "# 第一步：写下秘籍 spells.py——内含功法 flash(x)，返回 x 的两倍\nwith open(\"spells.py\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"\")  # 秘籍空空如也，请写入功法\n\n# 第二步：引入并施展\nimport spells\nprint(spells.flash(21))",
+   "check": {
+    "mode": "output",
+    "expected": {
+     "exact": "42"
+    }
+   },
+   "solution": "# 第一步：写下秘籍 spells.py\nwith open(\"spells.py\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"def flash(x):\\n    return x * 2\\n\")\n\n# 第二步：引入并施展\nimport spells\nprint(spells.flash(21))",
+   "reward": 170,
+   "rewards": {
+    "comprehension": 1
+   },
+   "time_limit": 5
+  },
+  "mod_trial": {
+   "id": "mod_trial",
+   "kind": "trial",
+   "realm": "nas1",
+   "title": "试炼：双诀合璧",
+   "story": "元婴试炼：写下两本秘籍——base.py 藏功法 power(x)（返回 x 的平方），art.py 藏功法 double(x)（返回 x 的两倍）。随后从两本秘籍中引入功法，施展 power(double(5))，向天地报出结果。",
+   "hints": [
+    "分别在 f.write 中写入 power 与 double 的定义",
+    "函数体注意换行与缩进",
+    "power(double(5)) 应先算内层再算外层"
+   ],
+   "starter_code": "# 写下两本秘籍\nwith open(\"base.py\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"\")  # 请写入 power 功法\nwith open(\"art.py\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"\")  # 请写入 double 功法\n\n# 引入并施展\nfrom base import power\nfrom art import double\nprint(power(double(5)))",
+   "check": {
+    "mode": "output",
+    "expected": {
+     "exact": "100"
+    }
+   },
+   "reward": 240,
+   "rewards": {
+    "comprehension": 2
+   },
+   "no_solution": true,
+   "time_limit": 5
+  },
+  "file_scripture": {
+   "id": "file_scripture",
+   "kind": "main",
+   "realm": "nas2",
+   "title": "诵读卷宗",
+   "story": "藏经阁交给你一卷《天地卷宗》（文件 功法卷宗.txt），内有两行真言。请以 readlines() 诵读全卷：先报出卷宗共几行，再在每一行前冠以「秘」字，逐行诵读。",
+   "hints": [
+    "with open(\"功法卷宗.txt\", encoding=\"utf-8\") as f 打开卷宗",
+    "f.readlines() 得到所有行",
+    "每行用 strip() 去除换行后再拼接「秘」"
+   ],
+   "starter_code": "with open(\"功法卷宗.txt\", encoding=\"utf-8\") as f:\n    lines = f.readlines()\n\n# 请完成：打印总行数，并逐行输出「秘」+ 去除换行后的内容",
+   "check": {
+    "mode": "output",
+    "expected": {
+     "exact": "2\n秘天之道，损有余而补不足。\n秘人之道，损不足以奉有余。"
+    },
+    "seed_files": {
+     "功法卷宗.txt": "天之道，损有余而补不足。\n人之道，损不足以奉有余。\n"
+    }
+   },
+   "solution": "with open(\"功法卷宗.txt\", encoding=\"utf-8\") as f:\n    lines = f.readlines()\n\nprint(len(lines))\nfor line in lines:\n    print(\"秘\" + line.strip())",
+   "reward": 180,
+   "rewards": {
+    "comprehension": 1
+   },
+   "time_limit": 5
+  },
+  "file_trial": {
+   "id": "file_trial",
+   "kind": "trial",
+   "realm": "nas2",
+   "title": "试炼：丹方点算",
+   "story": "元婴试炼：将三行丹方写入 丹方.txt（聚气丹：1；凝神丹：2；培元丹：3），随后读取丹方，点算丹药总数（各行冒号后的数字之和），向天地报出。",
+   "hints": [
+    "用 writelines 或多次 write 写入三行",
+    "读取后按行 split(\"：\") 取数字部分",
+    "用 int() 转数字后累加"
+   ],
+   "starter_code": "# 写入三行丹方\nwith open(\"丹方.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.writelines([\"聚气丹：1\\n\", \"凝神丹：2\\n\", \"培元丹：3\\n\"])\n\n# 读取并点算丹药总数\nwith open(\"丹方.txt\", encoding=\"utf-8\") as f:\n    total = 0\n    for line in f:\n        # 请完成：取出冒号后的数字并累加\n        pass\n\nprint(total)",
+   "check": {
+    "mode": "output",
+    "expected": {
+     "exact": "6"
+    }
+   },
+   "reward": 260,
+   "rewards": {
+    "comprehension": 2
+   },
+   "no_solution": true,
+   "time_limit": 5
+  },
+  "oop_spirit": {
+   "id": "oop_spirit",
+   "kind": "main",
+   "realm": "spr1",
+   "title": "点灵成丹",
+   "story": "化神之境，可点灵成物。请你定义一门功法——丹药类 Pill：每粒丹药有名字 name 与药力 power；修炼 potency() 之法，返回药力之两倍。",
+   "hints": [
+    "class Pill: 定义类",
+    "def __init__(self, name, power) 记录属性",
+    "def potency(self) 返回 self.power * 2"
+   ],
+   "starter_code": "class Pill:\n    def __init__(self, name, power):\n        self.name = name\n        self.power = power\n\n    def potency(self):\n        # 补全功法：返回药力两倍\n        pass",
+   "check": {
+    "mode": "function",
+    "func_name": "Pill",
+    "method": "potency",
+    "cases": [
+     {
+      "init_args": [
+       "聚气丹",
+       5
+      ],
+      "expected": 10
+     },
+     {
+      "init_args": [
+       "凝神丹",
+       10
+      ],
+      "expected": 20
+     }
+    ]
+   },
+   "solution": "class Pill:\n    def __init__(self, name, power):\n        self.name = name\n        self.power = power\n\n    def potency(self):\n        return self.power * 2",
+   "reward": 200,
+   "rewards": {
+    "comprehension": 2
+   },
+   "time_limit": 5
+  },
+  "oop_trial": {
+   "id": "oop_trial",
+   "kind": "trial",
+   "realm": "spr1",
+   "title": "试炼：剑灵养成",
+   "story": "化神试炼：定义剑灵类 Spirit——以名字 name 与境界 level 点灵；train() 修炼一次境界 +1 并返回新境界；report() 报出『名字 境界：N』。随后点化一名剑灵，先修炼一次，再报出其名号。",
+   "hints": [
+    "__init__ 记录 name 与 level",
+    "train 中 self.level += 1 并 return self.level",
+    "report 返回 f\"{self.name} 境界：{self.level}\""
+   ],
+   "starter_code": "class Spirit:\n    def __init__(self, name, level):\n        # 补全\n        pass\n\n    def train(self):\n        # 补全：境界 +1 并返回\n        pass\n\n    def report(self):\n        # 补全：返回「名字 境界：N」\n        pass\n\ns = Spirit(\"剑灵\", 1)\nprint(s.train())\nprint(s.report())",
+   "check": {
+    "mode": "output",
+    "expected": {
+     "exact": "2\n剑灵 境界：2"
+    }
+   },
+   "reward": 300,
+   "rewards": {
+    "comprehension": 3
+   },
+   "no_solution": true,
+   "time_limit": 5
+  },
+  "debug_str": {
+   "id": "debug_str",
+   "kind": "debug",
+   "realm": "gold1",
+   "title": "心魔：咒语误写",
+   "story": "你在演练『净字诀』时，心魔趁虚而入，篡改了功法中的一行。灵台期望显示 HELLO,WORLD，但功法运转却报错。找出心魔，恢复功法。",
+   "hints": [
+    "检查方法名是否拼写正确",
+    "uppper 并非真实方法"
+   ],
+   "starter_code": "s = \"  hello,world  \"\nprint(s.strip().uppper())",
+   "check": {
+    "mode": "output",
+    "expected": {
+     "exact": "HELLO,WORLD"
+    }
+   },
+   "solution": "s = \"  hello,world  \"\nprint(s.strip().upper())",
+   "reward": 80,
+   "time_limit": 5
+  },
+  "debug_exc": {
+   "id": "debug_exc",
+   "kind": "debug",
+   "realm": "gold2",
+   "title": "心魔：错捕之障",
+   "story": "你在炼丹时遇到心魔：把凡铁当成灵药，用错误的 except 捕获了异常，导致 'abc' 无法被驯化。灵台期望输出 42 与 0。",
+   "hints": [
+    "字符串转数字失败会抛 ValueError",
+    "except 的类型写错了"
+   ],
+   "starter_code": "def parse_num(s):\n    try:\n        return int(s)\n    except TypeError:\n        return 0\n\nprint(parse_num(\"42\"))\nprint(parse_num(\"abc\"))",
+   "check": {
+    "mode": "output",
+    "expected": {
+     "exact": "42\n0"
+    }
+   },
+   "solution": "def parse_num(s):\n    try:\n        return int(s)\n    except ValueError:\n        return 0\n\nprint(parse_num(\"42\"))\nprint(parse_num(\"abc\"))",
+   "reward": 90,
+   "time_limit": 5
+  },
+  "debug_mod": {
+   "id": "debug_mod",
+   "kind": "debug",
+   "realm": "nas1",
+   "title": "心魔：秘籍残缺",
+   "story": "你在整理秘籍时发现 spells.py 中功法残缺——flash 少了关键的乘法。灵台期望施展 spells.flash(21) 后显现 42，如今却只得 21。找出残缺之处。",
+   "hints": [
+    "查看 spells.py 中 flash 的返回值",
+    "返回的应是 x * 2 而非 x"
+   ],
+   "starter_code": "with open(\"spells.py\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"def flash(x):\\n    return x\\n\")\n\nimport spells\nprint(spells.flash(21))",
+   "check": {
+    "mode": "output",
+    "expected": {
+     "exact": "42"
+    }
+   },
+   "solution": "with open(\"spells.py\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"def flash(x):\\n    return x * 2\\n\")\n\nimport spells\nprint(spells.flash(21))",
+   "reward": 90,
+   "time_limit": 5
+  },
+  "debug_file": {
+   "id": "debug_file",
+   "kind": "debug",
+   "realm": "nas2",
+   "title": "心魔：篡改卷宗",
+   "story": "心魔潜入你的卷宗，把『灵力 999』写成了丹方。灵台期望显示『灵力 100』。请找出被心魔篡改的一行。",
+   "hints": [
+    "注意 replace 的参数顺序：旧值在前，新值在后",
+    "replace(\"999\", \"100\") 会把 999 改回 100"
+   ],
+   "starter_code": "with open(\"记录.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"灵力 999\")\n\nwith open(\"记录.txt\", encoding=\"utf-8\") as f:\n    content = f.read()\n\nprint(content.replace(\"100\", \"999\"))",
+   "check": {
+    "mode": "output",
+    "expected": {
+     "exact": "灵力 100"
+    }
+   },
+   "solution": "with open(\"记录.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"灵力 999\")\n\nwith open(\"记录.txt\", encoding=\"utf-8\") as f:\n    content = f.read()\n\nprint(content.replace(\"999\", \"100\"))",
+   "reward": 100,
+   "time_limit": 5
+  },
+  "debug_oop": {
+   "id": "debug_oop",
+   "kind": "debug",
+   "realm": "spr1",
+   "title": "心魔：丹名错乱",
+   "story": "心魔潜入你的丹药类，让 describe() 试图把名字与药力直接相加——可文字与数字岂能相融？灵台期望显示『聚气丹：5』。",
+   "hints": [
+    "数字需要先转成字符串",
+    "str(self.power) 即可"
+   ],
+   "starter_code": "class Pill:\n    def __init__(self, name, power):\n        self.name = name\n        self.power = power\n\n    def describe(self):\n        return self.name + \"：\" + self.power\n\np = Pill(\"聚气丹\", 5)\nprint(p.describe())",
+   "check": {
+    "mode": "output",
+    "expected": {
+     "exact": "聚气丹：5"
+    }
+   },
+   "solution": "class Pill:\n    def __init__(self, name, power):\n        self.name = name\n        self.power = power\n\n    def describe(self):\n        return self.name + \"：\" + str(self.power)\n\np = Pill(\"聚气丹\", 5)\nprint(p.describe())",
+   "reward": 110,
+   "time_limit": 5
+  },
+  "foundation_consolidation": {
+   "id": "foundation_consolidation",
+   "kind": "main",
+   "realm": "foundation",
+   "title": "道基巩固",
+   "story": "筑基之后，你于洞府中稳固道基。青玄子递来一卷《道基试炼》：写功法 tally(lst)——统计列表中大于 0 的元素个数与所有元素之和，返回 [个数, 和]。道基越稳，冲击金丹之路越坦。",
+   "hints": [
+    "用 for x in lst 遍历列表",
+    "大于 0 时计数加一；每个元素都累加到总和",
+    "返回 [count, total]"
+   ],
+   "starter_code": "def tally(lst):\n    # 补全功法：返回 [大于0的个数, 元素之和]\n    pass",
+   "check": {
+    "mode": "function",
+    "func_name": "tally",
+    "cases": [
+     {
+      "args": [
+       [
+        1,
+        -2,
+        3,
+        0
+       ]
+      ],
+      "expected": [
+       2,
+       2
+      ]
+     },
+     {
+      "args": [
+       [
+        -5,
+        -1,
+        4
+       ]
+      ],
+      "expected": [
+       1,
+       -2
+      ]
+     }
+    ]
+   },
+   "solution": "def tally(lst):\n    count = 0\n    total = 0\n    for x in lst:\n        total += x\n        if x > 0:\n            count += 1\n    return [count, total]",
+   "reward": 150,
+   "rewards": {
+    "comprehension": 1
+   },
+   "time_limit": 5
+  }
+ },
+ "debug_tasks": [
+  "debug_1",
+  "debug_2",
+  "debug_3",
+  "debug_4",
+  "debug_str",
+  "debug_exc",
+  "debug_mod",
+  "debug_file",
+  "debug_oop"
+ ],
+ "tribulation_waves": {
+  "heart_demon": {
+   "key": "heart_demon",
+   "title": "心魔劫",
+   "task": "wave_heart_demon",
+   "order": 1
+  },
+  "thunder": {
+   "key": "thunder",
+   "title": "九霄神雷劫",
+   "task": "wave_thunder",
+   "order": 2
+  },
+  "dao_heart": {
+   "key": "dao_heart",
+   "title": "道心劫",
+   "task": "wave_dao_heart",
+   "order": 3
+  }
+ }
+}

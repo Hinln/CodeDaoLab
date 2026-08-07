@@ -1,0 +1,48 @@
+﻿{
+  "meta": {
+    "title": "码上飞升 V0.2 NPC",
+    "version": "0.2.0"
+  },
+  "npcs": {
+    "master_qingxuan": {
+      "name": "青玄子",
+      "title": "授业师尊",
+      "icon": "🧙",
+      "location": "师尊居所",
+      "desc": "青云宗传功长老，以 Python 真解渡人入道。讲究「引而不发，点而不破」。",
+      "dialogue": "master_qingxuan"
+    },
+    "elder_library": {
+      "name": "玄机长老",
+      "title": "藏经阁执事",
+      "icon": "📖",
+      "location": "藏经阁",
+      "desc": "掌管满阁功法玉简，最爱考校后辈对数据结构的心得。",
+      "dialogue": "elder_library"
+    },
+    "steward_pill": {
+      "name": "丹尘子",
+      "title": "炼丹房执事",
+      "icon": "⚗️",
+      "location": "炼丹房",
+      "desc": "操持丹炉百余载，最恨心魔作祟的残缺丹方。",
+      "dialogue": "steward_pill"
+    },
+    "guide_realm": {
+      "name": "云游子",
+      "title": "秘境引路人",
+      "icon": "🌀",
+      "location": "秘境入口",
+      "desc": "手持罗盘，知天下秘境所在。机缘到了，自会为你指路。",
+      "dialogue": "guide_realm"
+    },
+    "disciple_xiaoyue": {
+      "name": "小月",
+      "title": "同门师妹",
+      "icon": "🌸",
+      "location": "洞府外",
+      "desc": "入门三年的小师妹，爱缠着师兄师姐请教功法。",
+      "dialogue": "disciple_xiaoyue"
+    }
+  }
+}

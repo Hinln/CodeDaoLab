@@ -1,0 +1,333 @@
+{
+ "master_qingxuan": {
+  "start": {
+   "text": "青玄子负手而立：「修行之道，贵在自证。代码即法术，每一个字都要自己写出来。今日有何疑惑？」",
+   "options": [
+    {
+     "text": "请教当前修行",
+     "goto": "current"
+    },
+    {
+     "text": "聆听教诲",
+     "goto": "preach"
+    },
+    {
+     "text": "弟子告退",
+     "goto": "__end__"
+    }
+   ]
+  },
+  "current": {
+   "text": "「莫问捷径，先看手中之法。」你若卡在关卡，先在任务页点『运行』看灵台反馈；再逐条比对提示。若三次不成，再来寻我，我给你更细的线索。",
+   "options": [
+    {
+     "text": "弟子明白了",
+     "goto": "start"
+    },
+    {
+     "text": "弟子告退",
+     "goto": "__end__"
+    }
+   ]
+  },
+  "preach": {
+   "text": "「大道三千，代码亦可入道。今日与你讲一句：Bug 非劫，乃心魔所化。直面它，胜过绕过它。」",
+   "actions": [
+    {
+     "id": "preach_reward",
+     "type": "reward",
+     "comprehension": 1,
+     "mindset": 10
+    }
+   ],
+   "options": [
+    {
+     "text": "多谢师尊点拨",
+     "goto": "start"
+    },
+    {
+     "text": "弟子告退",
+     "goto": "__end__"
+    }
+   ]
+  }
+ },
+ "elder_library": {
+  "start": {
+   "text": "玄机长老抚须：「藏经阁万卷功法，皆从一行代码起。后生，可愿替我跑一趟后山采药？」",
+   "options": [
+    {
+     "text": "愿往（领取采药任务）",
+     "goto": "herb_quest"
+    },
+    {
+     "text": "请教功法要义",
+     "goto": "doctrine"
+    },
+    {
+     "text": "告辞",
+     "goto": "__end__"
+    }
+   ]
+  },
+  "herb_quest": {
+   "text": "「后山药圃的药草杂乱无序，需用『周天搬运』之法（for 循环）逐一清点。修为到了自会看到这桩机缘。」",
+   "actions": [
+    {
+     "id": "herb_unlock",
+     "type": "unlock_task",
+     "task_id": "branch_herbs"
+    }
+   ],
+   "options": [
+    {
+     "text": "记下了",
+     "goto": "start"
+    },
+    {
+     "text": "告辞",
+     "goto": "__end__"
+    }
+   ]
+  },
+  "doctrine": {
+   "text": "「万物有型，各归其类。列表如药匣，字典如药柜——放对位置，取用才快。」",
+   "actions": [
+    {
+     "id": "doctrine_reward",
+     "type": "reward",
+     "cultivation": 30
+    }
+   ],
+   "options": [
+    {
+     "text": "受教了",
+     "goto": "start"
+    },
+    {
+     "text": "告辞",
+     "goto": "__end__"
+    }
+   ]
+  }
+ },
+ "steward_pill": {
+  "start": {
+   "text": "丹尘子皱眉看着丹炉：「炉中丹方残缺，须以『功法真意』（函数）推演火候配比。小友若有兴趣，可来炼丹房一试。」",
+   "options": [
+    {
+     "text": "想一试身手",
+     "goto": "pill_quest"
+    },
+    {
+     "text": "听听炼丹之道",
+     "goto": "dao"
+    },
+    {
+     "text": "告辞",
+     "goto": "__end__"
+    }
+   ]
+  },
+  "pill_quest": {
+   "text": "「这份『聚气丹方』的推演，待你参透函数真意后自会出现。」",
+   "actions": [
+    {
+     "id": "pill_unlock",
+     "type": "unlock_task",
+     "task_id": "branch_pill"
+    }
+   ],
+   "options": [
+    {
+     "text": "记下了",
+     "goto": "start"
+    },
+    {
+     "text": "告辞",
+     "goto": "__end__"
+    }
+   ]
+  },
+  "dao": {
+   "text": "「炼丹如 Debug：丹方错了不可怕，可怕的是不知错在何处。逐行查看，逐味药排查，心魔自消。」",
+   "actions": [
+    {
+     "id": "pill_dao_reward",
+     "type": "reward",
+     "debug_exp": 5,
+     "mindset": 5
+    }
+   ],
+   "options": [
+    {
+     "text": "受教了",
+     "goto": "start"
+    },
+    {
+     "text": "告辞",
+     "goto": "__end__"
+    }
+   ]
+  }
+ },
+ "guide_realm": {
+  "start": {
+   "text": "云游子拨动罗盘：「天地秘境，皆藏机缘。青云秘境、万象幻境、代码天宫——各有其主，各需其道。待你修为足够，我自会为你开启。」",
+   "options": [
+    {
+     "text": "请为我开启青云秘境",
+     "goto": "qingyun"
+    },
+    {
+     "text": "请为我开启万象幻境",
+     "goto": "wanxiang"
+    },
+    {
+     "text": "请为我开启代码天宫",
+     "goto": "tiangong"
+    },
+    {
+     "text": "秘境有何凶险？",
+     "goto": "danger"
+    },
+    {
+     "text": "告辞",
+     "goto": "__end__"
+    }
+   ]
+  },
+  "qingyun": {
+   "text": "「青云秘境以云雾为障，考验基础道法。我已为你记下此缘，时机一到（炼气五层），入口自开。」",
+   "actions": [
+    {
+     "id": "qingyun_unlock",
+     "type": "unlock_secret",
+     "secret_id": "qingyun"
+    }
+   ],
+   "options": [
+    {
+     "text": "多谢引路",
+     "goto": "start"
+    },
+    {
+     "text": "告辞",
+     "goto": "__end__"
+    }
+   ]
+  },
+  "danger": {
+   "text": "「秘境之中，心魔与机缘并存。记住：一切试炼皆须亲手破之，投机取巧者，机缘自散。」",
+   "options": [
+    {
+     "text": "明白了",
+     "goto": "start"
+    },
+    {
+     "text": "告辞",
+     "goto": "__end__"
+    }
+   ]
+  },
+  "wanxiang": {
+   "text": "「万象幻境以幻象为劫，考验金丹至元婴期的精妙道法。我已记下此缘，金丹一层起，入口自开。」",
+   "actions": [
+    {
+     "id": "wanxiang_unlock",
+     "type": "unlock_secret",
+     "secret_id": "wanxiang"
+    }
+   ],
+   "options": [
+    {
+     "text": "多谢引路",
+     "goto": "start"
+    },
+    {
+     "text": "告辞",
+     "goto": "__end__"
+    }
+   ]
+  },
+  "tiangong": {
+   "text": "「代码天宫乃天庭试炼，非化神不可轻入。我已记下此缘，化神一层起，天门自现。」",
+   "actions": [
+    {
+     "id": "tiangong_unlock",
+     "type": "unlock_secret",
+     "secret_id": "tiangong"
+    }
+   ],
+   "options": [
+    {
+     "text": "多谢引路",
+     "goto": "start"
+    },
+    {
+     "text": "告辞",
+     "goto": "__end__"
+    }
+   ]
+  }
+ },
+ "disciple_xiaoyue": {
+  "start": {
+   "text": "小月蹦跳着过来：「师兄/师姐！我听说入门第一关要唤醒灵牌，可难了！你当初是怎么过的呀？」",
+   "options": [
+    {
+     "text": "讲一讲你的心得",
+     "goto": "advice"
+    },
+    {
+     "text": "摸摸她的头",
+     "goto": "pat"
+    },
+    {
+     "text": "告辞",
+     "goto": "__end__"
+    }
+   ]
+  },
+  "advice": {
+   "text": "「其实不难！先想清楚灵牌要显示什么，再想用什么命令把它『喊』出来。失败几次很正常，心魔而已，砍了便是！」",
+   "actions": [
+    {
+     "id": "xiaoyue_encourage",
+     "type": "reward",
+     "mindset": 10
+    }
+   ],
+   "options": [
+    {
+     "text": "谢谢小月",
+     "goto": "start"
+    },
+    {
+     "text": "告辞",
+     "goto": "__end__"
+    }
+   ]
+  },
+  "pat": {
+   "text": "小月脸一红，又挺起胸膛：「我会加油的！师兄/师姐也要加油！」",
+   "actions": [
+    {
+     "id": "xiaoyue_pat",
+     "type": "reward",
+     "mindset": 5
+    }
+   ],
+   "options": [
+    {
+     "text": "嗯！",
+     "goto": "start"
+    },
+    {
+     "text": "告辞",
+     "goto": "__end__"
+    }
+   ]
+  }
+ }
+}

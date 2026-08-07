@@ -1,0 +1,335 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>码上飞升 · Code Ascension</title>
+<link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/static/vendor/codemirror.min.css">
+<link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+<div id="bg-particles" aria-hidden="true"></div>
+
+<div id="app">
+
+  <!-- 标题界面 -->
+  <section id="screen-title" class="screen">
+    <div class="title-seal">☯</div>
+    <h1 class="game-title">码上飞升</h1>
+    <p class="game-subtitle">大道三千，代码亦可入道。</p>
+    <div class="title-buttons">
+      <button id="btn-start-new" class="btn btn-gold">开始修行</button>
+      <button id="btn-continue" class="btn btn-jade hidden">继续修行</button>
+    </div>
+    <div id="slot-list" class="slot-list"></div>
+    <p class="title-foot">Python 编程 · 修仙 RPG</p>
+  </section>
+
+  <!-- 创建角色 -->
+  <section id="screen-create" class="screen hidden">
+    <h2 class="screen-title">拜入山门</h2>
+    <p class="screen-desc">你于乱世中得一残卷，自此踏入修仙之路。先为自己取一道号，择一灵根。</p>
+    <div class="create-box">
+      <label class="field-label" for="input-name">道号</label>
+      <input id="input-name" type="text" maxlength="12" placeholder="如：青云、云中子" autocomplete="off">
+      <label class="field-label" for="input-slot">存档槽位</label>
+      <input id="input-slot" type="text" maxlength="20" placeholder="default（可自定义）" autocomplete="off">
+      <label class="field-label">灵根</label>
+      <div id="spirit-roots" class="spirit-roots">
+        <button class="spirit-root selected" data-root="金">金灵根<span>锐利果决</span></button>
+        <button class="spirit-root" data-root="木">木灵根<span>生生不息</span></button>
+        <button class="spirit-root" data-root="水">水灵根<span>上善若水</span></button>
+        <button class="spirit-root" data-root="火">火灵根<span>炽烈勇猛</span></button>
+        <button class="spirit-root" data-root="土">土灵根<span>厚德载物</span></button>
+      </div>
+      <div class="create-actions">
+        <button id="btn-create-back" class="btn btn-ghost">返回</button>
+        <button id="btn-create-confirm" class="btn btn-gold">确认入道</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 洞府地图 -->
+  <section id="screen-map" class="screen hidden">
+    <header class="status-bar">
+      <div class="status-left">
+        <span class="status-name" id="map-player-name">无名散修</span>
+        <span class="status-realm" id="map-player-realm">凡人</span>
+        <span class="status-title" id="map-player-title"></span>
+      </div>
+      <div class="status-right">
+        <span class="status-cult">修为 <b id="map-cultivation">0</b></span>
+        <span class="status-cult">悟性 <b id="map-comprehension">10</b></span>
+        <span class="status-cult">心境 <b id="map-mindset">100</b></span>
+        <span class="status-cult">除魔 <b id="map-debug-exp">0</b></span>
+        <button id="btn-save" class="btn btn-small btn-ghost">存档</button>
+        <button id="btn-exit" class="btn btn-small btn-ghost">重入轮回</button>
+      </div>
+    </header>
+
+    <div class="map-grid">
+      <div id="card-cultivate" class="location-card card-cultivate">
+        <div class="card-icon">🧘</div>
+        <h3>洞府修行</h3>
+        <p id="card-cultivate-desc">以代码为法，以修为为证。</p>
+        <div id="card-cultivate-task" class="card-task"></div>
+        <button class="btn btn-gold btn-block" data-nav="task">进入修行</button>
+      </div>
+
+      <div id="card-debug" class="location-card card-debug">
+        <div class="card-icon">⚗️</div>
+        <h3>炼丹房</h3>
+        <p>心魔盘踞之地，修复代码，重铸道心。</p>
+        <div id="card-debug-list" class="card-task-list"></div>
+        <button class="btn btn-jade btn-block" data-nav="debug">降服心魔</button>
+      </div>
+
+      <div id="card-tribulation" class="location-card card-tribulation">
+        <div class="card-icon">⚡</div>
+        <h3>渡劫台</h3>
+        <p id="card-tribulation-desc">阶段大考，渡过天劫，筑基成道。</p>
+        <div id="card-tribulation-state" class="card-task"></div>
+        <button class="btn btn-red btn-block" data-nav="tribulation">登台渡劫</button>
+      </div>
+
+      <div id="card-library" class="location-card card-library">
+        <div class="card-icon">📖</div>
+        <h3>藏经阁</h3>
+        <p>万卷功法，皆从一行代码起。</p>
+        <div id="card-library-state" class="card-task"></div>
+        <button class="btn btn-jade btn-block" data-nav="library">翻阅功法</button>
+      </div>
+
+      <div id="card-branch" class="location-card card-branch">
+        <div class="card-icon">🗺️</div>
+        <h3>机缘簿</h3>
+        <p>奇遇散落天地，机缘自待有缘人。</p>
+        <div id="card-branch-list" class="card-task-list"></div>
+        <button class="btn btn-gold btn-block" data-nav="branch">查看机缘</button>
+      </div>
+
+      <div id="card-secret" class="location-card card-secret">
+  <div class="card-icon">🌀</div>
+  <h3>秘境入口</h3>
+  <p id="card-secret-desc" class="card-desc">云游子在此守望，机缘自成。</p>
+  <div id="card-secret-state" class="card-task"></div>
+  <button class="btn btn-jade btn-block" data-nav="secret">探索秘境</button>
+</div>
+
+<div id="card-bag" class="location-card card-bag">
+        <div class="card-icon">🎒</div>
+        <h3>储物袋</h3>
+        <p id="card-bag-desc">随身携带的丹药与符箓。</p>
+        <div id="card-bag-state" class="card-task"></div>
+        <button class="btn btn-ghost btn-block" data-nav="bag">打开储物袋</button>
+      </div>
+
+      <div id="card-achievement" class="location-card card-achievement">
+        <div class="card-icon">🏅</div>
+        <h3>成就碑</h3>
+        <p>修行路上的每一个脚印，皆为道证。</p>
+        <div id="card-achievement-state" class="card-task"></div>
+        <button class="btn btn-jade btn-block" data-nav="achievement">查看成就</button>
+      </div>
+    </div>
+
+    <div class="npc-strip">
+      <h4 class="npc-strip-title">👥 宗门同道</h4>
+      <div id="npc-list" class="npc-list"></div>
+    </div>
+  </section>
+
+  <!-- 任务界面（主线 / 炼丹房 / 天劫波次共用） -->
+  <section id="screen-task" class="screen hidden">
+    <header class="task-header">
+      <button id="btn-task-back" class="btn btn-ghost btn-small">← 返回洞府</button>
+      <div class="task-header-title">
+        <span id="task-mode-tag" class="tag"></span>
+        <h2 id="task-title">任务</h2>
+      </div>
+      <div class="task-header-realm" id="task-realm">凡人</div>
+    </header>
+
+    <div class="task-layout">
+      <div class="task-left">
+        <div class="panel story-panel">
+          <h4>📜 机缘</h4>
+          <div id="task-story" class="story-text"></div>
+        </div>
+        <div class="panel teaching-panel">
+          <h4>📖 功法讲解</h4>
+          <div id="task-teaching" class="teaching-body"></div>
+        </div>
+        <div class="panel hint-panel">
+          <h4>💡 心法提示 <button id="btn-reveal-hint" class="btn btn-small btn-ghost">点拨一下</button></h4>
+          <ul id="task-hints" class="hint-list"></ul>
+          <div id="solution-row" class="solution-row">
+            <button id="btn-show-solution" class="btn btn-small btn-ghost">查看参考答案</button>
+          </div>
+        </div>
+        <div class="panel master-panel">
+          <h4>🧙 师尊指点
+            <button id="btn-ask-master" class="btn btn-small btn-jade">求指点</button>
+            <button id="btn-ask-analyze" class="btn btn-small btn-ghost">请诊断</button>
+          </h4>
+          <div id="master-advice" class="master-advice">青玄子静坐于旁，等你叩问。</div>
+        </div>
+      </div>
+
+      <div class="task-right">
+        <div class="editor-wrap">
+          <textarea id="code-editor"></textarea>
+        </div>
+        <div class="editor-toolbar">
+          <button id="btn-run" class="btn btn-jade">▶ 运行</button>
+          <button id="btn-submit" class="btn btn-gold">⚔ 提交验证</button>
+          <button id="btn-reset" class="btn btn-ghost">重置</button>
+          <span id="run-status" class="run-status"></span>
+        </div>
+        <div class="panel output-panel">
+          <h4>🖥 灵台（输出）</h4>
+          <pre id="task-output" class="output-text"></pre>
+        </div>
+        <div id="task-result" class="task-result hidden">
+          <div id="result-title" class="result-title"></div>
+          <div id="result-details" class="result-details"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 藏经阁 -->
+  <section id="screen-library" class="screen hidden">
+    <header class="task-header">
+      <button id="btn-library-back" class="btn btn-ghost btn-small">← 返回洞府</button>
+      <div class="task-header-title"><h2>藏经阁 · 功法总览</h2></div>
+      <div class="task-header-realm" id="library-realm">凡人</div>
+    </header>
+    <div id="technique-list" class="technique-list"></div>
+  </section>
+
+  <!-- 渡劫台 -->
+  <section id="screen-tribulation" class="screen hidden">
+    <header class="task-header">
+      <button id="btn-tribulation-back" class="btn btn-ghost btn-small">← 返回洞府</button>
+      <div class="task-header-title"><h2>渡劫台 · 筑基天劫</h2></div>
+    </header>
+    <div class="panel tribulation-intro" id="tribulation-intro"></div>
+    <div id="tribulation-waves" class="tribulation-waves"></div>
+  </section>
+
+  <!-- 筑基成功 -->
+  <section id="screen-secret" class="screen hidden">
+  <button id="btn-secret-back" class="btn btn-ghost btn-small">← 返回洞府</button>
+  <div class="task-header-title"><h2>秘境 · 机缘之门</h2></div>
+  <div class="task-header-realm" id="secret-screen-realm">凡人</div>
+  <div id="secret-realm-list" class="secret-realm-list"></div>
+</section>
+
+<section id="screen-complete" class="screen hidden">
+    <div class="complete-box">
+      <div class="complete-glow"></div>
+      <h2 class="complete-title">筑基成功</h2>
+      <p class="complete-sub">天劫已渡，道基已成。你，正式踏入修仙之途。</p>
+      <div class="complete-stats">
+        <div><span>道号</span><b id="complete-name"></b></div>
+        <div><span>最终境界</span><b>筑基</b></div>
+        <div><span>修为</span><b id="complete-cultivation"></b></div>
+        <div><span>完成功法</span><b id="complete-tasks"></b></div>
+      </div>
+      <div class="complete-actions">
+        <button id="btn-complete-back" class="btn btn-gold">返回洞府</button>
+        <button id="btn-complete-restart" class="btn btn-ghost">再来一世</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- 突破弹窗 -->
+<div id="modal-breakthrough" class="modal hidden">
+  <div class="modal-box breakthrough-box">
+    <div class="bt-particles" aria-hidden="true"></div>
+    <h2 id="bt-title" class="bt-title">突破！</h2>
+    <p id="bt-desc" class="bt-desc"></p>
+  <div id="bt-detail" class="bt-detail"></div>
+    <button id="btn-breakthrough" class="btn btn-gold">运功突破</button>
+  </div>
+</div>
+
+<!-- 对话弹窗 -->
+<div id="modal-dialogue" class="modal hidden">
+  <div class="modal-box dialogue-box">
+    <div class="dialogue-head">
+      <span id="dlg-icon" class="dlg-icon">🧙</span>
+      <div>
+        <h3 id="dlg-name">青玄子</h3>
+        <p id="dlg-title" class="dlg-title">授业师尊</p>
+      </div>
+    </div>
+    <div id="dlg-text" class="dlg-text"></div>
+    <div id="dlg-effects" class="dlg-effects"></div>
+    <div id="dlg-options" class="dlg-options"></div>
+    <button id="btn-dlg-close" class="btn btn-ghost dlg-close">结束对话</button>
+  </div>
+</div>
+
+<!-- 储物袋弹窗 -->
+<div id="modal-bag" class="modal hidden">
+  <div class="modal-box bag-box">
+    <h3>🎒 储物袋</h3>
+    <div id="bag-items" class="bag-items"></div>
+    <button id="btn-bag-close" class="btn btn-ghost">收起</button>
+  </div>
+</div>
+
+<!-- 成就弹窗 -->
+<div id="modal-achievement" class="modal hidden">
+  <div class="modal-box achievement-box">
+    <h3>🏅 成就碑</h3>
+    <div id="achievement-list" class="achievement-list"></div>
+    <button id="btn-achievement-close" class="btn btn-ghost">关闭</button>
+  </div>
+</div>
+
+<!-- 成就解锁弹窗 -->
+<div id="modal-ach-pop" class="modal hidden">
+  <div class="modal-box ach-pop-box">
+    <div class="ach-pop-icon" id="ach-pop-icon">🏅</div>
+    <h3 class="ach-pop-title">成就解锁！</h3>
+    <p class="ach-pop-name" id="ach-pop-name"></p>
+    <p class="ach-pop-desc" id="ach-pop-desc"></p>
+    <p class="ach-pop-reward" id="ach-pop-reward"></p>
+    <button id="btn-ach-pop-close" class="btn btn-gold">收下</button>
+  </div>
+</div>
+
+<!-- 入道启程弹窗 -->
+<div id="modal-intro" class="modal hidden">
+  <div class="modal-box intro-box">
+    <div class="intro-glow" aria-hidden="true"></div>
+    <h3 class="intro-title">📜 入道启程</h3>
+    <div class="intro-body">
+      <p>你于乱世中得此残卷，金光闪过，已身处古朴洞府。案上《Python 真解》认你为主——</p>
+      <p class="intro-rule">「在这方天地，<b>代码即法术</b>。每一行真言，都将化为你的灵力。」</p>
+      <p>青玄子传音入耳：<i>「先往洞府修行，参悟第一道真言 print()，唤醒灵牌，方入炼气之门。」</i></p>
+    </div>
+    <button id="btn-intro-go" class="btn btn-gold">前往洞府修行</button>
+  </div>
+</div>
+
+<!-- 提示弹窗 -->
+<div id="modal-message" class="modal hidden">
+  <div class="modal-box message-box">
+    <p id="modal-message-text"></p>
+    <button id="btn-modal-close" class="btn btn-ghost">知道了</button>
+  </div>
+</div>
+
+<script src="/static/vendor/codemirror.min.js"></script>
+<script src="/static/vendor/python.min.js"></script>
+<script src="/static/js/api.js"></script>
+<script src="/static/js/markdown.js"></script>
+<script src="/static/js/app.js"></script>
+</body>
+</html>
