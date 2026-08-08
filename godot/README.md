@@ -1,39 +1,50 @@
-# 《码上飞升：青云宗篇》Godot Edition
+# CodeDaoLab Godot Edition
 
-独立 Godot 4.x 子项目。Web Edition 位于仓库根目录，两者不共享运行时存档。
+当前版本：**v0.2.0 第一章体验强化版**
 
-## 开发运行
+《码上飞升：青云宗篇》是一款把真实 Python 编程变成修仙施法过程的 2.5D RPG。Godot Edition 与 Web Edition 独立存在，使用独立存档，但复用经过验证的 Python 沙箱核心。
 
-```powershell
-Godot_v4.7.1-stable_win64_console.exe --editor --path godot
-```
+## 第一章流程
 
-无头启动检查：
+创建道号、灵根与身份 -> 循世界灵光进入青云宗 -> 拜见 NPC -> 修习真言诀、变量吐纳诀、循环周天诀 -> 以真实 Python 破除三阶段 Bug 妖 -> 引气入体 -> 查看个性化章节结算。
 
-```powershell
-Godot_v4.7.1-stable_win64_console.exe --headless --path godot --quit-after 3
-```
+## V0.2 增强
 
-## 当前目标
+- 观题、落笔、起式、运转、显化、命中/反噬代码施法链。
+- 语法断裂、运行反冲、超时冻结、输出偏移和环境失联差异化反馈。
+- 世界目标地点、距离、灵光和青玄子传音引导。
+- 五灵根、三身份背景及持久化角色差异。
+- 三名 NPC 的程序化立绘、表情、记忆和关系阶段。
+- 五地点动态天气、程序化环境音和一次性观察点。
+- 三门功法的入门、运转、小成节点与掌握证据。
+- 三阶段概念驱动 Bug 妖表现。
+- 保存失败历史、但不保存源码的师尊伙伴系统。
+- 灵根突破阵纹、关系回顾和个性化章节评语。
 
-完成《青云宗篇》第一章：创建角色、探索青云宗、拜见青玄子、学习功法、完成真实 Python 代码试炼、击败 Bug 妖并突破炼气境。
+## 运行源码
 
-当前阶段使用程序化占位资源，玩法闭环通过后再按 `ART_STYLE_GUIDE.md` 替换关键美术。
-
-## 已完成的 Demo 流程
-
-创建角色 → 进入青云宗 → 探索五处地点 → 拜见青玄子 → 学习真言诀/变量吐纳诀/循环周天诀 → 完成真实 Python 试炼 → 三阶段击败 Bug 妖 → 突破炼气一层。
-
-## 自动测试
-
-```powershell
-powershell -ExecutionPolicy Bypass -File godot/scripts/run_tests.ps1
-```
-
-## Windows 便携发布
+使用 Godot 4.7.1 打开 `project.godot`，或在仓库根目录执行：
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File godot/scripts/build_release.ps1
+.tools\godot\Godot_v4.7.1-stable_win64.exe --path godot
 ```
 
-发布包使用官方 Godot 标准运行程序 + PCK，包含外置 Python 桥和隔离沙箱运行时。目标机器需要 Python 3.10+，无需安装 Godot；双击 `Start-Qingyun-Demo.bat` 启动。
+代码试炼需要系统安装 Python 3.10+。可通过环境变量 `CODEDAO_PYTHON` 指定解释器。
+
+## 测试与发布
+
+```powershell
+godot\scripts\run_tests.ps1
+godot\scripts\build_release.ps1
+```
+
+统一测试包含 181 项 Godot 检查。构建脚本还会验证发布目录中的 Python 判题和 Godot 运行时，再生成 Windows ZIP。
+
+## 文档
+
+- `docs/V0.2_REVIEW.md`：产品体验评审。
+- `docs/V0.2_DESIGN.md`：体验设计。
+- `docs/V0.2_ART_DIRECTION.md`：美术与声音规范。
+- `docs/ACCEPTANCE.md`：最终验收。
+- `docs/TEST_REPORT.md`：测试结果。
+- `docs/RELEASE.md`：发布说明。

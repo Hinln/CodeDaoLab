@@ -6,7 +6,7 @@ config_version=5
 
 config/name="码上飞升：青云宗篇"
 config/description="东方修仙世界观下的 Python 编程 2.5D RPG Demo"
-config/version="0.1.0-demo"
+config/version="0.2.0"
 run/main_scene="res://scenes/main/Main.tscn"
 config/icon="res://assets/icon.svg"
 

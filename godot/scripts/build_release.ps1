@@ -65,12 +65,13 @@ $Launcher = @(
 Set-Content -LiteralPath (Join-Path $ExportDir 'Start-Qingyun-Demo.bat') -Value $Launcher -Encoding ASCII
 
 $ReleaseNotes = @(
-    'CodeDaoLab: Qingyun Chapter - Godot Demo v0.1.0',
+    'CodeDaoLab: Qingyun Chapter - Godot Edition v0.2.0',
     '',
     'Run: double-click Start-Qingyun-Demo.bat.',
     'Requires: Windows 10/11 and Python 3.10 or newer.',
     'Godot is bundled. Player code runs in the packaged isolated Python bridge.',
-    'Controls: WASD or arrow keys to move, E to interact.'
+    'Controls: WASD or arrow keys to move, E to interact.',
+    'V0.2: spellcasting feedback, guided exploration, identities, NPC memory, atmosphere, mastery and mentor companionship.'
 ) -join "`r`n"
 Set-Content -LiteralPath (Join-Path $ExportDir 'README.txt') -Value $ReleaseNotes -Encoding ASCII
 
@@ -88,7 +89,7 @@ if ($SmokeProcess.ExitCode -ne 0) { throw 'Packaged Godot runtime smoke failed.'
 
 $DistDir = Join-Path $ProjectRoot 'dist'
 New-Item -ItemType Directory -Path $DistDir -Force | Out-Null
-$ZipPath = Join-Path $DistDir "$BaseName-v0.1.0.zip"
+$ZipPath = Join-Path $DistDir "$BaseName-v0.2.0.zip"
 if (Test-Path -LiteralPath $ZipPath) { Remove-Item -LiteralPath $ZipPath -Force }
 Compress-Archive -Path (Join-Path $ExportDir '*') -DestinationPath $ZipPath -CompressionLevel Optimal -ErrorAction Stop
 

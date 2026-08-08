@@ -317,3 +317,12 @@
 - 章节结算展示道号、灵根、身份、三诀掌握、NPC 关系与青玄子个性评语。
 - 存档版本升级至 v2，继续兼容 v1 缺失字段并恢复身份、记忆、发现、功法和导师历史。
 - 统一测试入口纳入 A-G 全部测试，累计 181/181 通过。
+
+## V0.2.0 - 测试、验收与 Windows 发布（2026-08-08）
+
+- 工程版本升级为 v0.2.0，完成 A-G 全阶段整合。
+- Godot 统一检查 181/181 通过，包含完整身份到突破流程。
+- 发布目录 Python 判题、Godot 运行时启动和 ZIP 完整性检查通过。
+- Web Edition 回归 268 passed、32 skipped，完整 E2E 全部通过。
+- 生成 Windows 发布包 `CodeDaoLab-Qingyun-Demo-v0.2.0.zip`（82.3 MB）。
+- 更新 README、ACCEPTANCE、TEST_REPORT 和 RELEASE 为 V0.2.0 实际结果。
