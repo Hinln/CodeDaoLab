@@ -7,6 +7,7 @@ const RUNNER_PATH := "res://python_bridge/runner.py"
 
 var busy: bool = false
 var worker: Thread
+var cached_environment: Dictionary = {}
 
 
 func _ready() -> void:
@@ -78,6 +79,24 @@ func execute_sync(challenge_id: String, code: String, action: String = "submit")
 	if FileAccess.file_exists(response_path):
 		DirAccess.remove_absolute(ProjectSettings.globalize_path(response_path))
 	return result
+
+
+func check_environment(force: bool = false) -> Dictionary:
+	if not force and not cached_environment.is_empty():
+		return cached_environment.duplicate(true)
+	var output: Array = []
+	var python_executable := OS.get_environment("CODEDAO_PYTHON")
+	if python_executable.is_empty():
+		python_executable = "python"
+	var exit_code := OS.execute(python_executable, PackedStringArray(["--version"]), output, true)
+	var version_text := "\n".join(output).strip_edges()
+	cached_environment = {
+		"available": exit_code == 0,
+		"executable": python_executable,
+		"version": version_text,
+		"message": "外部 Python 灵台已连接：%s" % version_text if exit_code == 0 else "未找到 Python 3.10+。代码本身没有出错，请安装 Python 或设置 CODEDAO_PYTHON 后重试。",
+	}
+	return cached_environment.duplicate(true)
 
 
 func _internal_error(message: String, detail: String = "") -> Dictionary:

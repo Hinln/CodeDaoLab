@@ -23,6 +23,10 @@ var nearest_location: Dictionary = {}
 var npc_actors: Array[Node2D] = []
 var nearest_npc: Node2D
 var world_active: bool = false
+var target_location_id: String = ""
+var guidance_elapsed: float = 0.0
+var guidance_quest_id: String = ""
+var guide_phase: float = 0.0
 
 
 func _ready() -> void:
@@ -53,6 +57,12 @@ func enter_world(restoring: bool) -> void:
 	hud.update_player(GameState.player)
 	_update_quest(GameState.current_quest_id)
 	hud.show_toast("云阶已尽，%s踏入青云宗。" % str(GameState.player.get("dao_name", "你")))
+	var environment := PythonBridge.check_environment()
+	if not bool(environment.get("available", false)):
+		hud.show_mentor_message(str(environment.message), 9.0)
+	elif not restoring and not QuestManager.has_flag("onboarding_seen"):
+		QuestManager.set_flag("onboarding_seen", true)
+		hud.show_mentor_message("记住：代码是法诀，运行后的输出是天地回响。先循灵光到弟子洞府见我。", 8.0)
 
 
 func leave_world() -> void:
@@ -62,10 +72,13 @@ func leave_world() -> void:
 	visible = false
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	if not world_active:
 		return
+	guide_phase += delta
+	guidance_elapsed += delta
 	GameState.set_world_position(player.position)
+	_update_target_guidance()
 	nearest_location = _find_nearest_location()
 	nearest_npc = _find_nearest_npc()
 	if not nearest_location.is_empty() and str(nearest_location.id) == "back_mountain" and GameState.current_quest_id == "defeat_bug_demon":
@@ -82,6 +95,19 @@ func _process(_delta: float) -> void:
 		return
 	hud.set_location(str(nearest_location.name))
 	hud.set_interaction_prompt("按 E 查看 · %s" % str(nearest_location.name), true)
+
+
+func _update_target_guidance() -> void:
+	if target_location_id.is_empty() or not location_positions.has(target_location_id):
+		return
+	var distance := player.position.distance_to(location_positions[target_location_id])
+	hud.set_target_distance(distance, distance <= INTERACTION_DISTANCE)
+	queue_redraw()
+	if guidance_elapsed >= 12.0 and distance > 230.0 and guidance_quest_id != GameState.current_quest_id:
+		guidance_elapsed = 0.0
+		guidance_quest_id = GameState.current_quest_id
+		var location := _location_by_id(target_location_id)
+		hud.show_mentor_message("循右上任务卡所示灵光前往%s。先做眼前一步，不必记下所有门规。" % str(location.get("name", "目标地点")))
 
 
 func _on_interaction_pressed() -> void:
@@ -195,8 +221,13 @@ func _update_quest(quest_id: String) -> void:
 	var chapter: Dictionary = DataRepository.get_data("chapter_01").get("chapter", {})
 	for node in chapter.get("nodes", []):
 		if str(node.id) == quest_id:
-			hud.update_quest(str(node.title), str(node.objective))
+			target_location_id = str(node.get("target_location", ""))
+			var target_name := str(_location_by_id(target_location_id).get("name", ""))
+			hud.update_quest(str(node.title), str(node.objective), target_name)
+			guidance_elapsed = 0.0
+			queue_redraw()
 			return
+	target_location_id = ""
 	hud.update_quest("自由修行", "探索青云宗，与宗门人物交谈。")
 
 
@@ -210,6 +241,11 @@ func _draw() -> void:
 			draw_line(location_positions[pair[0]], location_positions[pair[1]], Color("8b8c68"), 3, true)
 	for location in locations:
 		_draw_location(str(location.id), location_positions[location.id])
+	if not target_location_id.is_empty() and location_positions.has(target_location_id):
+		var target: Vector2 = location_positions[target_location_id]
+		var pulse := 66.0 + sin(guide_phase * 3.0) * 7.0
+		draw_arc(target, pulse, 0, TAU, 48, Color(0.87, 0.76, 0.38, 0.72), 4.0)
+		draw_circle(target + Vector2(0, -82), 6.0 + sin(guide_phase * 4.0) * 2.0, Color(0.95, 0.84, 0.48, 0.9))
 	for index in range(12):
 		var x := 55.0 + index * 109.0
 		var y := 625.0 - sin(index * 1.7) * 18.0

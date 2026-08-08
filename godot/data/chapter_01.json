@@ -4,14 +4,14 @@
     "id": "qingyun_01",
     "title": "青云初鸣",
     "nodes": [
-      {"id": "enter_sect", "title": "踏入山门", "objective": "前往弟子洞府拜见青玄子"},
-      {"id": "meet_master", "title": "拜师问道", "objective": "接受真言诀试炼"},
-      {"id": "learn_true_word", "title": "真言初成", "objective": "运行真实 Python 代码唤醒灵牌"},
-      {"id": "learn_variables", "title": "吐纳灵力", "objective": "完成变量吐纳诀"},
-      {"id": "learn_loops", "title": "周天循环", "objective": "完成循环周天诀"},
-      {"id": "defeat_bug_demon", "title": "后山除魔", "objective": "修复错乱代码，击败 Bug 妖"},
-      {"id": "breakthrough_qi", "title": "炼气初成", "objective": "返回青玄子处完成突破"},
-      {"id": "chapter_complete", "title": "青云初鸣", "objective": "第一章完成，可继续探索青云宗"}
+      {"id": "enter_sect", "title": "踏入山门", "objective": "循灵光前往弟子洞府，拜见青玄子", "target_location": "dormitory"},
+      {"id": "meet_master", "title": "拜师问道", "objective": "在弟子洞府接受真言诀试炼", "target_location": "dormitory"},
+      {"id": "learn_true_word", "title": "真言初成", "objective": "前往演武场，以真实 Python 唤醒灵牌", "target_location": "training_ground"},
+      {"id": "learn_variables", "title": "吐纳灵力", "objective": "前往藏经阁，完成变量吐纳诀", "target_location": "library"},
+      {"id": "learn_loops", "title": "周天循环", "objective": "返回演武场，完成循环周天诀", "target_location": "training_ground"},
+      {"id": "defeat_bug_demon", "title": "后山除魔", "objective": "前往后山，修复错乱代码并击败 Bug 妖", "target_location": "back_mountain"},
+      {"id": "breakthrough_qi", "title": "炼气初成", "objective": "返回弟子洞府，请青玄子见证突破", "target_location": "dormitory"},
+      {"id": "chapter_complete", "title": "青云初鸣", "objective": "第一章完成，可继续探索青云宗", "target_location": ""}
     ]
   }
 }

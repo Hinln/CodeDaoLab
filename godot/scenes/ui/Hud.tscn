@@ -106,7 +106,7 @@ layout_mode = 0
 offset_left = 902.0
 offset_top = 112.0
 offset_right = 1256.0
-offset_bottom = 210.0
+offset_bottom = 252.0
 theme_override_styles/panel = SubResource("PanelStyle")
 
 [node name="QuestMargin" type="MarginContainer" parent="Root/QuestPanel"]
@@ -131,6 +131,52 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.7, 0.76, 0.71, 1)
 text = "前往弟子洞府拜见青玄子"
+autowrap_mode = 2
+
+[node name="TargetLabel" type="Label" parent="Root/QuestPanel/QuestMargin/QuestBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.51, 0.71, 0.63, 1)
+theme_override_font_sizes/font_size = 13
+text = "目标地点 · 弟子洞府"
+
+[node name="TargetDistance" type="Label" parent="Root/QuestPanel/QuestMargin/QuestBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.51, 0.71, 0.63, 1)
+theme_override_font_sizes/font_size = 13
+text = "距离约 40 步"
+
+[node name="MentorPanel" type="PanelContainer" parent="Root"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 24.0
+offset_top = 516.0
+offset_right = 398.0
+offset_bottom = 620.0
+theme_override_styles/panel = SubResource("PanelStyle")
+
+[node name="MentorMargin" type="MarginContainer" parent="Root/MentorPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 12
+
+[node name="MentorBox" type="VBoxContainer" parent="Root/MentorPanel/MentorMargin"]
+layout_mode = 2
+
+[node name="MentorTitle" type="Label" parent="Root/MentorPanel/MentorMargin/MentorBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.91, 0.8, 0.54, 1)
+theme_override_font_sizes/font_size = 14
+text = "青玄子 · 千里传音"
+
+[node name="MentorMessage" type="Label" parent="Root/MentorPanel/MentorMargin/MentorBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.72, 0.82, 0.75, 1)
+text = "代码即法诀，运行结果便是天地回响。"
 autowrap_mode = 2
 
 [node name="InteractionPrompt" type="Label" parent="Root"]
