@@ -15,6 +15,9 @@ func start_dialogue(dialogue_id: String, npc_id: String) -> bool:
 	active_dialogue_id = dialogue_id
 	active_npc_id = npc_id
 	active_dialogue = dialogues[dialogue_id]
+	var memory := GameState.npc_memory(npc_id)
+	GameState.remember_npc(npc_id, "meetings", int(memory.get("meetings", 0)) + 1)
+	GameState.remember_npc(npc_id, "last_quest", GameState.current_quest_id)
 	GameState.input_locked = true
 	return _enter_node(str(active_dialogue.get("start", "")))
 
@@ -51,9 +54,27 @@ func current_payload() -> Dictionary:
 		"npc_id": active_npc_id,
 		"speaker": str(active_node.get("speaker", "")),
 		"text": str(active_node.get("text", "")),
+		"expression": str(active_node.get("expression", _default_expression())),
 		"affinity": int(affinities.get(active_npc_id, 0)),
+		"relationship": GameState.relation_stage(active_npc_id),
+		"memory_line": _memory_line(),
 		"options": options.map(func(option: Dictionary) -> Dictionary: return {"text": str(option.get("text", "继续"))}),
 	}
+
+
+func _default_expression() -> String:
+	if active_node_id in ["accept_trial", "breakthrough", "chapter_complete"]:
+		return "pleased"
+	if active_node_id in ["trial_reminder", "variable_trial"]:
+		return "stern"
+	return "calm"
+
+
+func _memory_line() -> String:
+	var meetings := int(GameState.npc_memory(active_npc_id).get("meetings", 0))
+	if meetings <= 1:
+		return "初次相见 · %s正在记住你的选择" % str(active_node.get("speaker", "对方"))
+	return "重逢记忆 · %s灵根的%s · 当前关系：%s" % [GameState.spirit_root_name(), GameState.identity_name(), GameState.relation_stage(active_npc_id)]
 
 
 func _enter_node(node_id: String) -> bool:

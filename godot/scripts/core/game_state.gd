@@ -3,6 +3,7 @@ extends Node
 const DEFAULT_PLAYER := {
 	"dao_name": "",
 	"spirit_root": "wood",
+	"identity": "academy",
 	"realm": "mortal",
 	"cultivation": 0,
 	"comprehension": 10,
@@ -10,6 +11,7 @@ const DEFAULT_PLAYER := {
 	"position": {"map": "qingyun_sect", "x": 0.0, "y": 0.0},
 	"techniques": {},
 	"npc_affinity": {},
+	"npc_memories": {},
 	"quest_flags": {},
 	"boss_defeated": false,
 }
@@ -20,10 +22,11 @@ var active_challenge_id: String = ""
 var input_locked: bool = false
 
 
-func reset_new_game(dao_name: String = "", spirit_root: String = "wood") -> void:
+func reset_new_game(dao_name: String = "", spirit_root: String = "wood", identity: String = "academy") -> void:
 	player = DEFAULT_PLAYER.duplicate(true)
 	player.dao_name = dao_name.strip_edges()
 	player.spirit_root = spirit_root
+	player.identity = identity
 	current_quest_id = ""
 	active_challenge_id = ""
 	input_locked = false
@@ -74,6 +77,36 @@ func add_affinity(npc_id: String, amount: int) -> int:
 	player.npc_affinity = affinities
 	_notify_changed()
 	return updated
+
+
+func remember_npc(npc_id: String, key: String, value: Variant) -> void:
+	var memories: Dictionary = player.get("npc_memories", {})
+	var memory: Dictionary = memories.get(npc_id, {}).duplicate(true)
+	memory[key] = value
+	memories[npc_id] = memory
+	player.npc_memories = memories
+	_notify_changed()
+
+
+func npc_memory(npc_id: String) -> Dictionary:
+	return player.get("npc_memories", {}).get(npc_id, {}).duplicate(true)
+
+
+func relation_stage(npc_id: String) -> String:
+	var affinity := int(player.get("npc_affinity", {}).get(npc_id, 0))
+	if affinity >= 35:
+		return "信任"
+	if affinity >= 5:
+		return "认可"
+	return "初识"
+
+
+func spirit_root_name() -> String:
+	return {"metal": "金", "wood": "木", "water": "水", "fire": "火", "earth": "土"}.get(str(player.get("spirit_root", "wood")), "木")
+
+
+func identity_name() -> String:
+	return {"academy": "书院学童", "wanderer": "山野散修", "artisan": "工坊学徒"}.get(str(player.get("identity", "academy")), "青云弟子")
 
 
 func set_quest_flag(flag_id: String, value: Variant = true) -> void:

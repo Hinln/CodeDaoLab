@@ -17,6 +17,7 @@ func _ready() -> void:
 
 func update_player(player: Dictionary) -> void:
 	%DaoNameLabel.text = str(player.get("dao_name", "无名修士"))
+	%OriginLabel.text = "%s灵根 · %s" % [GameState.spirit_root_name(), GameState.identity_name()]
 	%RealmLabel.text = "境界 · %s" % _realm_name(str(player.get("realm", "mortal")))
 	%StatsLabel.text = "修为 %d    悟性 %d    心境 %d" % [
 		int(player.get("cultivation", 0)),

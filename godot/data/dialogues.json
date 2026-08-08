@@ -6,6 +6,7 @@
       "nodes": {
         "greeting": {
           "speaker": "青玄子",
+          "expression": "calm",
           "text": "你既踏过云阶，便算与青云有缘。但宗门不收只会空谈之人，你可愿以真代码自证？",
           "options": [
             {"text": "弟子愿受考校", "next": "accept_trial", "require": {"quest": "enter_sect"}},
@@ -18,6 +19,7 @@
         },
         "accept_trial": {
           "speaker": "青玄子",
+          "expression": "pleased",
           "text": "善。先习《真言诀》。让沉寂灵牌显出“天地玄黄，宇宙洪荒。”，切记亲手运行，莫以伪言欺天。",
           "actions": [
             {"type": "set_flag", "id": "met_qingxuan", "value": true},
@@ -28,6 +30,7 @@
         },
         "trial_reminder": {
           "speaker": "青玄子",
+          "expression": "stern",
           "text": "真正的真言不在我口中，在你运行后的回响里。前往演武场，完成灵牌试炼。",
           "options": [{"text": "这便去", "next": ""}]
         },
@@ -38,6 +41,7 @@
         },
         "breakthrough": {
           "speaker": "青玄子",
+          "expression": "pleased",
           "text": "三门基础功法相合，后山心魔亦伏。守住灵台，令真言、变量与周天在体内归一——今日，你可入炼气。",
           "options": [{"text": "引气入体，叩开仙门", "next": "", "actions": [{"type": "breakthrough"}]}]
         },
@@ -53,6 +57,7 @@
       "nodes": {
         "greeting": {
           "speaker": "玄机长老",
+          "expression": "stern",
           "text": "藏经万卷，不如亲手运行一行真代码。待你练成真言诀，再来接受《变量吐纳诀》的考校。",
           "options": [
             {"text": "请长老考校变量之法", "next": "variable_trial", "require": {"quest": "learn_variables"}},
@@ -61,6 +66,7 @@
         },
         "variable_trial": {
           "speaker": "玄机长老",
+          "expression": "question",
           "text": "变量如灵力容器，名字是符，值是其中所藏。将十二缕灵气纳入 qi，再让它显形。",
           "options": [
             {"text": "开始变量试炼", "next": "", "actions": [{"type": "challenge", "id": "spirit_vessel"}]}
@@ -73,6 +79,7 @@
       "nodes": {
         "greeting": {
           "speaker": "云游子",
+          "expression": "pleased",
           "text": "后山灵雾中有心魔凝形。机缘还是劫数，要看你能否看穿那几行错乱代码。",
           "options": [{"text": "我会留心", "next": ""}]
         }

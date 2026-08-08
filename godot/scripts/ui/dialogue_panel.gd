@@ -13,8 +13,10 @@ func _ready() -> void:
 func _show_dialogue(payload: Dictionary) -> void:
 	panel.visible = true
 	%SpeakerLabel.text = str(payload.get("speaker", ""))
-	%AffinityLabel.text = "好感 %d" % int(payload.get("affinity", 0))
+	%AffinityLabel.text = "%s · 好感 %d" % [str(payload.get("relationship", "初识")), int(payload.get("affinity", 0))]
 	%DialogueText.text = str(payload.get("text", ""))
+	%MemoryLabel.text = str(payload.get("memory_line", ""))
+	%NpcPortrait.configure(str(payload.get("npc_id", "")), str(payload.get("expression", "calm")))
 	for child in options_box.get_children():
 		child.queue_free()
 	var options: Array = payload.get("options", [])
@@ -34,4 +36,3 @@ func _show_dialogue(payload: Dictionary) -> void:
 
 func _hide_dialogue() -> void:
 	panel.visible = false
-
