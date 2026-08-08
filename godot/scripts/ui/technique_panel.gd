@@ -18,10 +18,16 @@ func open_panel() -> void:
 		row.custom_minimum_size = Vector2(0, 50)
 		row.add_theme_font_size_override("font_size", 17)
 		if technique.learned:
-			row.text = "◆ %s · 入门  熟练度 %d/100\n    Python：%s" % [technique.name, technique.progress, technique.knowledge]
+			var definition := DataRepository.find_by_id("techniques", "techniques", str(technique.id))
+			var nodes: Array = definition.get("nodes", [])
+			var node_texts: Array[String] = []
+			for index in range(nodes.size()):
+				node_texts.append("◆ %s" % str(nodes[index]) if index < int(technique.level) else "◇ %s" % str(nodes[index]))
+			var evidence: Array = technique.get("evidence", [])
+			row.text = "%s · %s  阵纹 %d/100\n%s\n证悟：%s · 下一步：%s" % [technique.name, technique.rank, technique.progress, "  ".join(node_texts), str(evidence[-1]) if not evidence.is_empty() else "尚无", technique.next_goal]
 			row.add_theme_color_override("font_color", Color("daca91"))
 		else:
-			row.text = "◇ %s · 尚未习得\n    Python：%s" % [technique.name, technique.knowledge]
+			row.text = "◇ %s · 尚未习得\nPython：%s · 下一步：%s" % [technique.name, technique.knowledge, technique.next_goal]
 			row.add_theme_color_override("font_color", Color("60766e"))
 		list.add_child(row)
 	overlay.visible = true
@@ -31,4 +37,3 @@ func open_panel() -> void:
 func close_panel() -> void:
 	overlay.visible = false
 	GameState.input_locked = false
-

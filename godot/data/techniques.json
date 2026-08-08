@@ -1,9 +1,8 @@
 {
   "version": 1,
   "techniques": [
-    {"id": "true_word", "name": "真言诀", "knowledge": "print", "challenge": "awakening_word"},
-    {"id": "variable_breath", "name": "变量吐纳诀", "knowledge": "variables", "challenge": "spirit_vessel"},
-    {"id": "cycle_meridian", "name": "循环周天诀", "knowledge": "loops", "challenge": "cycle_meridian"}
+    {"id": "true_word", "name": "真言诀", "knowledge": "print", "challenge": "awakening_word", "nodes": ["入门·真言显形", "运转·破除断句", "小成·言出法随"]},
+    {"id": "variable_breath", "name": "变量吐纳诀", "knowledge": "variables", "challenge": "spirit_vessel", "nodes": ["入门·灵力入器", "运转·归正灵流", "小成·容纳百川"]},
+    {"id": "cycle_meridian", "name": "循环周天诀", "knowledge": "loops", "challenge": "cycle_meridian", "nodes": ["入门·一息三转", "运转·锁定真名", "小成·周天不息"]}
   ]
 }
-

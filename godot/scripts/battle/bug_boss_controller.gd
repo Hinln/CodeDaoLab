@@ -1,6 +1,11 @@
 extends CanvasLayer
 
 const STAGES := ["bug_demon_syntax", "bug_demon_logic", "bug_demon_name"]
+const STAGE_META := [
+	{"theme": "断句噬符 · 语法混乱", "counter": "补全天门，让断裂符链重新闭合", "technique": "true_word", "evidence": "补全循环语法，破除断句噬符"},
+	{"theme": "逆转因果 · 逻辑错流", "counter": "归正累加，让倒行灵力恢复周天", "technique": "variable_breath", "evidence": "修正累加逻辑，令灵力归流"},
+	{"theme": "夺名换形 · 变量失名", "counter": "寻回真名，锁定心魔本体", "technique": "cycle_meridian", "evidence": "统一变量真名，锁定心魔本体"},
+]
 
 @onready var overlay: Control = $Overlay
 @onready var editor: CodeEdit = %CodeEditor
@@ -44,31 +49,42 @@ func close_battle() -> void:
 
 func resolve_result(result: Dictionary, penalize_failure: bool = true) -> bool:
 	if bool(result.get("passed", false)):
+		var meta: Dictionary = STAGE_META[stage_index]
+		var mastery := TechniqueManager.record_usage(str(meta.technique), str(meta.evidence))
 		stage_index += 1
 		visual.set_health(3 - stage_index)
 		if stage_index >= STAGES.size():
 			_finish_victory()
 		else:
-			%BattleResult.text = "破除一层心魔！下一处错误正在显形。"
+			%BattleResult.text = "破除一层心魔！%s" % str(mastery.get("message", "功法运转更为纯熟。"))
 			_load_stage()
 		return true
 	if penalize_failure:
-		var mindset := maxi(0, int(GameState.player.get("mindset", 100)) - 5)
+		var penalty := 5
+		if str(GameState.player.get("spirit_root", "")) == "wood" and not QuestManager.has_flag("wood_resilience_used"):
+			penalty = 4
+			QuestManager.set_flag("wood_resilience_used", true)
+		var mindset := maxi(0, int(GameState.player.get("mindset", 100)) - penalty)
 		GameState.set_player_value("mindset", mindset)
 	return false
 
 
 func _load_stage() -> void:
 	challenge = DataRepository.find_by_id("challenges", "challenges", STAGES[stage_index])
+	var meta: Dictionary = STAGE_META[stage_index]
 	%StageLabel.text = "心魔 %d / %d" % [stage_index + 1, STAGES.size()]
+	%StageThemeLabel.text = str(meta.theme)
 	%ChallengeTitle.text = str(challenge.title)
 	%ChallengePrompt.text = str(challenge.prompt)
 	editor.text = str(challenge.starter)
 	%OutputLabel.text = "等待法诀运行……"
-	%BattleResult.text = "找出错误，运行确认后再发动攻击。"
+	%BattleResult.text = str(meta.counter)
+	if stage_index == 0 and str(GameState.player.get("identity", "")) == "artisan":
+		%BattleResult.text += " · 工坊经验：先检查循环结构是否完整。"
 	%TutorLabel.text = "青玄子传音：心魔最擅长让你只看表象。先运行，再判断是哪一类错误。"
 	%RunButton.disabled = false
 	%AttackButton.disabled = false
+	visual.set_stage(stage_index)
 
 
 func _execute(action: String) -> void:

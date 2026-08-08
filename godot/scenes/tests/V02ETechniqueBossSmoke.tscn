@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/tests/v02_e_technique_boss_smoke.gd" id="1_test"]
+
+[node name="V02ETechniqueBossSmoke" type="Node"]
+script = ExtResource("1_test")

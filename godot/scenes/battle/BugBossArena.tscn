@@ -77,6 +77,14 @@ layout_mode = 2
 size_flags_vertical = 3
 split_offset = 420
 
+[node name="StageThemeLabel" type="Label" parent="Overlay/Panel/Margin/Root"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.91, 0.5, 0.34, 1)
+theme_override_font_sizes/font_size = 16
+text = "断句噬符 · 语法混乱"
+horizontal_alignment = 1
+
 [node name="BossSide" type="VBoxContainer" parent="Overlay/Panel/Margin/Root/BattleArea"]
 custom_minimum_size = Vector2(390, 0)
 layout_mode = 2

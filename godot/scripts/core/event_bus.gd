@@ -6,6 +6,7 @@ signal interaction_requested(target_id: String)
 signal toast_requested(message: String)
 signal code_challenge_requested(challenge_id: String)
 signal technique_panel_requested
+signal technique_advanced(payload: Dictionary)
 signal dialogue_opened(payload: Dictionary)
 signal dialogue_closed
 signal chapter_completed(payload: Dictionary)
