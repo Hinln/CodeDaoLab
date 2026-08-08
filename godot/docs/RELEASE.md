@@ -42,7 +42,7 @@ godot\scripts\run_tests.ps1
 godot\scripts\build_release.ps1
 ```
 
-构建脚本会运行 181 项 Godot 检查、导出 PCK、组装官方 Godot 运行时、验证发布目录 Python 判题、执行发布版启动冒烟并生成 ZIP。
+构建脚本会运行 189 项 Godot 检查、导出 PCK、组装官方 Godot 运行时、验证发布目录 Python 判题、执行发布版启动冒烟并生成 ZIP。
 
 ## 已知限制
 

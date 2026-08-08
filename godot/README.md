@@ -38,7 +38,7 @@ godot\scripts\run_tests.ps1
 godot\scripts\build_release.ps1
 ```
 
-统一测试包含 181 项 Godot 检查。构建脚本还会验证发布目录中的 Python 判题和 Godot 运行时，再生成 Windows ZIP。
+统一测试包含 189 项 Godot 检查，其中 8 项专门验证相机边界和标题、创建、世界、返回标题的画布隔离。构建脚本还会验证发布目录中的 Python 判题和 Godot 运行时，再生成 Windows ZIP。
 
 ## 文档
 

@@ -326,3 +326,11 @@
 - Web Edition 回归 268 passed、32 skipped，完整 E2E 全部通过。
 - 生成 Windows 发布包 `CodeDaoLab-Qingyun-Demo-v0.2.0.zip`（82.3 MB）。
 - 更新 README、ACCEPTANCE、TEST_REPORT 和 RELEASE 为 V0.2.0 实际结果。
+
+## V0.2.0 Hotfix - EXE 画布显示完整性（2026-08-08）
+
+- 修复隐藏世界中的 Camera2D 仍影响标题与角色创建画布的问题。
+- 修复 CanvasLayer 不继承 QingyunSect 可见性，导致 HUD 泄漏到菜单的问题。
+- 相机增加 1280×720 世界边界，进入和离开世界时统一启停相机与六个世界 UI 层。
+- 新增 8 项显示适配检查，Godot 总检查数提升至 189/189 并全部通过。
+- 重新生成 `CodeDaoLab-Qingyun-Demo-v0.2.0.zip`（82.3 MB），包内 Python 与 Godot 冒烟通过。

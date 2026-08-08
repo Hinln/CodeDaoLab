@@ -18,6 +18,8 @@ const PATHS := [
 @onready var npc_container: Node2D = $NpcActors
 @onready var boss_arena: CanvasLayer = $BugBossArena
 @onready var atmosphere: Node2D = $WorldAtmosphere
+@onready var camera: Camera2D = $Player/Camera2D
+@onready var canvas_layers: Array[CanvasLayer] = [$Hud, $DialoguePanel, $CodeChallengePanel, $TechniquePanel, $BugBossArena, $ChapterCompletePanel]
 var locations: Array = []
 var location_positions: Dictionary = {}
 var nearest_location: Dictionary = {}
@@ -41,12 +43,17 @@ func _ready() -> void:
 	EventBus.quest_changed.connect(_update_quest)
 	set_process(false)
 	player.set_control_enabled(false)
+	camera.enabled = false
+	_set_canvas_layers_visible(false)
 	queue_redraw()
 
 
 func enter_world(restoring: bool) -> void:
 	visible = true
 	world_active = true
+	camera.enabled = true
+	camera.reset_smoothing()
+	_set_canvas_layers_visible(true)
 	set_process(true)
 	player.set_control_enabled(true)
 	var saved_position: Dictionary = GameState.player.get("position", {})
@@ -70,7 +77,14 @@ func leave_world() -> void:
 	world_active = false
 	set_process(false)
 	player.set_control_enabled(false)
+	camera.enabled = false
+	_set_canvas_layers_visible(false)
 	visible = false
+
+
+func _set_canvas_layers_visible(value: bool) -> void:
+	for layer in canvas_layers:
+		layer.visible = value
 
 
 func _process(delta: float) -> void:
