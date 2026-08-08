@@ -5,12 +5,11 @@
     "name": "青云宗",
     "spawn": {"x": 0, "y": 260},
     "locations": [
-      {"id": "gate", "name": "山门", "x": 0, "y": 260},
-      {"id": "dormitory", "name": "弟子洞府", "x": -330, "y": 40},
-      {"id": "library", "name": "藏经阁", "x": 320, "y": -120},
-      {"id": "training_ground", "name": "演武场", "x": 20, "y": 0},
-      {"id": "back_mountain", "name": "后山入口", "x": 360, "y": 245}
+      {"id": "gate", "name": "山门", "x": 0, "y": 260, "description": "青云宗云阶尽头，来客皆由此入山。"},
+      {"id": "dormitory", "name": "弟子洞府", "x": -330, "y": 40, "description": "新入门弟子的住处，青玄子正在此等候。"},
+      {"id": "library", "name": "藏经阁", "x": 320, "y": -120, "description": "万卷功法藏于楼中，玄机长老执掌此地。"},
+      {"id": "training_ground", "name": "演武场", "x": 20, "y": 0, "description": "宗门弟子以真代码演练功法之处。"},
+      {"id": "back_mountain", "name": "后山入口", "x": 360, "y": 245, "description": "灵雾翻涌，隐约传来心魔嘶吼。"}
     ]
   }
 }
-

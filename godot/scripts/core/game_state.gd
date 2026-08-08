@@ -52,6 +52,19 @@ func set_player_value(key: String, value: Variant) -> void:
 	_notify_changed()
 
 
+func set_current_quest(quest_id: String) -> void:
+	current_quest_id = quest_id
+	EventBus.quest_changed.emit(quest_id)
+	_notify_changed()
+
+
+func set_world_position(world_position: Vector2) -> void:
+	player.position = {
+		"map": "qingyun_sect",
+		"x": world_position.x,
+		"y": world_position.y,
+	}
+
+
 func _notify_changed() -> void:
 	EventBus.player_state_changed.emit(snapshot())
-

@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/actors/player_controller.gd" id="1_player"]
+
+[sub_resource type="CapsuleShape2D" id="PlayerShape"]
+radius = 13.0
+height = 42.0
+
+[node name="Player" type="CharacterBody2D"]
+z_index = 20
+y_sort_enabled = true
+script = ExtResource("1_player")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+shape = SubResource("PlayerShape")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+position_smoothing_speed = 7.0
+

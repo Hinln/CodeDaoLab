@@ -1,10 +1,17 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=5 format=3]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_main"]
 [ext_resource type="PackedScene" path="res://scenes/menu/TitleScreen.tscn" id="2_title"]
+[ext_resource type="PackedScene" path="res://scenes/menu/CharacterCreation.tscn" id="3_character"]
+[ext_resource type="PackedScene" path="res://scenes/world/QingyunSect.tscn" id="4_world"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_main")
 
 [node name="TitleScreen" parent="." instance=ExtResource("2_title")]
 
+[node name="CharacterCreation" parent="." instance=ExtResource("3_character")]
+visible = false
+
+[node name="QingyunSect" parent="." instance=ExtResource("4_world")]
+visible = false
