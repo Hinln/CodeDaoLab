@@ -5,11 +5,11 @@
     "name": "青云宗",
     "spawn": {"x": 0, "y": 260},
     "locations": [
-      {"id": "gate", "name": "山门", "x": 0, "y": 260, "description": "青云宗云阶尽头，来客皆由此入山。"},
-      {"id": "dormitory", "name": "弟子洞府", "x": -330, "y": 40, "description": "新入门弟子的住处，青玄子正在此等候。"},
-      {"id": "library", "name": "藏经阁", "x": 320, "y": -120, "description": "万卷功法藏于楼中，玄机长老执掌此地。"},
-      {"id": "training_ground", "name": "演武场", "x": 20, "y": 0, "description": "宗门弟子以真代码演练功法之处。"},
-      {"id": "back_mountain", "name": "后山入口", "x": 360, "y": 245, "description": "灵雾翻涌，隐约传来心魔嘶吼。"}
+      {"id": "gate", "name": "山门", "x": 0, "y": 260, "description": "青云宗云阶尽头，来客皆由此入山。", "observation": "残缺门规碑上只有一行仍在发光：凡法必验，伪言不入青云。", "ambience": "风声与远钟"},
+      {"id": "dormitory", "name": "弟子洞府", "x": -330, "y": 40, "description": "新入门弟子的住处，青玄子正在此等候。", "observation": "竹影下的练功刻痕由浅入深，像一段被反复调试过的代码。", "ambience": "竹叶与木鱼"},
+      {"id": "library", "name": "藏经阁", "x": 320, "y": -120, "description": "万卷功法藏于楼中，玄机长老执掌此地。", "observation": "无字残卷自行翻页，只有当你说出变量真名时，墨迹才短暂显形。", "ambience": "纸页与低鸣"},
+      {"id": "training_ground", "name": "演武场", "x": 20, "y": 0, "description": "宗门弟子以真代码演练功法之处。", "observation": "旧阵眼仍按一、二、三的节奏明灭，似乎在等待一段循环法诀。", "ambience": "破风与阵鸣"},
+      {"id": "back_mountain", "name": "后山入口", "x": 360, "y": 245, "description": "灵雾翻涌，隐约传来心魔嘶吼。", "observation": "灵脉裂隙中浮着三种错乱痕迹：断句、逆流与失名。", "ambience": "溪流与低频妖风"}
     ]
   }
 }

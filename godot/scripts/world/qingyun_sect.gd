@@ -17,6 +17,7 @@ const PATHS := [
 @onready var hud: CanvasLayer = $Hud
 @onready var npc_container: Node2D = $NpcActors
 @onready var boss_arena: CanvasLayer = $BugBossArena
+@onready var atmosphere: Node2D = $WorldAtmosphere
 var locations: Array = []
 var location_positions: Dictionary = {}
 var nearest_location: Dictionary = {}
@@ -81,6 +82,8 @@ func _process(delta: float) -> void:
 	_update_target_guidance()
 	nearest_location = _find_nearest_location()
 	nearest_npc = _find_nearest_npc()
+	if not nearest_location.is_empty():
+		atmosphere.set_location_focus(str(nearest_location.id))
 	if not nearest_location.is_empty() and str(nearest_location.id) == "back_mountain" and GameState.current_quest_id == "defeat_bug_demon":
 		hud.set_location(str(nearest_location.name))
 		hud.set_interaction_prompt("按 E 迎战 · Bug 妖", true)
@@ -128,10 +131,28 @@ func _on_interaction_pressed() -> void:
 		if challenge_by_quest.has(GameState.current_quest_id):
 			EventBus.code_challenge_requested.emit(challenge_by_quest[GameState.current_quest_id])
 			return
+		if not QuestManager.has_flag("observed_training_ground"):
+			_observe_location(nearest_location)
+			return
 		EventBus.technique_panel_requested.emit()
 		return
-	EventBus.interaction_requested.emit(str(nearest_location.id))
-	hud.show_toast("%s\n%s" % [nearest_location.name, nearest_location.description])
+	_observe_location(nearest_location)
+
+
+func _observe_location(location: Dictionary) -> void:
+	var location_id := str(location.id)
+	var flag_id := "observed_%s" % location_id
+	var first_observation := not QuestManager.has_flag(flag_id)
+	var observation := str(location.get("observation", location.get("description", "此处灵息平稳。")))
+	if first_observation:
+		QuestManager.set_flag(flag_id, true)
+		var reward := 4 if str(GameState.player.get("identity", "")) == "wanderer" else 3
+		GameState.add_cultivation(reward)
+		observation += "\n首次观息 · 修为 +%d" % reward
+		if location_id == "back_mountain":
+			GameState.remember_npc("guide_realm", "observed_spirit_vein", true)
+	EventBus.interaction_requested.emit(location_id)
+	hud.show_toast("%s · 灵息观察\n%s" % [location.name, observation])
 
 
 func _on_save_requested() -> void:
@@ -224,6 +245,7 @@ func _update_quest(quest_id: String) -> void:
 			target_location_id = str(node.get("target_location", ""))
 			var target_name := str(_location_by_id(target_location_id).get("name", ""))
 			hud.update_quest(str(node.title), str(node.objective), target_name)
+			atmosphere.set_weather(atmosphere.weather_for_quest(quest_id))
 			guidance_elapsed = 0.0
 			queue_redraw()
 			return
@@ -251,6 +273,9 @@ func _draw() -> void:
 		var y := 625.0 - sin(index * 1.7) * 18.0
 		draw_circle(Vector2(x, y), 24, Color("16483d"))
 		draw_line(Vector2(x, y + 18), Vector2(x, y + 55), Color("31583f"), 8)
+	for index in range(7):
+		var cloud_x := fmod(index * 210.0 + guide_phase * 4.0, 1500.0) - 110.0
+		draw_circle(Vector2(cloud_x, 102 + (index % 3) * 34), 34, Color(0.52, 0.68, 0.63, 0.1))
 
 
 func _draw_location(location_id: String, at: Vector2) -> void:
@@ -265,6 +290,18 @@ func _draw_location(location_id: String, at: Vector2) -> void:
 		draw_colored_polygon(PackedVector2Array([at + Vector2(-58, 36), at + Vector2(-17, -48), at + Vector2(12, 7), at + Vector2(43, -55), at + Vector2(72, 36)]), Color("244b43"))
 		draw_circle(at + Vector2(28, 4), 23, Color("214d54"))
 		return
+	if location_id == "gate":
+		for step in range(5):
+			draw_line(at + Vector2(-70 + step * 8, 43 + step * 7), at + Vector2(70 - step * 8, 43 + step * 7), Color("8c886c"), 5)
+		draw_line(at + Vector2(-55, -12), at + Vector2(-55, -68), Color("a78e56"), 5)
+		draw_colored_polygon(PackedVector2Array([at + Vector2(-52, -66), at + Vector2(-20, -56), at + Vector2(-52, -42)]), Color("8c4134"))
+	if location_id == "library":
+		draw_rect(Rect2(at + Vector2(-32, -55), Vector2(64, 10)), Color("b69959"))
+		draw_line(at + Vector2(-48, -45), at + Vector2(48, -45), Color("d2b76e"), 3)
+	if location_id == "dormitory":
+		for side in [-1, 1]:
+			draw_line(at + Vector2(side * 57, -2), at + Vector2(side * 70, -66), Color("3d684c"), 5)
+			draw_circle(at + Vector2(side * 70, -70), 16, Color("2d5a43"))
 	draw_rect(Rect2(at + Vector2(-43, -8), Vector2(86, 48)), Color("765743"))
 	draw_colored_polygon(PackedVector2Array([at + Vector2(-61, -7), at + Vector2(0, -49), at + Vector2(61, -7)]), Color("244b46"))
 	draw_line(at + Vector2(-62, -7), at + Vector2(62, -7), Color("d2b76e"), 4)
