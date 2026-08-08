@@ -16,6 +16,7 @@ const PATHS := [
 @onready var player: CharacterBody2D = $Player
 @onready var hud: CanvasLayer = $Hud
 @onready var npc_container: Node2D = $NpcActors
+@onready var boss_arena: CanvasLayer = $BugBossArena
 var locations: Array = []
 var location_positions: Dictionary = {}
 var nearest_location: Dictionary = {}
@@ -95,6 +96,9 @@ func _on_interaction_pressed() -> void:
 			EventBus.code_challenge_requested.emit(challenge_by_quest[GameState.current_quest_id])
 			return
 		EventBus.technique_panel_requested.emit()
+		return
+	if str(nearest_location.id) == "back_mountain" and GameState.current_quest_id == "defeat_bug_demon":
+		boss_arena.start_battle()
 		return
 	EventBus.interaction_requested.emit(str(nearest_location.id))
 	hud.show_toast("%s\n%s" % [nearest_location.name, nearest_location.description])

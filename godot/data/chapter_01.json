@@ -10,7 +10,8 @@
       {"id": "learn_variables", "title": "吐纳灵力", "objective": "完成变量吐纳诀"},
       {"id": "learn_loops", "title": "周天循环", "objective": "完成循环周天诀"},
       {"id": "defeat_bug_demon", "title": "后山除魔", "objective": "修复错乱代码，击败 Bug 妖"},
-      {"id": "breakthrough_qi", "title": "炼气初成", "objective": "返回青玄子处完成突破"}
+      {"id": "breakthrough_qi", "title": "炼气初成", "objective": "返回青玄子处完成突破"},
+      {"id": "chapter_complete", "title": "青云初鸣", "objective": "第一章完成，可继续探索青云宗"}
     ]
   }
 }

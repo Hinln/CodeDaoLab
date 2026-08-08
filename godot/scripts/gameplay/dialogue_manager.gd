@@ -99,6 +99,8 @@ func _apply_actions(actions: Array) -> void:
 				EventBus.toast_requested.emit(str(action.get("message", "")))
 			"challenge":
 				call_deferred("_request_challenge", str(action.get("id", "")))
+			"breakthrough":
+				QuestManager.complete_breakthrough()
 			_:
 				push_warning("忽略未知对话动作：%s" % str(action.get("type", "")))
 

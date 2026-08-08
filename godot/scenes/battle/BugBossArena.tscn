@@ -1,0 +1,172 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/battle/bug_boss_controller.gd" id="1_boss"]
+[ext_resource type="Script" path="res://scripts/battle/bug_demon_visual.gd" id="2_visual"]
+
+[sub_resource type="StyleBoxFlat" id="PanelStyle"]
+bg_color = Color(0.035, 0.035, 0.038, 0.99)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.67, 0.25, 0.17, 0.9)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[node name="BugBossArena" type="CanvasLayer"]
+layer = 35
+script = ExtResource("1_boss")
+
+[node name="Overlay" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Shade" type="ColorRect" parent="Overlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.035, 0.012, 0.012, 0.96)
+
+[node name="Panel" type="PanelContainer" parent="Overlay"]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 28.0
+offset_right = 1244.0
+offset_bottom = 694.0
+theme_override_styles/panel = SubResource("PanelStyle")
+
+[node name="Margin" type="MarginContainer" parent="Overlay/Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 18
+
+[node name="Root" type="VBoxContainer" parent="Overlay/Panel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Header" type="HBoxContainer" parent="Overlay/Panel/Margin/Root"]
+layout_mode = 2
+
+[node name="BossName" type="Label" parent="Overlay/Panel/Margin/Root/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.93, 0.54, 0.35, 1)
+theme_override_font_sizes/font_size = 27
+text = "后山心魔 · Bug 妖"
+
+[node name="StageLabel" type="Label" parent="Overlay/Panel/Margin/Root/Header"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.88, 0.76, 0.5, 1)
+theme_override_font_sizes/font_size = 17
+text = "心魔 1 / 3"
+
+[node name="BattleArea" type="HSplitContainer" parent="Overlay/Panel/Margin/Root"]
+layout_mode = 2
+size_flags_vertical = 3
+split_offset = 420
+
+[node name="BossSide" type="VBoxContainer" parent="Overlay/Panel/Margin/Root/BattleArea"]
+custom_minimum_size = Vector2(390, 0)
+layout_mode = 2
+
+[node name="BugDemonVisual" type="Control" parent="Overlay/Panel/Margin/Root/BattleArea/BossSide"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(390, 320)
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("2_visual")
+
+[node name="OutputTitle" type="Label" parent="Overlay/Panel/Margin/Root/BattleArea/BossSide"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.77, 0.53, 0.39, 1)
+text = "斗法回响"
+
+[node name="OutputLabel" type="Label" parent="Overlay/Panel/Margin/Root/BattleArea/BossSide"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 105)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.78, 0.8, 0.73, 1)
+text = "等待法诀运行……"
+autowrap_mode = 2
+
+[node name="CodeSide" type="VBoxContainer" parent="Overlay/Panel/Margin/Root/BattleArea"]
+layout_mode = 2
+theme_override_constants/separation = 9
+
+[node name="ChallengeTitle" type="Label" parent="Overlay/Panel/Margin/Root/BattleArea/CodeSide"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.78, 0.53, 1)
+theme_override_font_sizes/font_size = 21
+text = "第一式"
+
+[node name="ChallengePrompt" type="Label" parent="Overlay/Panel/Margin/Root/BattleArea/CodeSide"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 58)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.74, 0.77, 0.7, 1)
+text = "修复代码"
+autowrap_mode = 2
+
+[node name="CodeEditor" type="CodeEdit" parent="Overlay/Panel/Margin/Root/BattleArea/CodeSide"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/background_color = Color(0.012, 0.022, 0.025, 1)
+theme_override_colors/font_color = Color(0.81, 0.86, 0.76, 1)
+theme_override_colors/line_number_color = Color(0.48, 0.29, 0.25, 1)
+theme_override_font_sizes/font_size = 17
+gutters_draw_line_numbers = true
+highlight_current_line = true
+indent_automatic = true
+indent_size = 4
+
+[node name="BattleResult" type="Label" parent="Overlay/Panel/Margin/Root"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.82, 0.68, 0.48, 1)
+theme_override_font_sizes/font_size = 16
+text = "找出错误，运行确认后再发动攻击。"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Buttons" type="HBoxContainer" parent="Overlay/Panel/Margin/Root"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="RetreatButton" type="Button" parent="Overlay/Panel/Margin/Root/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 46)
+layout_mode = 2
+text = "暂避锋芒"
+
+[node name="Spacer" type="Control" parent="Overlay/Panel/Margin/Root/Buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RunButton" type="Button" parent="Overlay/Panel/Margin/Root/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 46)
+layout_mode = 2
+text = "运行观阵"
+
+[node name="AttackButton" type="Button" parent="Overlay/Panel/Margin/Root/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(190, 46)
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+text = "提交法诀 · 攻击"
+

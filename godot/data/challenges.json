@@ -4,7 +4,8 @@
     {"id": "awakening_word", "title": "唤醒灵牌", "kind": "output", "prompt": "输出：天地玄黄，宇宙洪荒。", "starter": "print(\"\")", "expected": "天地玄黄，宇宙洪荒。"},
     {"id": "spirit_vessel", "title": "灵力容器", "kind": "output", "prompt": "将 12 存入变量 qi，再输出 qi。", "starter": "qi = 0\nprint(qi)", "expected": "12"},
     {"id": "cycle_meridian", "title": "循环周天", "kind": "output", "prompt": "使用循环依次输出 1、2、3。", "starter": "for i in range(1, 4):\n    pass", "expected": "1\n2\n3"},
-    {"id": "bug_demon", "title": "Bug 妖·错乱周天", "kind": "output", "prompt": "修复三处错误，让法阵输出 6。", "starter": "total = 0\nfor i in range(1, 4)\n    total =+ i\nprint(totl)", "expected": "6"}
+    {"id": "bug_demon_syntax", "title": "第一式·补全天门", "kind": "output", "prompt": "Bug 妖撕裂了循环语法。补全缺失符号，让法阵输出 6。", "starter": "total = 0\nfor i in range(1, 4)\n    total += i\nprint(total)", "expected": "6"},
+    {"id": "bug_demon_logic", "title": "第二式·归正灵流", "kind": "output", "prompt": "Bug 妖令累加法诀倒置。修复运算，让法阵输出 6。", "starter": "total = 0\nfor i in range(1, 4):\n    total =+ i\nprint(total)", "expected": "6"},
+    {"id": "bug_demon_name", "title": "第三式·寻回真名", "kind": "output", "prompt": "Bug 妖篡改了变量真名。修复最后一行，让法阵输出 6。", "starter": "total = 0\nfor i in range(1, 4):\n    total += i\nprint(totl)", "expected": "6"}
   ]
 }
-

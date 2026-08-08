@@ -10,7 +10,9 @@
           "options": [
             {"text": "弟子愿受考校", "next": "accept_trial", "require": {"quest": "enter_sect"}},
             {"text": "弟子正在参悟真言", "next": "trial_reminder", "require": {"quest": "learn_true_word"}},
-            {"text": "请师尊指点下一步", "next": "chapter_progress", "require": {"flag": "true_word_complete"}},
+            {"text": "请师尊指点下一步", "next": "chapter_progress", "require": {"quest": "learn_variables"}},
+            {"text": "后山心魔已除，请师尊见证破境", "next": "breakthrough", "require": {"quest": "breakthrough_qi"}},
+            {"text": "弟子来向师尊问安", "next": "chapter_complete", "require": {"quest": "chapter_complete"}},
             {"text": "弟子先自行看看", "next": ""}
           ]
         },
@@ -33,6 +35,17 @@
           "speaker": "青玄子",
           "text": "真言已有回响。去藏经阁见玄机长老，他会教你如何以变量容纳灵力。",
           "options": [{"text": "谨遵师命", "next": ""}]
+        },
+        "breakthrough": {
+          "speaker": "青玄子",
+          "text": "三门基础功法相合，后山心魔亦伏。守住灵台，令真言、变量与周天在体内归一——今日，你可入炼气。",
+          "actions": [{"type": "breakthrough"}],
+          "options": [{"text": "引气入体，叩开仙门", "next": ""}]
+        },
+        "chapter_complete": {
+          "speaker": "青玄子",
+          "text": "炼气只是起点。记住你今日破魔所凭，并非蛮力，而是看清错误、亲手修正的本事。",
+          "options": [{"text": "弟子谨记", "next": ""}]
         }
       }
     },
