@@ -68,6 +68,10 @@ func _process(_delta: float) -> void:
 	GameState.set_world_position(player.position)
 	nearest_location = _find_nearest_location()
 	nearest_npc = _find_nearest_npc()
+	if not nearest_location.is_empty() and str(nearest_location.id) == "back_mountain" and GameState.current_quest_id == "defeat_bug_demon":
+		hud.set_location(str(nearest_location.name))
+		hud.set_interaction_prompt("按 E 迎战 · Bug 妖", true)
+		return
 	if nearest_npc != null:
 		hud.set_location(str(nearest_npc.npc_data.get("location_name", "青云宗")))
 		hud.set_interaction_prompt("按 E 交谈 · %s" % str(nearest_npc.npc_data.name), true)
@@ -81,6 +85,9 @@ func _process(_delta: float) -> void:
 
 
 func _on_interaction_pressed() -> void:
+	if not nearest_location.is_empty() and str(nearest_location.id) == "back_mountain" and GameState.current_quest_id == "defeat_bug_demon":
+		boss_arena.start_battle()
+		return
 	if nearest_npc != null:
 		DialogueManager.start_dialogue(str(nearest_npc.npc_data.dialogue), str(nearest_npc.npc_data.id))
 		return
@@ -96,9 +103,6 @@ func _on_interaction_pressed() -> void:
 			EventBus.code_challenge_requested.emit(challenge_by_quest[GameState.current_quest_id])
 			return
 		EventBus.technique_panel_requested.emit()
-		return
-	if str(nearest_location.id) == "back_mountain" and GameState.current_quest_id == "defeat_bug_demon":
-		boss_arena.start_battle()
 		return
 	EventBus.interaction_requested.emit(str(nearest_location.id))
 	hud.show_toast("%s\n%s" % [nearest_location.name, nearest_location.description])

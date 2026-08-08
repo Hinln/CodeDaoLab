@@ -37,7 +37,17 @@ func complete_breakthrough() -> bool:
 	GameState.add_cultivation(50)
 	set_flag("chapter_01_complete", true)
 	set_current_quest("chapter_complete")
+	call_deferred("_emit_chapter_completed")
 	return true
+
+
+func _emit_chapter_completed() -> void:
+	EventBus.chapter_completed.emit({
+		"title": "青云初鸣",
+		"realm": "炼气一层",
+		"cultivation": int(GameState.player.get("cultivation", 0)),
+		"techniques": GameState.player.get("techniques", {}).size(),
+	})
 
 
 func _quest_node(quest_id: String) -> Dictionary:

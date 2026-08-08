@@ -30,10 +30,10 @@ func _ready() -> void:
 	var opening := DialogueManager.current_payload()
 	_check(str(opening.options[0].text).contains("破境"), "breakthrough option is available")
 	DialogueManager.choose(0)
+	DialogueManager.choose(0)
 	_check(str(GameState.player.realm) == "qi1", "dialogue completes qi breakthrough")
 	_check(GameState.current_quest_id == "chapter_complete", "first chapter reaches complete state")
 	_check(int(GameState.player.cultivation) == 150, "breakthrough reward added once")
-	DialogueManager.choose(0)
 	SaveManager.save_path_override = "user://saves/g4_smoke.json"
 	SaveManager.remove_save()
 	_check(SaveManager.save_game(), "completed chapter saves")
@@ -57,4 +57,3 @@ func _check(condition: bool, label: String) -> void:
 		print("[PASS] ", label)
 	else:
 		failures.append("[FAIL] " + label)
-

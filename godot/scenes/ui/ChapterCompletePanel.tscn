@@ -1,0 +1,113 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/chapter_complete_panel.gd" id="1_complete"]
+[ext_resource type="Texture2D" path="res://assets/backgrounds/qingyun_title.png" id="2_background"]
+
+[sub_resource type="StyleBoxFlat" id="PanelStyle"]
+bg_color = Color(0.022, 0.075, 0.078, 0.96)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.75, 0.64, 0.34, 0.9)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+
+[node name="ChapterCompletePanel" type="CanvasLayer"]
+layer = 45
+script = ExtResource("1_complete")
+
+[node name="Overlay" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="Overlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+modulate = Color(0.42, 0.5, 0.46, 1)
+texture = ExtResource("2_background")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Shade" type="ColorRect" parent="Overlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.01, 0.03, 0.035, 0.58)
+
+[node name="Panel" type="PanelContainer" parent="Overlay"]
+layout_mode = 0
+offset_left = 292.0
+offset_top = 105.0
+offset_right = 988.0
+offset_bottom = 626.0
+theme_override_styles/panel = SubResource("PanelStyle")
+
+[node name="Margin" type="MarginContainer" parent="Overlay/Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 44
+theme_override_constants/margin_top = 34
+theme_override_constants/margin_right = 44
+theme_override_constants/margin_bottom = 32
+
+[node name="Content" type="VBoxContainer" parent="Overlay/Panel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 17
+
+[node name="Eyebrow" type="Label" parent="Overlay/Panel/Margin/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.48, 0.75, 0.63, 1)
+theme_override_font_sizes/font_size = 15
+text = "CHAPTER COMPLETE"
+horizontal_alignment = 1
+
+[node name="ChapterTitle" type="Label" parent="Overlay/Panel/Margin/Content"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.94, 0.86, 0.62, 1)
+theme_override_font_sizes/font_size = 34
+text = "第一章 · 青云初鸣"
+horizontal_alignment = 1
+
+[node name="RealmLabel" type="Label" parent="Overlay/Panel/Margin/Content"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.83, 0.69, 1)
+theme_override_font_sizes/font_size = 22
+text = "破境 · 炼气一层"
+horizontal_alignment = 1
+
+[node name="Rule" type="HSeparator" parent="Overlay/Panel/Margin/Content"]
+layout_mode = 2
+
+[node name="SummaryLabel" type="Label" parent="Overlay/Panel/Margin/Content"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.78, 0.82, 0.74, 1)
+theme_override_font_sizes/font_size = 18
+text = "第一章完成"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ContinueButton" type="Button" parent="Overlay/Panel/Margin/Content"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "继续游历青云宗"
+

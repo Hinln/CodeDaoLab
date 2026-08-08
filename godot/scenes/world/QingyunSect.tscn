@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=9 format=3]
 
 [ext_resource type="Script" path="res://scripts/world/qingyun_sect.gd" id="1_world"]
 [ext_resource type="PackedScene" path="res://scenes/actors/Player.tscn" id="2_player"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" path="res://scenes/ui/CodeChallengePanel.tscn" id="5_code"]
 [ext_resource type="PackedScene" path="res://scenes/ui/TechniquePanel.tscn" id="6_technique"]
 [ext_resource type="PackedScene" path="res://scenes/battle/BugBossArena.tscn" id="7_boss"]
+[ext_resource type="PackedScene" path="res://scenes/ui/ChapterCompletePanel.tscn" id="8_complete"]
 
 [node name="QingyunSect" type="Node2D"]
 script = ExtResource("1_world")
@@ -29,3 +30,5 @@ y_sort_enabled = true
 [node name="TechniquePanel" parent="." instance=ExtResource("6_technique")]
 
 [node name="BugBossArena" parent="." instance=ExtResource("7_boss")]
+
+[node name="ChapterCompletePanel" parent="." instance=ExtResource("8_complete")]

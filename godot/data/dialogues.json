@@ -39,8 +39,7 @@
         "breakthrough": {
           "speaker": "青玄子",
           "text": "三门基础功法相合，后山心魔亦伏。守住灵台，令真言、变量与周天在体内归一——今日，你可入炼气。",
-          "actions": [{"type": "breakthrough"}],
-          "options": [{"text": "引气入体，叩开仙门", "next": ""}]
+          "options": [{"text": "引气入体，叩开仙门", "next": "", "actions": [{"type": "breakthrough"}]}]
         },
         "chapter_complete": {
           "speaker": "青玄子",
