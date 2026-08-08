@@ -7,6 +7,7 @@ const DATA_FILES := {
 	"techniques": "res://data/techniques.json",
 	"challenges": "res://data/challenges.json",
 	"chapter_01": "res://data/chapter_01.json",
+	"tutor_hints": "res://data/tutor_hints.json",
 }
 
 var records: Dictionary = {}
@@ -45,4 +46,3 @@ func find_by_id(key: String, collection: String, record_id: String) -> Dictionar
 		if str(item.get("id", "")) == record_id:
 			return item.duplicate(true)
 	return {}
-

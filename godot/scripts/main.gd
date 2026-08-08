@@ -36,6 +36,7 @@ func _on_quit_requested() -> void:
 
 func _on_character_created(dao_name: String, spirit_root: String) -> void:
 	GameState.reset_new_game(dao_name, spirit_root)
+	TutorManager.reset_session()
 	GameState.set_current_quest("enter_sect")
 	_show_only(world_screen)
 	world_screen.enter_world(false)

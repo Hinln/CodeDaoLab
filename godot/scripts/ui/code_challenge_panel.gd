@@ -5,6 +5,7 @@ extends CanvasLayer
 var challenge: Dictionary = {}
 var submit_pending: bool = false
 var completed: bool = false
+var last_result: Dictionary = {}
 
 
 func _ready() -> void:
@@ -13,6 +14,8 @@ func _ready() -> void:
 	PythonBridge.challenge_finished.connect(_on_challenge_finished)
 	%RunButton.pressed.connect(func() -> void: _execute("run"))
 	%SubmitButton.pressed.connect(func() -> void: _execute("submit"))
+	%TutorButton.pressed.connect(_ask_tutor)
+	%DiagnoseButton.pressed.connect(_diagnose)
 	%CloseButton.pressed.connect(close_panel)
 
 
@@ -23,11 +26,13 @@ func open_challenge(challenge_id: String) -> void:
 		return
 	completed = false
 	submit_pending = false
+	last_result = {}
 	%ChallengeTitle.text = str(challenge.title)
 	%ChallengePrompt.text = str(challenge.prompt)
 	editor.text = str(challenge.starter)
 	%OutputLabel.text = "在此查看天地回响。"
 	%ResultLabel.text = ""
+	%TutorLabel.text = "青玄子传音：先运行一次你的代码，再来问我。"
 	%RunButton.disabled = false
 	%SubmitButton.disabled = false
 	%CloseButton.text = "暂离试炼"
@@ -61,6 +66,7 @@ func _execute(action: String) -> void:
 func _on_challenge_finished(result: Dictionary) -> void:
 	if not overlay.visible:
 		return
+	last_result = result
 	var output := str(result.get("stdout", ""))
 	var detail := str(result.get("detail", ""))
 	%OutputLabel.text = output if not output.is_empty() else (detail if not detail.is_empty() else "（无输出）")
@@ -78,3 +84,11 @@ func _on_challenge_finished(result: Dictionary) -> void:
 	%RunButton.disabled = false
 	%SubmitButton.disabled = false
 
+
+func _ask_tutor() -> void:
+	var advice := TutorManager.guidance(str(challenge.get("id", "")), last_result, editor.text)
+	%TutorLabel.text = "青玄子传音 · L%d\n%s" % [int(advice.get("level", 1)), str(advice.get("text", "静心再看。"))]
+
+
+func _diagnose() -> void:
+	%TutorLabel.text = "青玄子诊断\n%s" % TutorManager.diagnose(last_result)

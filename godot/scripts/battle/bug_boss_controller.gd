@@ -9,6 +9,7 @@ var stage_index: int = 0
 var challenge: Dictionary = {}
 var pending_action: String = ""
 var battle_active: bool = false
+var last_result: Dictionary = {}
 
 
 func _ready() -> void:
@@ -16,6 +17,7 @@ func _ready() -> void:
 	PythonBridge.challenge_finished.connect(_on_python_result)
 	%RunButton.pressed.connect(func() -> void: _execute("run"))
 	%AttackButton.pressed.connect(func() -> void: _execute("submit"))
+	%TutorButton.pressed.connect(_ask_tutor)
 	%RetreatButton.pressed.connect(close_battle)
 
 
@@ -24,6 +26,7 @@ func start_battle() -> void:
 		EventBus.toast_requested.emit("Bug 妖已伏，后山灵雾正在消散。")
 		return
 	stage_index = 0
+	last_result = {}
 	battle_active = true
 	overlay.visible = true
 	GameState.input_locked = true
@@ -63,6 +66,7 @@ func _load_stage() -> void:
 	editor.text = str(challenge.starter)
 	%OutputLabel.text = "等待法诀运行……"
 	%BattleResult.text = "找出错误，运行确认后再发动攻击。"
+	%TutorLabel.text = "青玄子传音：心魔最擅长让你只看表象。先运行，再判断是哪一类错误。"
 	%RunButton.disabled = false
 	%AttackButton.disabled = false
 
@@ -83,6 +87,7 @@ func _execute(action: String) -> void:
 func _on_python_result(result: Dictionary) -> void:
 	if not battle_active or not overlay.visible:
 		return
+	last_result = result
 	var output := str(result.get("stdout", ""))
 	var detail := str(result.get("detail", ""))
 	%OutputLabel.text = output if not output.is_empty() else (detail if not detail.is_empty() else "（无输出）")
@@ -98,6 +103,11 @@ func _on_python_result(result: Dictionary) -> void:
 	%AttackButton.disabled = false
 
 
+func _ask_tutor() -> void:
+	var advice := TutorManager.guidance(str(challenge.get("id", "")), last_result, editor.text)
+	%TutorLabel.text = "青玄子传音 · L%d：%s" % [int(advice.get("level", 1)), str(advice.get("text", ""))]
+
+
 func _finish_victory() -> void:
 	var first_clear := QuestManager.complete_bug_demon()
 	%ChallengeTitle.text = "Bug 妖伏诛"
@@ -107,4 +117,3 @@ func _finish_victory() -> void:
 	%RunButton.disabled = true
 	%AttackButton.disabled = true
 	%RetreatButton.text = "返回青云宗"
-

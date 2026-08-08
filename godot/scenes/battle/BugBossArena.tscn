@@ -101,6 +101,15 @@ theme_override_colors/font_color = Color(0.78, 0.8, 0.73, 1)
 text = "等待法诀运行……"
 autowrap_mode = 2
 
+[node name="TutorLabel" type="Label" parent="Overlay/Panel/Margin/Root/BattleArea/BossSide"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 82)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.75, 0.63, 1)
+theme_override_font_sizes/font_size = 14
+text = "青玄子传音：心魔最擅长让你只看表象。"
+autowrap_mode = 2
+
 [node name="CodeSide" type="VBoxContainer" parent="Overlay/Panel/Margin/Root/BattleArea"]
 layout_mode = 2
 theme_override_constants/separation = 9
@@ -157,6 +166,12 @@ text = "暂避锋芒"
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="TutorButton" type="Button" parent="Overlay/Panel/Margin/Root/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(140, 46)
+layout_mode = 2
+text = "师尊传音"
+
 [node name="RunButton" type="Button" parent="Overlay/Panel/Margin/Root/Buttons"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 46)
@@ -169,4 +184,3 @@ custom_minimum_size = Vector2(190, 46)
 layout_mode = 2
 theme_override_font_sizes/font_size = 17
 text = "提交法诀 · 攻击"
-

@@ -20,6 +20,7 @@ QuestManager="*res://scripts/gameplay/quest_manager.gd"
 TechniqueManager="*res://scripts/gameplay/technique_manager.gd"
 DialogueManager="*res://scripts/gameplay/dialogue_manager.gd"
 PythonBridge="*res://scripts/python/python_bridge.gd"
+TutorManager="*res://scripts/ai/tutor_manager.gd"
 
 [display]
 

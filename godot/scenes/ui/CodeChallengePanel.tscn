@@ -124,6 +124,15 @@ theme_override_colors/font_color = Color(0.64, 0.71, 0.66, 1)
 text = ""
 autowrap_mode = 2
 
+[node name="TutorLabel" type="Label" parent="Overlay/Panel/Margin/Root/Workspace/OutputPanel"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 118)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.76, 0.65, 1)
+theme_override_font_sizes/font_size = 14
+text = "青玄子传音：先运行一次你的代码，再来问我。"
+autowrap_mode = 2
+
 [node name="Buttons" type="HBoxContainer" parent="Overlay/Panel/Margin/Root"]
 layout_mode = 2
 theme_override_constants/separation = 12
@@ -138,6 +147,18 @@ text = "暂离试炼"
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="TutorButton" type="Button" parent="Overlay/Panel/Margin/Root/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(130, 46)
+layout_mode = 2
+text = "求师尊指点"
+
+[node name="DiagnoseButton" type="Button" parent="Overlay/Panel/Margin/Root/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 46)
+layout_mode = 2
+text = "诊断代码"
+
 [node name="RunButton" type="Button" parent="Overlay/Panel/Margin/Root/Buttons"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 46)
@@ -150,4 +171,3 @@ custom_minimum_size = Vector2(190, 46)
 layout_mode = 2
 theme_override_font_sizes/font_size = 17
 text = "提交天地验证"
-
