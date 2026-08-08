@@ -6,8 +6,16 @@ signal interaction_pressed
 @export var movement_bounds := Rect2(70, 105, 1140, 540)
 var control_enabled: bool = false
 
+const MOVEMENT_KEYS := {
+	"move_left": [KEY_A, KEY_LEFT],
+	"move_right": [KEY_D, KEY_RIGHT],
+	"move_up": [KEY_W, KEY_UP],
+	"move_down": [KEY_S, KEY_DOWN],
+}
+
 
 func _ready() -> void:
+	_ensure_input_actions()
 	queue_redraw()
 
 
@@ -15,13 +23,38 @@ func _physics_process(_delta: float) -> void:
 	if not control_enabled or GameState.input_locked:
 		velocity = Vector2.ZERO
 		return
-	var direction := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	var direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = direction.normalized() * move_speed
 	move_and_slide()
 	position.x = clampf(position.x, movement_bounds.position.x, movement_bounds.end.x)
 	position.y = clampf(position.y, movement_bounds.position.y, movement_bounds.end.y)
 	if direction.x != 0.0:
 		scale.x = signf(direction.x)
+
+
+func _ensure_input_actions() -> void:
+	for action_value in MOVEMENT_KEYS:
+		var action_name := str(action_value)
+		if not InputMap.has_action(action_name):
+			InputMap.add_action(action_name)
+		var keys: Array = MOVEMENT_KEYS[action_value]
+		for key_value in keys:
+			var keycode := int(key_value)
+			if _action_has_key(action_name, keycode):
+				continue
+			var event := InputEventKey.new()
+			if keycode in [KEY_A, KEY_D, KEY_W, KEY_S]:
+				event.physical_keycode = keycode
+			else:
+				event.keycode = keycode
+			InputMap.action_add_event(action_name, event)
+
+
+func _action_has_key(action_name: String, keycode: int) -> bool:
+	for event in InputMap.action_get_events(action_name):
+		if event is InputEventKey and (event.keycode == keycode or event.physical_keycode == keycode):
+			return true
+	return false
 
 
 func _unhandled_input(event: InputEvent) -> void:

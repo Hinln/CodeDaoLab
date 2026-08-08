@@ -65,10 +65,16 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.53, 0.7, 0.63, 1)
 text = "每一门功法都必须通过真实代码考校。"
 
-[node name="TechniqueList" type="VBoxContainer" parent="Overlay/Panel/Margin/Content"]
-unique_name_in_owner = true
+[node name="TechniqueScroll" type="ScrollContainer" parent="Overlay/Panel/Margin/Content"]
 layout_mode = 2
 size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 1
+
+[node name="TechniqueList" type="VBoxContainer" parent="Overlay/Panel/Margin/Content/TechniqueScroll"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/separation = 10
 
 [node name="CloseButton" type="Button" parent="Overlay/Panel/Margin/Content"]
@@ -76,4 +82,3 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 text = "合上玉简"
-

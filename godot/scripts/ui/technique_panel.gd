@@ -16,6 +16,7 @@ func open_panel() -> void:
 	for technique in TechniqueManager.summary():
 		var row := Label.new()
 		row.custom_minimum_size = Vector2(0, 50)
+		row.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		row.add_theme_font_size_override("font_size", 17)
 		if technique.learned:
 			var definition := DataRepository.find_by_id("techniques", "techniques", str(technique.id))

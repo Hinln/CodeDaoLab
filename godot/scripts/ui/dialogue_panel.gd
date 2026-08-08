@@ -23,7 +23,9 @@ func _show_dialogue(payload: Dictionary) -> void:
 	for index in range(options.size()):
 		var button := Button.new()
 		button.text = str(options[index].get("text", "继续"))
-		button.custom_minimum_size = Vector2(0, 42)
+		button.tooltip_text = button.text
+		button.custom_minimum_size = Vector2(0, 46)
+		button.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		button.add_theme_font_size_override("font_size", 16)
 		button.pressed.connect(func() -> void: DialogueManager.choose(index))
 		options_box.add_child(button)

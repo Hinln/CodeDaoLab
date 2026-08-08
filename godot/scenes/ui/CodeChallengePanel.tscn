@@ -38,18 +38,18 @@ color = Color(0, 0, 0, 0.76)
 
 [node name="Panel" type="PanelContainer" parent="Overlay"]
 layout_mode = 0
-offset_left = 54.0
-offset_top = 36.0
-offset_right = 1226.0
-offset_bottom = 686.0
+offset_left = 36.0
+offset_top = 18.0
+offset_right = 1244.0
+offset_bottom = 702.0
 theme_override_styles/panel = SubResource("PanelStyle")
 
 [node name="Margin" type="MarginContainer" parent="Overlay/Panel"]
 layout_mode = 2
 theme_override_constants/margin_left = 26
-theme_override_constants/margin_top = 22
+theme_override_constants/margin_top = 18
 theme_override_constants/margin_right = 26
-theme_override_constants/margin_bottom = 20
+theme_override_constants/margin_bottom = 16
 
 [node name="Root" type="VBoxContainer" parent="Overlay/Panel/Margin"]
 layout_mode = 2
@@ -87,7 +87,7 @@ split_offset = 710
 
 [node name="CodeEditor" type="CodeEdit" parent="Overlay/Panel/Margin/Root/Workspace"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(680, 390)
+custom_minimum_size = Vector2(660, 360)
 layout_mode = 2
 theme_override_colors/background_color = Color(0.012, 0.027, 0.033, 1)
 theme_override_colors/font_color = Color(0.79, 0.87, 0.79, 1)
@@ -98,12 +98,20 @@ highlight_current_line = true
 indent_automatic = true
 indent_size = 4
 
-[node name="OutputPanel" type="VBoxContainer" parent="Overlay/Panel/Margin/Root/Workspace"]
+[node name="OutputPanel" type="ScrollContainer" parent="Overlay/Panel/Margin/Root/Workspace"]
 custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 1
+
+[node name="OutputContent" type="VBoxContainer" parent="Overlay/Panel/Margin/Root/Workspace/OutputPanel"]
+custom_minimum_size = Vector2(330, 0)
+layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/separation = 10
 
-[node name="CastStageLabel" type="Label" parent="Overlay/Panel/Margin/Root/Workspace/OutputPanel"]
+[node name="CastStageLabel" type="Label" parent="Overlay/Panel/Margin/Root/Workspace/OutputPanel/OutputContent"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.9, 0.79, 0.5, 1)
@@ -111,41 +119,49 @@ theme_override_font_sizes/font_size = 15
 text = "观题  /  观题 · 落笔 · 起式 · 运转 · 显化"
 horizontal_alignment = 1
 
-[node name="CastingVisual" type="Control" parent="Overlay/Panel/Margin/Root/Workspace/OutputPanel"]
+[node name="CastingVisual" type="Control" parent="Overlay/Panel/Margin/Root/Workspace/OutputPanel/OutputContent"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 116)
+custom_minimum_size = Vector2(0, 76)
 layout_mode = 2
 script = ExtResource("2_cast")
 
-[node name="OutputTitle" type="Label" parent="Overlay/Panel/Margin/Root/Workspace/OutputPanel"]
+[node name="OutputTitle" type="Label" parent="Overlay/Panel/Margin/Root/Workspace/OutputPanel/OutputContent"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.51, 0.75, 0.65, 1)
 text = "天地回响"
 
-[node name="OutputLabel" type="Label" parent="Overlay/Panel/Margin/Root/Workspace/OutputPanel"]
+[node name="OutputLabel" type="Label" parent="Overlay/Panel/Margin/Root/Workspace/OutputPanel/OutputContent"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.76, 0.82, 0.76, 1)
 theme_override_font_sizes/font_size = 15
 text = "在此查看天地回响。"
 autowrap_mode = 2
 
-[node name="ResultLabel" type="Label" parent="Overlay/Panel/Margin/Root/Workspace/OutputPanel"]
+[node name="ResultLabel" type="Label" parent="Overlay/Panel/Margin/Root/Workspace/OutputPanel/OutputContent"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 72)
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.64, 0.71, 0.66, 1)
 text = ""
 autowrap_mode = 2
 
-[node name="TutorLabel" type="Label" parent="Overlay/Panel/Margin/Root/Workspace/OutputPanel"]
+[node name="TutorLabel" type="Label" parent="Overlay/Panel/Margin/Root/Workspace/OutputPanel/OutputContent"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 118)
+custom_minimum_size = Vector2(0, 62)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.55, 0.76, 0.65, 1)
 theme_override_font_sizes/font_size = 14
 text = "青玄子传音：先运行一次你的代码，再来问我。"
+autowrap_mode = 2
+
+[node name="BeginnerGuideLabel" type="Label" parent="Overlay/Panel/Margin/Root/Workspace/OutputPanel/OutputContent"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.82, 0.47, 1)
+theme_override_font_sizes/font_size = 13
+text = "新手步骤"
 autowrap_mode = 2
 
 [node name="Buttons" type="HBoxContainer" parent="Overlay/Panel/Margin/Root"]
@@ -178,11 +194,11 @@ text = "诊断代码"
 unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 46)
 layout_mode = 2
-text = "运转周天"
+text = "1 · 运转观阵"
 
 [node name="SubmitButton" type="Button" parent="Overlay/Panel/Margin/Root/Buttons"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(190, 46)
 layout_mode = 2
 theme_override_font_sizes/font_size = 17
-text = "发动法诀 · 天地验证"
+text = "2 · 发动法诀 · 天地验证"

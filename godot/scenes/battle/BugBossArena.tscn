@@ -39,9 +39,9 @@ color = Color(0.035, 0.012, 0.012, 0.96)
 [node name="Panel" type="PanelContainer" parent="Overlay"]
 layout_mode = 0
 offset_left = 36.0
-offset_top = 28.0
+offset_top = 18.0
 offset_right = 1244.0
-offset_bottom = 694.0
+offset_bottom = 702.0
 theme_override_styles/panel = SubResource("PanelStyle")
 
 [node name="Margin" type="MarginContainer" parent="Overlay/Panel"]
@@ -85,33 +85,41 @@ theme_override_font_sizes/font_size = 16
 text = "断句噬符 · 语法混乱"
 horizontal_alignment = 1
 
-[node name="BossSide" type="VBoxContainer" parent="Overlay/Panel/Margin/Root/BattleArea"]
+[node name="BossSide" type="ScrollContainer" parent="Overlay/Panel/Margin/Root/BattleArea"]
 custom_minimum_size = Vector2(390, 0)
 layout_mode = 2
-
-[node name="BugDemonVisual" type="Control" parent="Overlay/Panel/Margin/Root/BattleArea/BossSide"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(390, 320)
-layout_mode = 2
 size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 1
+
+[node name="BossSideContent" type="VBoxContainer" parent="Overlay/Panel/Margin/Root/BattleArea/BossSide"]
+custom_minimum_size = Vector2(370, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="BugDemonVisual" type="Control" parent="Overlay/Panel/Margin/Root/BattleArea/BossSide/BossSideContent"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(370, 240)
+layout_mode = 2
 script = ExtResource("2_visual")
 
-[node name="OutputTitle" type="Label" parent="Overlay/Panel/Margin/Root/BattleArea/BossSide"]
+[node name="OutputTitle" type="Label" parent="Overlay/Panel/Margin/Root/BattleArea/BossSide/BossSideContent"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.77, 0.53, 0.39, 1)
 text = "斗法回响"
 
-[node name="OutputLabel" type="Label" parent="Overlay/Panel/Margin/Root/BattleArea/BossSide"]
+[node name="OutputLabel" type="Label" parent="Overlay/Panel/Margin/Root/BattleArea/BossSide/BossSideContent"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 105)
+custom_minimum_size = Vector2(0, 72)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.78, 0.8, 0.73, 1)
 text = "等待法诀运行……"
 autowrap_mode = 2
 
-[node name="TutorLabel" type="Label" parent="Overlay/Panel/Margin/Root/BattleArea/BossSide"]
+[node name="TutorLabel" type="Label" parent="Overlay/Panel/Margin/Root/BattleArea/BossSide/BossSideContent"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 82)
+custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.55, 0.75, 0.63, 1)
 theme_override_font_sizes/font_size = 14
@@ -129,16 +137,35 @@ theme_override_colors/font_color = Color(0.9, 0.78, 0.53, 1)
 theme_override_font_sizes/font_size = 21
 text = "第一式"
 
-[node name="ChallengePrompt" type="Label" parent="Overlay/Panel/Margin/Root/BattleArea/CodeSide"]
+[node name="ChallengeBriefScroll" type="ScrollContainer" parent="Overlay/Panel/Margin/Root/BattleArea/CodeSide"]
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 1
+
+[node name="ChallengeBriefContent" type="VBoxContainer" parent="Overlay/Panel/Margin/Root/BattleArea/CodeSide/ChallengeBriefScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="ChallengePrompt" type="Label" parent="Overlay/Panel/Margin/Root/BattleArea/CodeSide/ChallengeBriefScroll/ChallengeBriefContent"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 58)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.74, 0.77, 0.7, 1)
 text = "修复代码"
 autowrap_mode = 2
 
+[node name="BeginnerBattleGuide" type="Label" parent="Overlay/Panel/Margin/Root/BattleArea/CodeSide/ChallengeBriefScroll/ChallengeBriefContent"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.82, 0.47, 1)
+theme_override_font_sizes/font_size = 13
+text = "新手破招：先运行观察，再根据诊断修改，最后发动攻击。"
+autowrap_mode = 2
+
 [node name="CodeEditor" type="CodeEdit" parent="Overlay/Panel/Margin/Root/BattleArea/CodeSide"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 220)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/background_color = Color(0.012, 0.022, 0.025, 1)
@@ -150,10 +177,17 @@ highlight_current_line = true
 indent_automatic = true
 indent_size = 4
 
-[node name="BattleResult" type="Label" parent="Overlay/Panel/Margin/Root"]
+[node name="BattleResultScroll" type="ScrollContainer" parent="Overlay/Panel/Margin/Root"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 1
+
+[node name="BattleResult" type="Label" parent="Overlay/Panel/Margin/Root/BattleResultScroll"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 44)
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.82, 0.68, 0.48, 1)
 theme_override_font_sizes/font_size = 16
 text = "找出错误，运行确认后再发动攻击。"
@@ -184,11 +218,11 @@ text = "师尊传音"
 unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 46)
 layout_mode = 2
-text = "运行观阵"
+text = "1 · 运行观阵"
 
 [node name="AttackButton" type="Button" parent="Overlay/Panel/Margin/Root/Buttons"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(190, 46)
 layout_mode = 2
 theme_override_font_sizes/font_size = 17
-text = "提交法诀 · 攻击"
+text = "2 · 修复后发动攻击"

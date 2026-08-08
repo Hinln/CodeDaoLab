@@ -143,13 +143,19 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 16
 text = "暂 别 青 云"
 
-[node name="StatusLabel" type="Label" parent="Panel/Margin/Content"]
-unique_name_in_owner = true
+[node name="StatusScroll" type="ScrollContainer" parent="Panel/Margin/Content"]
 custom_minimum_size = Vector2(0, 42)
 layout_mode = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 1
+
+[node name="StatusLabel" type="Label" parent="Panel/Margin/Content/StatusScroll"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.57, 0.75, 0.66, 1)
 theme_override_font_sizes/font_size = 14
-text = "Godot 4 原型工程 · 占位资源阶段"
+text = "初次游玩：方向键或 WASD 移动，E 交互"
 autowrap_mode = 2
 
 [node name="Version" type="Label" parent="."]
@@ -159,5 +165,5 @@ offset_top = 662.0
 offset_right = 1212.0
 offset_bottom = 694.0
 theme_override_colors/font_color = Color(0.39, 0.55, 0.51, 1)
-text = "Prototype G0 · Godot 4"
+text = "v0.2.1 · Godot 4"
 horizontal_alignment = 2

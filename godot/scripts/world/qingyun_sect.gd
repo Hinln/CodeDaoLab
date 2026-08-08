@@ -64,12 +64,15 @@ func enter_world(restoring: bool) -> void:
 	GameState.set_world_position(player.position)
 	hud.update_player(GameState.player)
 	_update_quest(GameState.current_quest_id)
+	var should_open_guide := not restoring and not QuestManager.has_flag("onboarding_seen")
+	hud.update_beginner_guide(GameState.current_quest_id, should_open_guide)
+	if should_open_guide:
+		QuestManager.set_flag("onboarding_seen", true)
 	hud.show_toast("云阶已尽，%s踏入青云宗。" % str(GameState.player.get("dao_name", "你")))
 	var environment := PythonBridge.check_environment()
 	if not bool(environment.get("available", false)):
 		hud.show_mentor_message(str(environment.message), 9.0)
-	elif not restoring and not QuestManager.has_flag("onboarding_seen"):
-		QuestManager.set_flag("onboarding_seen", true)
+	elif should_open_guide:
 		hud.show_mentor_message("记住：代码是法诀，运行后的输出是天地回响。先循灵光到弟子洞府见我。", 8.0)
 
 
@@ -117,14 +120,27 @@ func _process(delta: float) -> void:
 func _update_target_guidance() -> void:
 	if target_location_id.is_empty() or not location_positions.has(target_location_id):
 		return
-	var distance := player.position.distance_to(location_positions[target_location_id])
-	hud.set_target_distance(distance, distance <= INTERACTION_DISTANCE)
+	var target_position: Vector2 = location_positions[target_location_id]
+	var distance := player.position.distance_to(target_position)
+	hud.set_directional_target_distance(distance, distance <= INTERACTION_DISTANCE, _direction_name(target_position - player.position))
 	queue_redraw()
 	if guidance_elapsed >= 12.0 and distance > 230.0 and guidance_quest_id != GameState.current_quest_id:
 		guidance_elapsed = 0.0
 		guidance_quest_id = GameState.current_quest_id
 		var location := _location_by_id(target_location_id)
 		hud.show_mentor_message("循右上任务卡所示灵光前往%s。先做眼前一步，不必记下所有门规。" % str(location.get("name", "目标地点")))
+
+
+func _direction_name(delta: Vector2) -> String:
+	var horizontal := ""
+	var vertical := ""
+	if absf(delta.x) > 55.0:
+		horizontal = "右" if delta.x > 0.0 else "左"
+	if absf(delta.y) > 55.0:
+		vertical = "下" if delta.y > 0.0 else "上"
+	if horizontal.is_empty() and vertical.is_empty():
+		return "附近"
+	return horizontal + vertical
 
 
 func _on_interaction_pressed() -> void:
@@ -259,12 +275,14 @@ func _update_quest(quest_id: String) -> void:
 			target_location_id = str(node.get("target_location", ""))
 			var target_name := str(_location_by_id(target_location_id).get("name", ""))
 			hud.update_quest(str(node.title), str(node.objective), target_name)
+			hud.update_beginner_guide(quest_id)
 			atmosphere.set_weather(atmosphere.weather_for_quest(quest_id))
 			guidance_elapsed = 0.0
 			queue_redraw()
 			return
 	target_location_id = ""
 	hud.update_quest("自由修行", "探索青云宗，与宗门人物交谈。")
+	hud.update_beginner_guide("chapter_complete")
 
 
 func _draw() -> void:

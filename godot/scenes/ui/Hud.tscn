@@ -101,6 +101,13 @@ layout_mode = 2
 mouse_filter = 0
 text = "功法"
 
+[node name="HelpButton" type="Button" parent="Root/TopBar/Margin/Row"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(76, 42)
+layout_mode = 2
+mouse_filter = 0
+text = "指引"
+
 [node name="ReturnButton" type="Button" parent="Root/TopBar/Margin/Row"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 42)
@@ -154,6 +161,73 @@ theme_override_colors/font_color = Color(0.51, 0.71, 0.63, 1)
 theme_override_font_sizes/font_size = 13
 text = "距离约 40 步"
 
+[node name="HelpPanel" type="PanelContainer" parent="Root"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 24.0
+offset_top = 128.0
+offset_right = 476.0
+offset_bottom = 472.0
+mouse_filter = 0
+theme_override_styles/panel = SubResource("PanelStyle")
+
+[node name="HelpMargin" type="MarginContainer" parent="Root/HelpPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 18
+
+[node name="HelpContent" type="VBoxContainer" parent="Root/HelpPanel/HelpMargin"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="HelpTitle" type="Label" parent="Root/HelpPanel/HelpMargin/HelpContent"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.82, 0.47, 1)
+theme_override_font_sizes/font_size = 21
+text = "第一步 · 前往弟子洞府"
+
+[node name="HelpProgress" type="Label" parent="Root/HelpPanel/HelpMargin/HelpContent"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.43, 0.74, 0.64, 1)
+theme_override_font_sizes/font_size = 14
+text = "当前目标 1/4：学会移动与交互"
+
+[node name="HelpDivider" type="HSeparator" parent="Root/HelpPanel/HelpMargin/HelpContent"]
+layout_mode = 2
+
+[node name="HelpBodyScroll" type="ScrollContainer" parent="Root/HelpPanel/HelpMargin/HelpContent"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 1
+
+[node name="HelpBody" type="Label" parent="Root/HelpPanel/HelpMargin/HelpContent/HelpBodyScroll"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.76, 0.83, 0.8, 1)
+theme_override_font_sizes/font_size = 15
+text = "使用 WASD 或方向键移动。\n跟随地面发光路径前往左上方的弟子洞府。\n靠近发光目标后按 E，与青玄子交谈。"
+autowrap_mode = 2
+
+[node name="HelpControls" type="Label" parent="Root/HelpPanel/HelpMargin/HelpContent"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.82, 0.47, 1)
+theme_override_font_sizes/font_size = 13
+text = "WASD / 方向键移动 · E 交互 · Esc 关闭窗口"
+autowrap_mode = 2
+
+[node name="CloseHelpButton" type="Button" parent="Root/HelpPanel/HelpMargin/HelpContent"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+mouse_filter = 0
+text = "我知道了，继续修行"
+
 [node name="MentorPanel" type="PanelContainer" parent="Root"]
 unique_name_in_owner = true
 layout_mode = 0
@@ -179,9 +253,16 @@ theme_override_colors/font_color = Color(0.91, 0.8, 0.54, 1)
 theme_override_font_sizes/font_size = 14
 text = "青玄子 · 千里传音"
 
-[node name="MentorMessage" type="Label" parent="Root/MentorPanel/MentorMargin/MentorBox"]
+[node name="MentorScroll" type="ScrollContainer" parent="Root/MentorPanel/MentorMargin/MentorBox"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 1
+
+[node name="MentorMessage" type="Label" parent="Root/MentorPanel/MentorMargin/MentorBox/MentorScroll"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.72, 0.82, 0.75, 1)
 text = "代码即法诀，运行结果便是天地回响。"
 autowrap_mode = 2

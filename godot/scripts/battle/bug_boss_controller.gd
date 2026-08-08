@@ -76,6 +76,7 @@ func _load_stage() -> void:
 	%StageThemeLabel.text = str(meta.theme)
 	%ChallengeTitle.text = str(challenge.title)
 	%ChallengePrompt.text = str(challenge.prompt)
+	%BeginnerBattleGuide.text = "新手破招：1. 先运行观察；2. 根据自动诊断修改；3. 再运行确认；4. 发动攻击。"
 	editor.text = str(challenge.starter)
 	%OutputLabel.text = "等待法诀运行……"
 	%BattleResult.text = str(meta.counter)
@@ -117,6 +118,7 @@ func _on_python_result(result: Dictionary) -> void:
 		%BattleResult.text = "%s  心境 -5。" % str(result.get("message", "攻击未能破除心魔。"))
 	else:
 		%BattleResult.text = str(result.get("message", "运行完成。"))
+	%TutorLabel.text = "青玄子自动诊断\n%s" % TutorManager.diagnose(result)
 	%RunButton.disabled = false
 	%AttackButton.disabled = false
 
