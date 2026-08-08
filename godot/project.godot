@@ -17,7 +17,9 @@ GameState="*res://scripts/core/game_state.gd"
 SaveManager="*res://scripts/core/save_manager.gd"
 SceneRouter="*res://scripts/core/scene_router.gd"
 QuestManager="*res://scripts/gameplay/quest_manager.gd"
+TechniqueManager="*res://scripts/gameplay/technique_manager.gd"
 DialogueManager="*res://scripts/gameplay/dialogue_manager.gd"
+PythonBridge="*res://scripts/python/python_bridge.gd"
 
 [display]
 

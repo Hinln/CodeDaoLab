@@ -1,0 +1,153 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/code_challenge_panel.gd" id="1_code"]
+
+[sub_resource type="StyleBoxFlat" id="PanelStyle"]
+bg_color = Color(0.018, 0.06, 0.065, 0.99)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.57, 0.66, 0.43, 0.85)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[node name="CodeChallengePanel" type="CanvasLayer"]
+layer = 30
+script = ExtResource("1_code")
+
+[node name="Overlay" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Shade" type="ColorRect" parent="Overlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.76)
+
+[node name="Panel" type="PanelContainer" parent="Overlay"]
+layout_mode = 0
+offset_left = 54.0
+offset_top = 36.0
+offset_right = 1226.0
+offset_bottom = 686.0
+theme_override_styles/panel = SubResource("PanelStyle")
+
+[node name="Margin" type="MarginContainer" parent="Overlay/Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 26
+theme_override_constants/margin_top = 22
+theme_override_constants/margin_right = 26
+theme_override_constants/margin_bottom = 20
+
+[node name="Root" type="VBoxContainer" parent="Overlay/Panel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Header" type="HBoxContainer" parent="Overlay/Panel/Margin/Root"]
+layout_mode = 2
+
+[node name="ChallengeTitle" type="Label" parent="Overlay/Panel/Margin/Root/Header"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.92, 0.83, 0.57, 1)
+theme_override_font_sizes/font_size = 25
+text = "代码试炼"
+
+[node name="RealmTag" type="Label" parent="Overlay/Panel/Margin/Root/Header"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.45, 0.74, 0.62, 1)
+text = "真实 Python · 隔离执行"
+
+[node name="ChallengePrompt" type="Label" parent="Overlay/Panel/Margin/Root"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 58)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.78, 0.82, 0.75, 1)
+theme_override_font_sizes/font_size = 17
+text = "题目"
+autowrap_mode = 2
+
+[node name="Workspace" type="HSplitContainer" parent="Overlay/Panel/Margin/Root"]
+layout_mode = 2
+size_flags_vertical = 3
+split_offset = 710
+
+[node name="CodeEditor" type="CodeEdit" parent="Overlay/Panel/Margin/Root/Workspace"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(680, 390)
+layout_mode = 2
+theme_override_colors/background_color = Color(0.012, 0.027, 0.033, 1)
+theme_override_colors/font_color = Color(0.79, 0.87, 0.79, 1)
+theme_override_colors/line_number_color = Color(0.27, 0.48, 0.43, 1)
+theme_override_font_sizes/font_size = 17
+gutters_draw_line_numbers = true
+highlight_current_line = true
+indent_automatic = true
+indent_size = 4
+
+[node name="OutputPanel" type="VBoxContainer" parent="Overlay/Panel/Margin/Root/Workspace"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="OutputTitle" type="Label" parent="Overlay/Panel/Margin/Root/Workspace/OutputPanel"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.51, 0.75, 0.65, 1)
+text = "天地回响"
+
+[node name="OutputLabel" type="Label" parent="Overlay/Panel/Margin/Root/Workspace/OutputPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.76, 0.82, 0.76, 1)
+theme_override_font_sizes/font_size = 15
+text = "在此查看天地回响。"
+autowrap_mode = 2
+
+[node name="ResultLabel" type="Label" parent="Overlay/Panel/Margin/Root/Workspace/OutputPanel"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.64, 0.71, 0.66, 1)
+text = ""
+autowrap_mode = 2
+
+[node name="Buttons" type="HBoxContainer" parent="Overlay/Panel/Margin/Root"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="CloseButton" type="Button" parent="Overlay/Panel/Margin/Root/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 46)
+layout_mode = 2
+text = "暂离试炼"
+
+[node name="Spacer" type="Control" parent="Overlay/Panel/Margin/Root/Buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RunButton" type="Button" parent="Overlay/Panel/Margin/Root/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 46)
+layout_mode = 2
+text = "运行推演"
+
+[node name="SubmitButton" type="Button" parent="Overlay/Panel/Margin/Root/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(190, 46)
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+text = "提交天地验证"
+

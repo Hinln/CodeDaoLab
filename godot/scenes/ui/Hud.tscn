@@ -87,6 +87,13 @@ layout_mode = 2
 mouse_filter = 0
 text = "存档"
 
+[node name="TechniqueButton" type="Button" parent="Root/TopBar/Margin/Row"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(88, 42)
+layout_mode = 2
+mouse_filter = 0
+text = "功法"
+
 [node name="ReturnButton" type="Button" parent="Root/TopBar/Margin/Row"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 42)
@@ -158,4 +165,3 @@ text = "提示"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
-

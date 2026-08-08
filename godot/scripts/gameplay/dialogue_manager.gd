@@ -97,6 +97,11 @@ func _apply_actions(actions: Array) -> void:
 				GameState.add_affinity(active_npc_id, int(action.get("amount", 0)))
 			"toast":
 				EventBus.toast_requested.emit(str(action.get("message", "")))
+			"challenge":
+				call_deferred("_request_challenge", str(action.get("id", "")))
 			_:
 				push_warning("忽略未知对话动作：%s" % str(action.get("type", "")))
 
+
+func _request_challenge(challenge_id: String) -> void:
+	EventBus.code_challenge_requested.emit(challenge_id)

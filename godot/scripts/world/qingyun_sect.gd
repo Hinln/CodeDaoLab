@@ -86,6 +86,16 @@ func _on_interaction_pressed() -> void:
 	if nearest_location.is_empty():
 		hud.show_toast("附近没有可交互的地点。")
 		return
+	if str(nearest_location.id) == "training_ground":
+		var challenge_by_quest := {
+			"learn_true_word": "awakening_word",
+			"learn_loops": "cycle_meridian",
+		}
+		if challenge_by_quest.has(GameState.current_quest_id):
+			EventBus.code_challenge_requested.emit(challenge_by_quest[GameState.current_quest_id])
+			return
+		EventBus.technique_panel_requested.emit()
+		return
 	EventBus.interaction_requested.emit(str(nearest_location.id))
 	hud.show_toast("%s\n%s" % [nearest_location.name, nearest_location.description])
 

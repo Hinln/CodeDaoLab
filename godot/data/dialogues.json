@@ -42,7 +42,17 @@
         "greeting": {
           "speaker": "玄机长老",
           "text": "藏经万卷，不如亲手运行一行真代码。待你练成真言诀，再来接受《变量吐纳诀》的考校。",
-          "options": [{"text": "弟子受教", "next": ""}]
+          "options": [
+            {"text": "请长老考校变量之法", "next": "variable_trial", "require": {"quest": "learn_variables"}},
+            {"text": "弟子受教", "next": ""}
+          ]
+        },
+        "variable_trial": {
+          "speaker": "玄机长老",
+          "text": "变量如灵力容器，名字是符，值是其中所藏。将十二缕灵气纳入 qi，再让它显形。",
+          "options": [
+            {"text": "开始变量试炼", "next": "", "actions": [{"type": "challenge", "id": "spirit_vessel"}]}
+          ]
         }
       }
     },

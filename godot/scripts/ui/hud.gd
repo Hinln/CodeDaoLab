@@ -8,6 +8,7 @@ var toast_generation: int = 0
 
 func _ready() -> void:
 	%SaveButton.pressed.connect(func() -> void: save_requested.emit())
+	%TechniqueButton.pressed.connect(func() -> void: EventBus.technique_panel_requested.emit())
 	%ReturnButton.pressed.connect(func() -> void: return_title_requested.emit())
 	%ToastLabel.visible = false
 
@@ -48,4 +49,3 @@ func show_toast(message: String) -> void:
 
 func _realm_name(realm_id: String) -> String:
 	return {"mortal": "凡人", "qi1": "炼气一层"}.get(realm_id, realm_id)
-

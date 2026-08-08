@@ -83,5 +83,16 @@ func set_quest_flag(flag_id: String, value: Variant = true) -> void:
 	_notify_changed()
 
 
+func add_cultivation(amount: int) -> int:
+	player.cultivation = maxi(0, int(player.get("cultivation", 0)) + amount)
+	_notify_changed()
+	return int(player.cultivation)
+
+
+func set_techniques(techniques: Dictionary) -> void:
+	player.techniques = techniques.duplicate(true)
+	_notify_changed()
+
+
 func _notify_changed() -> void:
 	EventBus.player_state_changed.emit(snapshot())
