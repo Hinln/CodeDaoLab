@@ -237,3 +237,14 @@
 ### 下一步
 
 - G7：执行最终全量回归、Web Edition 零回归检查、Windows 导出或发布准备、验收与测试报告。
+
+## G7 - 测试、验收与 Windows 发布（2026-08-08）
+
+- 完成 92 项 Godot 自动化检查，全部通过。
+- 完成青云门第一章自动完整通关：修为 230、炼气一层、章节完成。
+- 完成 Web Edition 回归：268 passed、32 skipped，E2E 全部通过。
+- 完成官方 Godot 4.7.1 运行时 + PCK 发布方案。
+- 修复发布桥接对 PowerShell UTF-8 BOM JSON 的兼容。
+- 增加发布版 Python 判题与 Godot 运行时冒烟检查。
+- 生成 Windows 发布包 `CodeDaoLab-Qingyun-Demo-v0.1.0.zip`（82.3 MB）。
+- 新增验收报告、测试报告和发布说明。

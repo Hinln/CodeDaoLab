@@ -9,8 +9,10 @@ from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 GODOT_ROOT = Path(__file__).resolve().parents[1]
-if str(PROJECT_ROOT) not in sys.path:
-    sys.path.insert(0, str(PROJECT_ROOT))
+RUNTIME_ROOT = GODOT_ROOT / "runtime"
+for import_root in (PROJECT_ROOT, RUNTIME_ROOT):
+    if import_root.exists() and str(import_root) not in sys.path:
+        sys.path.insert(0, str(import_root))
 
 from game.sandbox import run_player_code  # noqa: E402
 
@@ -20,7 +22,10 @@ def normalize_output(value: str) -> str:
 
 
 def load_challenge(challenge_id: str) -> dict:
-    payload = json.loads((GODOT_ROOT / "data" / "challenges.json").read_text(encoding="utf-8"))
+    data_path = GODOT_ROOT / "data" / "challenges.json"
+    if not data_path.exists():
+        data_path = Path(__file__).resolve().parents[1] / "data" / "challenges.json"
+    payload = json.loads(data_path.read_text(encoding="utf-8"))
     for challenge in payload.get("challenges", []):
         if challenge.get("id") == challenge_id:
             return challenge
@@ -57,7 +62,7 @@ def main() -> int:
     request_path = Path(sys.argv[1])
     response_path = Path(sys.argv[2])
     try:
-        request = json.loads(request_path.read_text(encoding="utf-8"))
+        request = json.loads(request_path.read_text(encoding="utf-8-sig"))
         response = execute(request)
     except Exception as exc:
         response = {
@@ -76,4 +81,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

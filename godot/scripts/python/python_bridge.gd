@@ -54,10 +54,13 @@ func execute_sync(challenge_id: String, code: String, action: String = "submit")
 	var python_executable := OS.get_environment("CODEDAO_PYTHON")
 	if python_executable.is_empty():
 		python_executable = "python"
+	var runner_path := OS.get_executable_path().get_base_dir().path_join("python_bridge/runner.py")
+	if not FileAccess.file_exists(runner_path):
+		runner_path = ProjectSettings.globalize_path(RUNNER_PATH)
 	var exit_code := OS.execute(
 		python_executable,
 		PackedStringArray([
-			ProjectSettings.globalize_path(RUNNER_PATH),
+			runner_path,
 			ProjectSettings.globalize_path(request_path),
 			ProjectSettings.globalize_path(response_path),
 		]),
@@ -84,4 +87,3 @@ func _internal_error(message: String, detail: String = "") -> Dictionary:
 func _exit_tree() -> void:
 	if worker != null and worker.is_started():
 		worker.wait_to_finish()
-
