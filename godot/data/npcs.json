@@ -1,9 +1,8 @@
 {
   "version": 1,
   "npcs": [
-    {"id": "master_qingxuan", "name": "青玄子", "title": "授业师尊", "location": "dormitory", "dialogue": "qingxuan_intro"},
-    {"id": "elder_library", "name": "玄机长老", "title": "藏经阁执事", "location": "library", "dialogue": "elder_intro"},
-    {"id": "guide_realm", "name": "云游子", "title": "秘境引路人", "location": "back_mountain", "dialogue": "guide_intro"}
+    {"id": "master_qingxuan", "name": "青玄子", "title": "授业师尊", "location": "dormitory", "dialogue": "qingxuan_intro", "offset": {"x": 68, "y": 8}, "color": "79a996"},
+    {"id": "elder_library", "name": "玄机长老", "title": "藏经阁执事", "location": "library", "dialogue": "elder_intro", "offset": {"x": -66, "y": 18}, "color": "b69b66"},
+    {"id": "guide_realm", "name": "云游子", "title": "秘境引路人", "location": "back_mountain", "dialogue": "guide_intro", "offset": {"x": -72, "y": 4}, "color": "688aa1"}
   ]
 }
-

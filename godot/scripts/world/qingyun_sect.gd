@@ -15,15 +15,19 @@ const PATHS := [
 
 @onready var player: CharacterBody2D = $Player
 @onready var hud: CanvasLayer = $Hud
+@onready var npc_container: Node2D = $NpcActors
 var locations: Array = []
 var location_positions: Dictionary = {}
 var nearest_location: Dictionary = {}
+var npc_actors: Array[Node2D] = []
+var nearest_npc: Node2D
 var world_active: bool = false
 
 
 func _ready() -> void:
 	_load_locations()
 	_build_location_labels()
+	_build_npcs()
 	player.interaction_pressed.connect(_on_interaction_pressed)
 	hud.save_requested.connect(_on_save_requested)
 	hud.return_title_requested.connect(_on_return_title_requested)
@@ -62,6 +66,11 @@ func _process(_delta: float) -> void:
 		return
 	GameState.set_world_position(player.position)
 	nearest_location = _find_nearest_location()
+	nearest_npc = _find_nearest_npc()
+	if nearest_npc != null:
+		hud.set_location(str(nearest_npc.npc_data.get("location_name", "青云宗")))
+		hud.set_interaction_prompt("按 E 交谈 · %s" % str(nearest_npc.npc_data.name), true)
+		return
 	if nearest_location.is_empty():
 		hud.set_location("云阶山道")
 		hud.set_interaction_prompt("", false)
@@ -71,6 +80,9 @@ func _process(_delta: float) -> void:
 
 
 func _on_interaction_pressed() -> void:
+	if nearest_npc != null:
+		DialogueManager.start_dialogue(str(nearest_npc.npc_data.dialogue), str(nearest_npc.npc_data.id))
+		return
 	if nearest_location.is_empty():
 		hud.show_toast("附近没有可交互的地点。")
 		return
@@ -115,6 +127,23 @@ func _build_location_labels() -> void:
 		$LocationLabels.add_child(label)
 
 
+func _build_npcs() -> void:
+	var npc_scene: PackedScene = load("res://scenes/actors/NpcActor.tscn")
+	for npc_data in DataRepository.get_data("npcs").get("npcs", []):
+		var location_id := str(npc_data.get("location", ""))
+		if not location_positions.has(location_id):
+			continue
+		var actor: Node2D = npc_scene.instantiate()
+		var location := _location_by_id(location_id)
+		var enriched: Dictionary = npc_data.duplicate(true)
+		enriched.location_name = str(location.get("name", location_id))
+		var offset_data: Dictionary = npc_data.get("offset", {})
+		actor.position = location_positions[location_id] + Vector2(float(offset_data.get("x", 0)), float(offset_data.get("y", 0)))
+		actor.configure(enriched)
+		npc_container.add_child(actor)
+		npc_actors.append(actor)
+
+
 func _find_nearest_location() -> Dictionary:
 	var result: Dictionary = {}
 	var best_distance := INTERACTION_DISTANCE
@@ -124,6 +153,24 @@ func _find_nearest_location() -> Dictionary:
 			best_distance = distance
 			result = location
 	return result
+
+
+func _find_nearest_npc() -> Node2D:
+	var result: Node2D
+	var best_distance := 76.0
+	for actor in npc_actors:
+		var distance := player.position.distance_to(actor.position)
+		if distance < best_distance:
+			best_distance = distance
+			result = actor
+	return result
+
+
+func _location_by_id(location_id: String) -> Dictionary:
+	for location in locations:
+		if str(location.id) == location_id:
+			return location
+	return {}
 
 
 func _update_quest(quest_id: String) -> void:

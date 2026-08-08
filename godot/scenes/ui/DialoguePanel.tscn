@@ -1,0 +1,93 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/dialogue_panel.gd" id="1_dialogue"]
+
+[sub_resource type="StyleBoxFlat" id="DialogueStyle"]
+bg_color = Color(0.025, 0.075, 0.08, 0.98)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.69, 0.59, 0.32, 0.85)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[node name="DialoguePanel" type="CanvasLayer"]
+layer = 20
+script = ExtResource("1_dialogue")
+
+[node name="Overlay" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Shade" type="ColorRect" parent="Overlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.42)
+
+[node name="Panel" type="PanelContainer" parent="Overlay"]
+layout_mode = 0
+offset_left = 165.0
+offset_top = 395.0
+offset_right = 1115.0
+offset_bottom = 690.0
+theme_override_styles/panel = SubResource("DialogueStyle")
+
+[node name="Margin" type="MarginContainer" parent="Overlay/Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 28
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 28
+theme_override_constants/margin_bottom = 20
+
+[node name="Content" type="HBoxContainer" parent="Overlay/Panel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 28
+
+[node name="Words" type="VBoxContainer" parent="Overlay/Panel/Margin/Content"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 12
+
+[node name="Header" type="HBoxContainer" parent="Overlay/Panel/Margin/Content/Words"]
+layout_mode = 2
+
+[node name="SpeakerLabel" type="Label" parent="Overlay/Panel/Margin/Content/Words/Header"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.92, 0.83, 0.58, 1)
+theme_override_font_sizes/font_size = 22
+text = "青玄子"
+
+[node name="AffinityLabel" type="Label" parent="Overlay/Panel/Margin/Content/Words/Header"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.49, 0.74, 0.64, 1)
+text = "好感 0"
+
+[node name="DialogueText" type="Label" parent="Overlay/Panel/Margin/Content/Words"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 135)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.81, 0.84, 0.78, 1)
+theme_override_font_sizes/font_size = 18
+text = "对话内容"
+autowrap_mode = 2
+
+[node name="OptionsBox" type="VBoxContainer" parent="Overlay/Panel/Margin/Content"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(285, 0)
+layout_mode = 2
+theme_override_constants/separation = 8
+

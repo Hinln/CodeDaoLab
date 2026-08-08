@@ -9,6 +9,7 @@ const DEFAULT_PLAYER := {
 	"mindset": 100,
 	"position": {"map": "qingyun_sect", "x": 0.0, "y": 0.0},
 	"techniques": {},
+	"npc_affinity": {},
 	"quest_flags": {},
 	"boss_defeated": false,
 }
@@ -64,6 +65,22 @@ func set_world_position(world_position: Vector2) -> void:
 		"x": world_position.x,
 		"y": world_position.y,
 	}
+
+
+func add_affinity(npc_id: String, amount: int) -> int:
+	var affinities: Dictionary = player.get("npc_affinity", {})
+	var updated := clampi(int(affinities.get(npc_id, 0)) + amount, 0, 100)
+	affinities[npc_id] = updated
+	player.npc_affinity = affinities
+	_notify_changed()
+	return updated
+
+
+func set_quest_flag(flag_id: String, value: Variant = true) -> void:
+	var flags: Dictionary = player.get("quest_flags", {})
+	flags[flag_id] = value
+	player.quest_flags = flags
+	_notify_changed()
 
 
 func _notify_changed() -> void:

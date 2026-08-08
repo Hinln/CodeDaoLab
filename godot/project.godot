@@ -16,6 +16,8 @@ DataRepository="*res://scripts/core/data_repository.gd"
 GameState="*res://scripts/core/game_state.gd"
 SaveManager="*res://scripts/core/save_manager.gd"
 SceneRouter="*res://scripts/core/scene_router.gd"
+QuestManager="*res://scripts/gameplay/quest_manager.gd"
+DialogueManager="*res://scripts/gameplay/dialogue_manager.gd"
 
 [display]
 
@@ -31,4 +33,3 @@ renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 textures/default_filters/use_nearest_mipmap_filter=false
 environment/defaults/default_clear_color=Color(0.025, 0.055, 0.06, 1)
-

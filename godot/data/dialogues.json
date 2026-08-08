@@ -1,9 +1,60 @@
 {
   "version": 1,
   "dialogues": {
-    "qingxuan_intro": {"speaker": "青玄子", "text": "代码非纸上空谈。待你以真言唤醒灵牌，再来见我。", "options": [{"text": "弟子谨记", "next": ""}]},
-    "elder_intro": {"speaker": "玄机长老", "text": "藏经万卷，不如亲手运行一行真代码。", "options": [{"text": "请长老考校", "next": ""}]},
-    "guide_intro": {"speaker": "云游子", "text": "后山近日有心魔凝形。机缘还是劫数，要看你的本事。", "options": [{"text": "我会留心", "next": ""}]}
+    "qingxuan_intro": {
+      "start": "greeting",
+      "nodes": {
+        "greeting": {
+          "speaker": "青玄子",
+          "text": "你既踏过云阶，便算与青云有缘。但宗门不收只会空谈之人，你可愿以真代码自证？",
+          "options": [
+            {"text": "弟子愿受考校", "next": "accept_trial", "require": {"quest": "enter_sect"}},
+            {"text": "弟子正在参悟真言", "next": "trial_reminder", "require": {"quest": "learn_true_word"}},
+            {"text": "请师尊指点下一步", "next": "chapter_progress", "require": {"flag": "true_word_complete"}},
+            {"text": "弟子先自行看看", "next": ""}
+          ]
+        },
+        "accept_trial": {
+          "speaker": "青玄子",
+          "text": "善。先习《真言诀》。让沉寂灵牌显出“天地玄黄，宇宙洪荒。”，切记亲手运行，莫以伪言欺天。",
+          "actions": [
+            {"type": "set_flag", "id": "met_qingxuan", "value": true},
+            {"type": "affinity", "amount": 5},
+            {"type": "set_quest", "id": "learn_true_word"}
+          ],
+          "options": [{"text": "弟子明白", "next": ""}]
+        },
+        "trial_reminder": {
+          "speaker": "青玄子",
+          "text": "真正的真言不在我口中，在你运行后的回响里。前往演武场，完成灵牌试炼。",
+          "options": [{"text": "这便去", "next": ""}]
+        },
+        "chapter_progress": {
+          "speaker": "青玄子",
+          "text": "真言已有回响。去藏经阁见玄机长老，他会教你如何以变量容纳灵力。",
+          "options": [{"text": "谨遵师命", "next": ""}]
+        }
+      }
+    },
+    "elder_intro": {
+      "start": "greeting",
+      "nodes": {
+        "greeting": {
+          "speaker": "玄机长老",
+          "text": "藏经万卷，不如亲手运行一行真代码。待你练成真言诀，再来接受《变量吐纳诀》的考校。",
+          "options": [{"text": "弟子受教", "next": ""}]
+        }
+      }
+    },
+    "guide_intro": {
+      "start": "greeting",
+      "nodes": {
+        "greeting": {
+          "speaker": "云游子",
+          "text": "后山灵雾中有心魔凝形。机缘还是劫数，要看你能否看穿那几行错乱代码。",
+          "options": [{"text": "我会留心", "next": ""}]
+        }
+      }
+    }
   }
 }
-
