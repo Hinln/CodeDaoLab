@@ -34,7 +34,7 @@ func open_challenge(challenge_id: String) -> void:
 	editor.text = str(challenge.starter)
 	%OutputLabel.text = "在此查看天地回响。"
 	%ResultLabel.text = ""
-	%TutorLabel.text = "青玄子传音：先运行一次你的代码，再来问我。"
+	%TutorLabel.text = "青玄子传音\n%s" % TutorManager.challenge_greeting(challenge_id)
 	%RunButton.disabled = false
 	%SubmitButton.disabled = false
 	%CloseButton.text = "暂离试炼"
@@ -74,6 +74,7 @@ func _on_challenge_finished(result: Dictionary) -> void:
 	if not overlay.visible:
 		return
 	last_result = result
+	TutorManager.record_attempt(str(challenge.get("id", "")), result)
 	var output := str(result.get("stdout", ""))
 	var detail := str(result.get("detail", ""))
 	%OutputLabel.text = output if not output.is_empty() else (detail if not detail.is_empty() else "（无输出）")
@@ -83,6 +84,7 @@ func _on_challenge_finished(result: Dictionary) -> void:
 		var reward := TechniqueManager.complete_challenge(str(challenge.id))
 		%ResultLabel.text = "天地验证通过 · %s" % str(reward.message)
 		%ResultLabel.add_theme_color_override("font_color", Color("79c99a"))
+		%TutorLabel.text = "青玄子 · 见证\n%s" % TutorManager.success_reflection(str(challenge.id))
 		completed = true
 		%CloseButton.text = "收功返回"
 		%RunButton.disabled = true
@@ -96,7 +98,7 @@ func _on_challenge_finished(result: Dictionary) -> void:
 
 func _ask_tutor() -> void:
 	var advice := TutorManager.guidance(str(challenge.get("id", "")), last_result, editor.text)
-	%TutorLabel.text = "青玄子传音 · L%d\n%s" % [int(advice.get("level", 1)), str(advice.get("text", "静心再看。"))]
+	%TutorLabel.text = "青玄子传音 · L%d %s\n%s" % [int(advice.get("level", 1)), str(advice.get("mode", "引导")), str(advice.get("text", "静心再看。"))]
 
 
 func _diagnose() -> void:

@@ -12,6 +12,7 @@ const DEFAULT_PLAYER := {
 	"techniques": {},
 	"npc_affinity": {},
 	"npc_memories": {},
+	"tutor_history": {"total_attempts": 0, "total_failures": 0, "total_successes": 0, "challenges": {}},
 	"quest_flags": {},
 	"boss_defeated": false,
 }

@@ -104,10 +104,12 @@ func _on_python_result(result: Dictionary) -> void:
 	if not battle_active or not overlay.visible:
 		return
 	last_result = result
+	TutorManager.record_attempt(str(challenge.get("id", "")), result)
 	var output := str(result.get("stdout", ""))
 	var detail := str(result.get("detail", ""))
 	%OutputLabel.text = output if not output.is_empty() else (detail if not detail.is_empty() else "（无输出）")
 	if pending_action == "submit" and bool(result.get("passed", false)):
+		%TutorLabel.text = "青玄子 · 见证：%s" % TutorManager.success_reflection(str(challenge.id))
 		resolve_result(result, false)
 		return
 	if pending_action == "submit":
@@ -121,7 +123,7 @@ func _on_python_result(result: Dictionary) -> void:
 
 func _ask_tutor() -> void:
 	var advice := TutorManager.guidance(str(challenge.get("id", "")), last_result, editor.text)
-	%TutorLabel.text = "青玄子传音 · L%d：%s" % [int(advice.get("level", 1)), str(advice.get("text", ""))]
+	%TutorLabel.text = "青玄子传音 · L%d %s：%s" % [int(advice.get("level", 1)), str(advice.get("mode", "引导")), str(advice.get("text", ""))]
 
 
 func _finish_victory() -> void:
