@@ -22,7 +22,14 @@ $Scenes = @(
     'G3Smoke',
     'G4Smoke',
     'G5TutorSmoke',
-    'G6PlaythroughSmoke'
+    'G6PlaythroughSmoke',
+    'V02ASpellcastingSmoke',
+    'V02BOnboardingSmoke',
+    'V02CCharacterNpcSmoke',
+    'V02DWorldAtmosphereSmoke',
+    'V02ETechniqueBossSmoke',
+    'V02FTutorCompanionSmoke',
+    'V02GFullFlowSmoke'
 )
 
 foreach ($Scene in $Scenes) {
@@ -31,5 +38,4 @@ foreach ($Scene in $Scenes) {
     if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 }
 
-Write-Host "`nALL GODOT TESTS PASSED (92 checks)" -ForegroundColor Green
-
+Write-Host "`nALL GODOT TESTS PASSED (181 checks)" -ForegroundColor Green

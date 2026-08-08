@@ -1,6 +1,6 @@
 extends Node
 
-const SAVE_VERSION := 1
+const SAVE_VERSION := 2
 const SAVE_DIR := "user://saves"
 const SAVE_PATH := SAVE_DIR + "/chapter_01.json"
 var save_path_override: String = ""
@@ -17,6 +17,7 @@ func save_game() -> bool:
 		"player": GameState.snapshot(),
 		"meta": {
 			"chapter": 1,
+			"edition": "godot-v0.2",
 			"saved_at": Time.get_datetime_string_from_system(true),
 		},
 	}
