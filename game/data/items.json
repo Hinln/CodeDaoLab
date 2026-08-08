@@ -1,0 +1,32 @@
+﻿{
+  "meta": {
+    "title": "码上飞升 V0.2 道具",
+    "version": "0.2.0"
+  },
+  "items": {
+    "jingxin_dan": {
+      "name": "静心丹",
+      "icon": "💊",
+      "desc": "服下后心境澄明，立即恢复 30 点心境。",
+      "effect": {"mindset": 30}
+    },
+    "qingxin_dan": {
+      "name": "清心丹",
+      "icon": "🌿",
+      "desc": "清心寡欲，恢复 15 点心境。",
+      "effect": {"mindset": 15}
+    },
+    "wudao_dan": {
+      "name": "悟道丹",
+      "icon": "🧠",
+      "desc": "服下后灵台通透，悟性 +1。",
+      "effect": {"comprehension": 1}
+    },
+    "hint_lingfu": {
+      "name": "点拨灵符",
+      "icon": "📜",
+      "desc": "遇难时可向师尊求一道明确线索（任务页直接解锁 L3 提示）。",
+      "effect": {"hint_level": 3}
+    }
+  }
+}

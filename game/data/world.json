@@ -1,0 +1,43 @@
+{
+  "meta": {"title": "码上飞升 V0.3 世界地图", "version": "0.3.0"},
+  "regions": [
+    {
+      "id": "qingyun_sect",
+      "name": "青云宗",
+      "desc": "以代码入道的修行宗门，山门、洞府与诸殿沿灵脉而建。",
+      "unlock": {"type": "always"},
+      "locations": [
+        {"id": "gate", "name": "山门", "icon": "⛩️", "desc": "青云宗出入之地，石狮守望山道。", "x": 10, "y": 48, "connections": ["dormitory", "city_gate", "mountain_path"], "unlock": {"type": "always"}},
+        {"id": "dormitory", "name": "洞府", "icon": "🧘", "desc": "领受主线修行、查看状态并保存进度。", "x": 32, "y": 48, "connections": ["gate", "library", "cauldron"], "unlock": {"type": "always"}},
+        {"id": "library", "name": "藏经阁", "icon": "📖", "desc": "参阅功法玉简，回顾已悟法门。", "x": 54, "y": 20, "connections": ["dormitory", "mission_hall"], "unlock": {"type": "realm_order_min", "order": 1}, "locked_reason": "入道并突破炼气一层后开放"},
+        {"id": "mission_hall", "name": "任务堂", "icon": "📜", "desc": "查看宗门委托、主线与支线机缘。", "x": 78, "y": 20, "connections": ["library", "training_ground"], "unlock": {"type": "realm_order_min", "order": 1}, "locked_reason": "入道并突破炼气一层后开放"},
+        {"id": "training_ground", "name": "演武场", "icon": "🥋", "desc": "以真实代码修炼功法并接受考核。", "x": 78, "y": 72, "connections": ["mission_hall", "cauldron"], "unlock": {"type": "realm_order_min", "order": 1}, "locked_reason": "入道并突破炼气一层后开放"},
+        {"id": "cauldron", "name": "炼丹房", "icon": "⚗️", "desc": "修复被心魔扰乱的代码丹方。", "x": 54, "y": 72, "connections": ["dormitory", "training_ground", "trial_platform"], "unlock": {"type": "realm_order_min", "order": 1}, "locked_reason": "入道并突破炼气一层后开放"},
+        {"id": "trial_platform", "name": "渡劫台", "icon": "⚡", "desc": "炼气大圆满后，以综合代码试炼渡劫筑基。", "x": 32, "y": 84, "connections": ["cauldron"], "unlock": {"type": "realm_order_min", "order": 10}, "locked_reason": "需达到炼气大圆满"}
+      ]
+    },
+    {
+      "id": "qingyun_city",
+      "name": "青云城",
+      "desc": "山下凡人与修士往来的城池，消息、货物与机缘在此交汇。",
+      "unlock": {"type": "or", "conditions": [{"type": "realm_order_min", "order": 3}, {"type": "task_done", "task_id": "data_types"}]},
+      "locations": [
+        {"id": "city_gate", "name": "城门", "icon": "🏮", "desc": "青云城北门，与宗门山门遥相呼应。", "x": 12, "y": 50, "connections": ["gate", "shop", "inn", "market"], "unlock": {"type": "always"}},
+        {"id": "shop", "name": "百宝商铺", "icon": "🏪", "desc": "兑换丹药、符箓与修行物资。", "x": 42, "y": 22, "connections": ["city_gate", "market"], "unlock": {"type": "always"}},
+        {"id": "inn", "name": "听风客栈", "icon": "🍵", "desc": "听取传闻，追寻城中与山外的奇遇线索。", "x": 42, "y": 76, "connections": ["city_gate", "market"], "unlock": {"type": "always"}},
+        {"id": "market", "name": "长明街市", "icon": "🏮", "desc": "散修与凡人聚集之地，常有支线人物停留。", "x": 76, "y": 50, "connections": ["city_gate", "shop", "inn"], "unlock": {"type": "always"}}
+      ]
+    },
+    {
+      "id": "back_mountain",
+      "name": "后山秘境",
+      "desc": "灵气紊乱的宗门禁地，山道深处连接三座代码秘境。",
+      "unlock": {"type": "realm_order_min", "order": 5},
+      "locations": [
+        {"id": "mountain_path", "name": "后山山道", "icon": "🌲", "desc": "从山门通往秘境深处的幽静石径。", "x": 14, "y": 50, "connections": ["gate", "secret_gate", "encounter_site"], "unlock": {"type": "always"}},
+        {"id": "secret_gate", "name": "秘境入口", "icon": "🌀", "desc": "云游子以罗盘标记的三处代码秘境入口。", "x": 50, "y": 26, "connections": ["mountain_path", "encounter_site"], "unlock": {"type": "always"}},
+        {"id": "encounter_site", "name": "奇遇点", "icon": "✨", "desc": "残卷、灵兽与旧日遗迹可能在此显现。", "x": 76, "y": 70, "connections": ["mountain_path", "secret_gate"], "unlock": {"type": "always"}}
+      ]
+    }
+  ]
+}

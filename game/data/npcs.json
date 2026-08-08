@@ -1,0 +1,37 @@
+{
+  "meta": {"title": "码上飞升 V0.3 NPC", "version": "0.3.0"},
+  "npcs": {
+    "master_qingxuan": {
+      "name": "青玄子", "title": "授业师尊", "icon": "🧙", "location": "dormitory", "affinity": 0,
+      "desc": "青云宗传功长老，以 Python 真解渡人入道。讲究引而不发，点而不破。",
+      "dialogue": "master_qingxuan",
+      "relationship": [{"min": 0, "name": "门下新徒"}, {"min": 15, "name": "受教弟子"}, {"min": 40, "name": "亲传弟子"}, {"min": 80, "name": "衣钵传人"}]
+    },
+    "elder_library": {
+      "name": "玄机长老", "title": "藏经阁执事", "icon": "📖", "location": "library", "affinity": 0,
+      "desc": "掌管满阁功法玉简，最爱考校后辈对数据结构的心得。",
+      "dialogue": "elder_library",
+      "relationship": [{"min": 0, "name": "后生"}, {"min": 15, "name": "可教之才"}, {"min": 40, "name": "忘年学友"}, {"min": 80, "name": "传法知己"}]
+    },
+    "steward_pill": {
+      "name": "丹尘子", "title": "炼丹房执事", "icon": "⚗️", "location": "cauldron", "affinity": 0,
+      "desc": "操持丹炉百余载，最恨心魔作祟的残缺丹方。", "dialogue": "steward_pill",
+      "relationship": [{"min": 0, "name": "试火学徒"}, {"min": 15, "name": "丹房同道"}, {"min": 40, "name": "推方知己"}, {"min": 80, "name": "丹道至交"}]
+    },
+    "guide_realm": {
+      "name": "云游子", "title": "秘境引路人", "icon": "🌀", "location": "secret_gate", "affinity": 0,
+      "desc": "手持罗盘，知天下秘境所在。机缘到了，自会为你指路。", "dialogue": "guide_realm",
+      "relationship": [{"min": 0, "name": "萍水相逢"}, {"min": 15, "name": "同路之人"}, {"min": 40, "name": "云游故交"}, {"min": 80, "name": "生死同游"}]
+    },
+    "sect_master": {
+      "name": "青云真人", "title": "青云宗掌门", "icon": "☯️", "location": "mission_hall", "affinity": 0,
+      "desc": "执掌青云宗大局，对灵脉异动与 Python 真解的来历早有察觉。", "dialogue": "sect_master",
+      "relationship": [{"min": 0, "name": "宗门后辈"}, {"min": 15, "name": "内门弟子"}, {"min": 40, "name": "青云行走"}, {"min": 80, "name": "宗门柱石"}]
+    },
+    "disciple_xiaoyue": {
+      "name": "小月", "title": "同门师妹", "icon": "🌸", "location": "market", "affinity": 0,
+      "desc": "入门三年的小师妹，爱缠着师兄师姐请教功法。", "dialogue": "disciple_xiaoyue",
+      "relationship": [{"min": 0, "name": "同门"}, {"min": 15, "name": "熟识同门"}, {"min": 40, "name": "知心同门"}, {"min": 80, "name": "莫逆同门"}]
+    }
+  }
+}

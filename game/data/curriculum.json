@@ -1,0 +1,499 @@
+{
+ "meta": {
+  "title": "码上飞升 V0.2",
+  "version": "0.2.0",
+  "slogan": "大道三千，代码亦可入道。"
+ },
+ "realms": [
+  {
+   "key": "mortal",
+   "name": "凡人",
+   "order": 0,
+   "intro": "你于深夜研读上古残卷，忽见金光大作，天地倒转——再睁眼时，你已身处一间古朴洞府。案上，一卷《Python 真解》正泛着微光。",
+   "teaching": [
+    {
+     "title": "灵气初识",
+     "body": "在这方世界里，代码便是法术，Python 是第一道入门法则。\n\n「灵气」由一行行命令组成，天地规则（计算机）会逐行执行它们。\n\n右侧的编辑器就是你书写法术的地方，写完后点击「运行」，观察下方输出的结果。"
+    },
+    {
+     "title": "print 真言",
+     "body": "最基础的真言是 print()——把内容显示出来。\n\n示例：\n\n```python\nprint(\"天地玄黄\")\n```\n\n运行后会显示：\n\n```\n天地玄黄\n```\n\n注意：文字必须用引号（双引号或单引号）包裹。"
+    },
+    {
+     "title": "心法口诀",
+     "body": "- 每一条命令占一行\n- 文字用引号包裹\n- 括号要成对\n- 运行后看输出，错了就改"
+    }
+   ],
+   "tasks": [
+    "tutorial_run"
+   ]
+  },
+  {
+   "key": "qi1",
+   "name": "炼气一层",
+   "order": 1,
+   "intro": "你翻开《Python 真解》第一页，上面写道：「欲入道途，先出真言。」洞府外，守门石狮睁开了眼。",
+   "teaching": [
+    {
+     "title": "第一道真言",
+     "body": "修仙界有个古老的仪式：每一位入道者，都要用自己的双手写出第一段代码，宣告踏入道途。\n\n这第一道真言，就是：\n\n```python\nprint(\"Hello, World!\")\n```\n\n「Hello, World!」是万千修士的起点，也验证了你的灵力可以沟通天地。"
+    },
+    {
+     "title": "常见心魔",
+     "body": "- 忘记引号：print(Hello, World!) 会导致语法错误\n- 引号不配对：print(\"Hello, World!) 同样会出错\n- 忘记括号：print \"Hello, World!\" 也会失败\n\n遇到错误不要慌——读懂错误信息，就是修行的开始。"
+    }
+   ],
+   "tasks": [
+    "hello_world"
+   ]
+  },
+  {
+   "key": "qi2",
+   "name": "炼气二层",
+   "order": 2,
+   "intro": "炼气一层的灵力在经脉中流转。师父云中子传音而来：「灵力需有容器承载——这，就是变量。」",
+   "teaching": [
+    {
+     "title": "变量 = 灵力容器",
+     "body": "变量用来保存数据，就像丹田储存灵力。\n\n用等号（=）把值存入变量：\n\n```python\nname = \"青云\"\npower = 100\n```\n\n之后就可以通过变量名使用它：\n\n```python\nprint(name)\nprint(power)\n```"
+    },
+    {
+     "title": "命名规则",
+     "body": "- 只能由字母、数字、下划线组成\n- 不能以数字开头\n- 不能与 Python 保留字冲突（如 if、for、while）\n- 取名要有意义：灵根叫 element，修为叫 power\n\n（中文也可以用作变量名，但修仙界通行英文命名。）"
+    }
+   ],
+   "tasks": [
+    "variable_intro"
+   ]
+  },
+  {
+   "key": "qi3",
+   "name": "炼气三层",
+   "order": 3,
+   "intro": "藏经阁中，一位白发老者拦住了你：「万物有型。字符、数字、真假，各有其性。你可知如何辨型、化型？」",
+   "teaching": [
+    {
+     "title": "数据类型",
+     "body": "Python 中的数据各有「类型」：\n\n- 整数 int：42\n- 小数 float：3.14\n- 字符串 str：\"修仙\"\n- 布尔 bool：True / False\n\n用 type() 可以查看类型：\n\n```python\nprint(type(42))      # <class 'int'>\nprint(type(3.14))    # <class 'float'>\nprint(type(\"修仙\"))  # <class 'str'>\n```"
+    },
+    {
+     "title": "类型转换",
+     "body": "不同类型可以互相转换：\n\n```python\nnum = int(\"108\")   # 字符串 → 整数\ns = str(108)       # 整数 → 字符串\nf = float(\"3.5\")   # 字符串 → 小数\n```\n\n注意：字符串 \"108\" 不能直接参与算术，必须先转为数字。"
+    }
+   ],
+   "tasks": [
+    "data_types"
+   ]
+  },
+  {
+   "key": "qi4",
+   "name": "炼气四层",
+   "order": 4,
+   "intro": "炼丹房中丹炉轰鸣。你需要掌握灵力运算的法则，才能调和药性。",
+   "teaching": [
+    {
+     "title": "算术运算符",
+     "body": "Python 支持丰富的运算：\n\n```python\nprint(7 + 3)    # 加法：10\nprint(7 - 3)    # 减法：4\nprint(7 * 3)    # 乘法：21\nprint(7 / 2)    # 除法：3.5\nprint(7 // 2)   # 整除：3\nprint(7 % 2)    # 取余：1\nprint(2 ** 3)   # 幂：8\n```\n\n注意：乘法是 *，幂是 **；字符串用 + 拼接，如 \"道友\" + \"请留步\"。"
+    },
+    {
+     "title": "比较运算符",
+     "body": "比较产生布尔值（True / False）：\n\n```python\nprint(5 > 3)    # True\nprint(5 == 3)   # False（等于用两个等号）\nprint(5 != 3)   # True（不等于）\nprint(5 >= 5)   # True\n```"
+    }
+   ],
+   "tasks": [
+    "operators"
+   ]
+  },
+  {
+   "key": "qi5",
+   "name": "炼气五层",
+   "order": 5,
+   "intro": "渡口边，仙使拱手：「敢问道友名号？」你第一次需要用 input() 倾听天地之声。",
+   "teaching": [
+    {
+     "title": "input() 倾听天地",
+     "body": "input() 会暂停程序，等待输入：\n\n```python\nname = input()\nprint(\"道友\" + name + \"，欢迎入道！\")\n```\n\n运行后，在输入框填入名字，按确定，程序就会继续。\n\n注意：input() 读到的永远是字符串，需要数字时记得用 int() 转换。"
+    },
+    {
+     "title": "输出反馈",
+     "body": "想让输出更有温度，可以把字符串拼接起来：\n\n```python\nprint(\"道友\" + name + \"，欢迎入道！\")\n```\n\n也可以用逗号：print(\"道友\", name, \"欢迎入道\")，逗号会自动加空格。"
+    }
+   ],
+   "tasks": [
+    "input_output"
+   ]
+  },
+  {
+   "key": "qi6",
+   "name": "炼气六层",
+   "order": 6,
+   "intro": "宗门大殿，掌门亲自考核你的道心：「修为几何，便得何等称谓。写出你的判断！」",
+   "teaching": [
+    {
+     "title": "if 条件判断",
+     "body": "程序可以做出选择——这是「道心」的体现：\n\n```python\nif 修为 >= 1000:\n    print(\"筑基\")\nelif 修为 >= 100:\n    print(\"炼气\")\nelse:\n    print(\"凡人\")\n```\n\n判断从上到下执行，命中一个分支后便不再继续。"
+    },
+    {
+     "title": "缩进即道统",
+     "body": "Python 用缩进表示代码的层级，这是它与众不同的地方：\n\n```python\nif 修为 >= 100:\n    print(\"炼气\")    # 这一行属于 if\nprint(\"修行结束\")    # 这一行不属于 if\n```\n\n缩进错误（该缩进没缩进）会直接导致语法错误。"
+    }
+   ],
+   "tasks": [
+    "conditionals"
+   ]
+  },
+  {
+   "key": "qi7",
+   "name": "炼气七层",
+   "order": 7,
+   "intro": "你盘坐于周天阵中。for 循环像周天运转，将灵气一遍遍搬运。",
+   "teaching": [
+    {
+     "title": "for 循环",
+     "body": "需要重复执行时，用 for 循环：\n\n```python\nfor i in range(1, 6):\n    print(i)\n```\n\nrange(1, 6) 生成 1、2、3、4、5（含头不含尾），循环变量 i 依次取这些值。\n\n循环体要缩进，和 if 一样。"
+    },
+    {
+     "title": "range 的用法",
+     "body": "```python\nrange(5)      # 0, 1, 2, 3, 4\nrange(1, 5)   # 1, 2, 3, 4\nrange(1, 10, 2)  # 1, 3, 5, 7, 9（步长为 2）\n```"
+    }
+   ],
+   "tasks": [
+    "for_loop"
+   ]
+  },
+  {
+   "key": "qi8",
+   "name": "炼气八层",
+   "order": 8,
+   "intro": "灵气如泉，奔涌不息。但师父警告：若让循环失去止境，心魔便会趁虚而入。",
+   "teaching": [
+    {
+     "title": "while 循环",
+     "body": "while 循环在条件为真时不断重复：\n\n```python\nn = 1\nwhile n <= 5:\n    print(n)\n    n = n + 1\n```\n\n每一轮都要让条件趋向 False（这里 n 不断变大），循环才会结束。"
+    },
+    {
+     "title": "心魔：死循环",
+     "body": "如果忘记改变条件，循环永不结束，程序会卡死——这就是修仙大忌「死循环」：\n\n```python\nn = 1\nwhile n <= 5:\n    print(n)      # 没有 n = n + 1，n 永远是 1\n```\n\n在本世界中，运行超时会被天雷强行打断。写循环时，务必想清楚：它会在何时停下？"
+    }
+   ],
+   "tasks": [
+    "while_loop"
+   ]
+  },
+  {
+   "key": "qi9",
+   "name": "炼气九层",
+   "order": 9,
+   "intro": "你得到两件宝物：一只能装万物的储物袋（列表），一本记录一切的百宝名册（字典）。",
+   "teaching": [
+    {
+     "title": "列表 list",
+     "body": "列表按顺序存放多个数据，用方括号：\n\n```python\nherbs = [\"灵芝\", \"朱果\", \"龙涎草\"]\nprint(herbs[0])   # 灵芝（索引从 0 开始！）\nprint(herbs[1])   # 朱果\nprint(len(herbs)) # 3（数量）\n```"
+    },
+    {
+     "title": "字典 dict",
+     "body": "字典用键值对存放数据，用花括号：\n\n```python\ntreasure = {\"灵石\": 500, \"丹药\": 3}\nprint(treasure[\"灵石\"])   # 500\n```\n\n按「键」取「值」，就像按名字查人。"
+    }
+   ],
+   "tasks": [
+    "list_dict"
+   ]
+  },
+  {
+   "key": "qi10",
+   "name": "炼气大圆满",
+   "order": 10,
+   "intro": "十层炼气已满，你即将触摸筑基的门槛。最后一步：将你的招式凝结为「功法」——函数。",
+   "teaching": [
+    {
+     "title": "函数 = 功法",
+     "body": "函数把一段逻辑封装起来，可以反复调用：\n\n```python\ndef double(x):\n    return x * 2\n\nprint(double(5))   # 10\nprint(double(21))  # 42\n```\n\n- def 定义函数\n- 参数（这里 x）是入口\n- return 返回结果（功法输出）\n- 调用时用函数名 + 括号"
+    },
+    {
+     "title": "return 的意义",
+     "body": "return 会把值送回调用处：\n\n```python\ndef add(a, b):\n    return a + b\n\nresult = add(3, 4)\nprint(result)   # 7\n```\n\n如果忘了 return，函数会返回 None，灵力便「有去无回」。"
+    }
+   ],
+   "tasks": [
+    "functions"
+   ]
+  },
+  {
+   "key": "foundation",
+   "name": "筑基",
+   "order": 11,
+   "intro": "天劫已渡，道基已成。你从一介凡人，正式踏入修仙之途。",
+   "teaching": [],
+   "tasks": [
+    "foundation_consolidation"
+   ]
+  },
+  {
+   "key": "gold1",
+   "name": "金丹一层",
+   "order": 12,
+   "intro": "丹田之内，金丹初成。青玄子抚须道：「金丹一成，灵力可凝可聚，更高深的法术——字符串之道——为你敞开。」",
+   "teaching": [
+    {
+     "title": "剧情 · 金丹初成",
+     "body": "你于洞府之中闭关百日，丹田灵力凝聚成一颗金丹。青玄子现身，眼中含笑：「金丹一成，便可修行『字符串之道』。世间万法，多有文字；掌握文字，方能运转符箓、诵读秘籍。」"
+    },
+    {
+     "title": "功法介绍 · 净字诀",
+     "body": "字符串之道的第一门功法是『净字诀』，它包含若干字符串方法：\n\n- `strip()`：去除字符串首尾的空白\n- `upper()` / `lower()`：将字母转为大写 / 小写\n- `title()`：让每个英文单词首字母大写\n- `split(sep)`：按分隔符拆分为列表\n- `'连接符'.join(列表)`：将列表元素拼成字符串\n- `replace(旧, 新)`：替换子串"
+    },
+    {
+     "title": "教学 · 链式施展",
+     "body": "字符串方法可以连续调用，像连招一样一气呵成：\n\n```python\ns = \"  hello world  \"\nprint(s.strip())            # hello world\nprint(s.strip().upper())    # HELLO WORLD\nprint(s.strip().title())    # Hello World\nprint(s.strip().split())    # ['hello', 'world']\nprint(\"-\".join(s.strip().split()))  # hello-world\n```\n\n注意：`split()` 默认按空白拆分，会忽略连续空格。"
+    },
+    {
+     "title": "示例 · 炼字",
+     "body": "```python\ntext = \"  python 修仙  \"\nprint(\"-\".join(text.strip().title().split()))\n# Python-修仙\n```\n\n先 strip 去尘，再 title 昂首，再 split 拆解，最后 join 联结——每一步都清晰可察。"
+    },
+    {
+     "title": "常见心魔",
+     "body": "- 忘记括号：`s.strip` 只是方法本身，不会执行；必须写 `s.strip()`\n- 方法名拼错：`uppper`、`stip` 都会报 AttributeError\n- 大小写敏感：`Upper()` 不存在，只有 `upper()`\n- 字符串与数字相加：`\"a\" + 1` 会报 TypeError，需先 `str(1)`"
+    }
+   ],
+   "tasks": [
+    "str_essence",
+    "str_trial"
+   ]
+  },
+  {
+   "key": "gold2",
+   "name": "金丹二层",
+   "order": 13,
+   "intro": "金丹又进一步。青玄子神色郑重：「修仙之路，难免遭遇劫数。学会『万法归元』——以 try 护体，以 except 应劫——方能百劫不侵。」",
+   "teaching": [
+    {
+     "title": "剧情 · 劫数来临",
+     "body": "修炼路上，灵力运转偶有不谐：除以零、数字与文字错配、读取不存在的宝物……这些『劫数』在 Python 中被称为**异常（Exception）**。若不设防，功法会当场崩毁；若学会『万法归元』，便能化劫于无形。"
+    },
+    {
+     "title": "功法介绍 · 护体真言",
+     "body": "异常处理的骨架如下：\n\n```python\ntry:\n    # 可能出事的功法\n    result = 10 / b\nexcept ZeroDivisionError:\n    # 劫数降临时如何应对\n    result = \"不可除零\"\n```\n\n- `try`：包裹可能抛出异常的代码\n- `except 异常类型:`：捕获并处理指定异常\n- `else`：没有异常时执行（可选）\n- `finally`：无论是否异常都会执行（可选）\n- `raise 异常类型(\"信息\")`：主动抛出异常"
+    },
+    {
+     "title": "教学 · 常见劫数",
+     "body": "常见的异常类型：\n\n- `ZeroDivisionError`：除以零\n- `ValueError`：值不合法（如 `int(\"abc\")`）\n- `TypeError`：类型不匹配（如 `\"a\" + 1`）\n- `KeyError`：字典缺少键\n- `IndexError`：列表下标越界\n\n```python\ndef parse_num(s):\n    try:\n        return int(s)\n    except ValueError:\n        return 0\n\nprint(parse_num(\"42\"))   # 42\nprint(parse_num(\"abc\"))  # 0\n```"
+    },
+    {
+     "title": "示例 · 主动示警",
+     "body": "```python\ndef take(data, key):\n    if key not in data:\n        raise ValueError(\"缺少宝物：\" + key)\n    return data[key]\n\ntry:\n    take({}, \"灵石\")\nexcept ValueError as e:\n    print(e)  # 缺少宝物：灵石\n```\n\n`raise` 是主动示警——宁可大声报错，也不可默默吞下。"
+    },
+    {
+     "title": "常见心魔",
+     "body": "- `except` 后漏写异常类型：`except:` 会捕获一切异常，容易掩盖真正的 Bug\n- 捕获类型写错：`int(\"abc\")` 抛的是 `ValueError`，写成 `except TypeError` 拦不住\n- 忘记缩进：`except` 分支必须与 `try` 同级缩进\n- 该 raise 时不 raise：吞掉异常会让错误在更远处爆发"
+    }
+   ],
+   "tasks": [
+    "exc_guard",
+    "exc_trial"
+   ]
+  },
+  {
+   "key": "nas1",
+   "name": "元婴一层",
+   "order": 14,
+   "intro": "金丹化婴，神魂出窍。玄机长老递来一卷空白的秘籍：「元婴之秘，在于分门别类——将功法藏于独立秘籍，以 import 随时取用。」",
+   "teaching": [
+    {
+     "title": "剧情 · 分门别类",
+     "body": "功法越修越多，若全部堆在一处，必然杂乱。元婴修士的智慧在于：把每一门功法写进独立的 `.py` 文件——这便是一本**秘籍（模块）**。需要时，用 `import` 引入。"
+    },
+    {
+     "title": "功法介绍 · 引诀",
+     "body": "- `import 秘籍名`：整本引入，用 `秘籍名.功法名` 调用\n- `from 秘籍名 import 功法名`：只引入其中一门功法\n- `import 秘籍名 as 别名`：为秘籍起个别名\n\n```python\nimport spells\nprint(spells.flash(21))\n\nfrom spells import flash\nprint(flash(21))\n```"
+    },
+    {
+     "title": "教学 · 自创秘籍",
+     "body": "秘籍就是一个普通的 `.py` 文件。你可以用文件写入的方式，在洞府中亲手写下秘籍：\n\n```python\nwith open(\"spells.py\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"def flash(x):\\n    return x * 2\\n\")\n\nimport spells\nprint(spells.flash(21))  # 42\n```\n\n写秘籍时注意：函数体内必须有缩进，`\\n` 代表换行。"
+    },
+    {
+     "title": "示例 · 分册存放",
+     "body": "```python\nwith open(\"base.py\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"def power(x):\\n    return x * x\\n\")\n\nfrom base import power\nprint(power(5))  # 25\n```\n\n同一目录下，`base.py` 便成为可被 `import` 的模块。"
+    },
+    {
+     "title": "常见心魔",
+     "body": "- 秘籍文件名拼错：`import spell` 而文件是 `spells.py`，会报 ModuleNotFoundError\n- 秘籍内语法错误：写入的函数定义缩进不对，import 时直接报错\n- 忘记 `\\n`：多行函数写在一行，会因缩进问题编译失败\n- `from` 引入不存在的功法：`from spells import teleport` 会报 ImportError"
+    }
+   ],
+   "tasks": [
+    "mod_import",
+    "mod_trial"
+   ]
+  },
+  {
+   "key": "nas2",
+   "name": "元婴二层",
+   "order": 15,
+   "intro": "元婴渐固。玄机长老带你来到藏经阁深处：「元婴修士，当能读写天地卷宗——以文件为凭，留功法于后世。」",
+   "teaching": [
+    {
+     "title": "剧情 · 天地卷宗",
+     "body": "修仙界的一切典籍、丹方、卷宗，皆以**文件**形式留存于天地之间。元婴修士当掌握读写卷宗之术，将功法与见闻落于纸上，亦可随时取阅。"
+    },
+    {
+     "title": "功法介绍 · 卷宗之法",
+     "body": "打开文件用 `open(路径, 模式, encoding=\"utf-8\")`：\n\n- `\"r\"`：只读（默认）\n- `\"w\"`：写入（覆盖原有内容）\n- `\"a\"`：追加（在末尾续写）\n\n常用读取方式：\n- `f.read()`：一次读完\n- `f.readline()`：读一行\n- `f.readlines()`：读全部行（列表）\n- `for line in f:`：逐行遍历\n\n写入：`f.write(文本)` 或 `f.writelines([...])`。"
+    },
+    {
+     "title": "教学 · with 护卷",
+     "body": "```python\n# 写入\nwith open(\"丹方.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"聚气丹：1\\n\")\n    f.write(\"凝神丹：2\\n\")\n\n# 读取\nwith open(\"丹方.txt\", encoding=\"utf-8\") as f:\n    lines = f.readlines()\n    for line in lines:\n        print(line.strip())\n```\n\n`with ... as f` 会在代码块结束后自动关闭文件——这是最稳妥的护卷之法，不必手动 `f.close()`。"
+    },
+    {
+     "title": "示例 · 逐行点算",
+     "body": "```python\nwith open(\"丹方.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.writelines([\"聚气丹：1\\n\", \"凝神丹：2\\n\"])\n\nwith open(\"丹方.txt\", encoding=\"utf-8\") as f:\n    total = 0\n    for line in f:\n        num = int(line.strip().split(\"：\")[1])\n        total += num\nprint(total)  # 3\n```"
+    },
+    {
+     "title": "常见心魔",
+     "body": "- 忘记 `encoding=\"utf-8\"`：中文可能乱码或报错\n- 用 `\"r\"` 读不存在的文件：抛 FileNotFoundError\n- 用 `\"w\"` 写已有文件：会覆盖原内容（慎重！）\n- 读取后忘记处理行尾的 `\\n`：输出莫名多出空行\n- 忘记关闭文件：可用 `with` 自动管理"
+    }
+   ],
+   "tasks": [
+    "file_scripture",
+    "file_trial"
+   ]
+  },
+  {
+   "key": "spr1",
+   "name": "化神一层",
+   "order": 16,
+   "intro": "元婴化神，神游太虚。青玄子朗声道：「化神之境，可点灵成物——以『类』为蓝图，造出有灵的万物。」",
+   "teaching": [
+    {
+     "title": "剧情 · 点灵成物",
+     "body": "化神修士能以一缕神识点化万物：丹药有灵、剑器有灵、法宝有灵。在 Python 中，这便称为**面向对象**——用 `class`（类）定义万物的蓝图，用对象承载各自的状态。"
+    },
+    {
+     "title": "功法介绍 · 造物之法",
+     "body": "```python\nclass Pill:\n    def __init__(self, name, power):\n        self.name = name\n        self.power = power\n\n    def potency(self):\n        return self.power * 2\n\np = Pill(\"聚气丹\", 5)\nprint(p.name)      # 聚气丹\nprint(p.potency()) # 10\n```\n\n- `class`：定义一类事物\n- `__init__`：创建对象时自动执行，用于初始化属性\n- `self`：代表对象自身\n- 方法：定义在类中的函数，可读写 `self` 的属性"
+    },
+    {
+     "title": "教学 · 对象与属性",
+     "body": "类是蓝图，对象是实物：\n\n```python\nclass Spirit:\n    def __init__(self, name, level):\n        self.name = name\n        self.level = level\n\n    def train(self):\n        self.level += 1\n        return self.level\n\ns = Spirit(\"剑灵\", 1)\nprint(s.train())   # 2\nprint(s.level)     # 2\n```\n\n每个对象拥有自己独立的属性——`s.level` 与另一个剑灵的 `level` 互不干扰。"
+    },
+    {
+     "title": "示例 · 报号",
+     "body": "```python\nclass Spirit:\n    def __init__(self, name, level):\n        self.name = name\n        self.level = level\n\n    def report(self):\n        return f\"{self.name} 境界：{self.level}\"\n\ns = Spirit(\"剑灵\", 1)\nprint(s.report())  # 剑灵 境界：1\n```"
+    },
+    {
+     "title": "常见心魔",
+     "body": "- `__init__` 少写一个下划线：写成 `_init_` 则不会被自动调用\n- 方法第一个参数忘记 `self`：调用时报参数缺失\n- `self` 漏写：在方法内用 `name` 而不是 `self.name`，读不到属性\n- 数字与字符串拼接：`self.name + self.power` 报 TypeError，需 `str(self.power)`"
+    }
+   ],
+   "tasks": [
+    "oop_spirit",
+    "oop_trial"
+   ]
+  }
+ ],
+ "debug_unlock": {
+  "debug_1": "qi3",
+  "debug_2": "qi6",
+  "debug_3": "qi8",
+  "debug_4": "qi10",
+  "debug_str": "gold1",
+  "debug_exc": "gold2",
+  "debug_mod": "nas1",
+  "debug_file": "nas2",
+  "debug_oop": "spr1"
+ },
+ "tribulation": {
+  "name": "筑基天劫",
+  "intro": "炼气大圆满之际，天地变色。渡劫台上雷云汇聚，三道天劫依次降临——渡过，则筑基；败了，则一切重来。",
+  "waves": [
+   {
+    "key": "heart_demon",
+    "title": "心魔劫",
+    "task": "wave_heart_demon"
+   },
+   {
+    "key": "thunder",
+    "title": "九霄神雷劫",
+    "task": "wave_thunder"
+   },
+   {
+    "key": "dao_heart",
+    "title": "道心劫",
+    "task": "wave_dao_heart"
+   }
+  ]
+ },
+ "major_realms": [
+  {
+   "key": "mortal",
+   "name": "凡人",
+   "stages": [
+    "mortal"
+   ]
+  },
+  {
+   "key": "qi",
+   "name": "炼气",
+   "stages": [
+    "qi1",
+    "qi2",
+    "qi3",
+    "qi4",
+    "qi5",
+    "qi6",
+    "qi7",
+    "qi8",
+    "qi9",
+    "qi10"
+   ]
+  },
+  {
+   "key": "foundation",
+   "name": "筑基",
+   "stages": [
+    "foundation"
+   ]
+  },
+  {
+   "key": "golden_core",
+   "name": "金丹",
+   "stages": [
+    "gold1",
+    "gold2"
+   ]
+  },
+  {
+   "key": "nascent_soul",
+   "name": "元婴",
+   "stages": [
+    "nas1",
+    "nas2"
+   ]
+  },
+  {
+   "key": "spirit_transformation",
+   "name": "化神",
+   "stages": [
+    "spr1"
+   ]
+  },
+  {
+   "key": "void_refinement",
+   "name": "炼虚",
+   "stages": []
+  },
+  {
+   "key": "body_integration",
+   "name": "合体",
+   "stages": []
+  },
+  {
+   "key": "great_vehicle",
+   "name": "大乘",
+   "stages": []
+  },
+  {
+   "key": "tribulation_crossing",
+   "name": "渡劫",
+   "stages": []
+  }
+ ]
+}
