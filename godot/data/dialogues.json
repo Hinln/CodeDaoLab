@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "dialogues": {
+    "qingxuan_intro": {"speaker": "青玄子", "text": "代码非纸上空谈。待你以真言唤醒灵牌，再来见我。", "options": [{"text": "弟子谨记", "next": ""}]},
+    "elder_intro": {"speaker": "玄机长老", "text": "藏经万卷，不如亲手运行一行真代码。", "options": [{"text": "请长老考校", "next": ""}]},
+    "guide_intro": {"speaker": "云游子", "text": "后山近日有心魔凝形。机缘还是劫数，要看你的本事。", "options": [{"text": "我会留心", "next": ""}]}
+  }
+}
+

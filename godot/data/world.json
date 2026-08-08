@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "map": {
+    "id": "qingyun_sect",
+    "name": "青云宗",
+    "spawn": {"x": 0, "y": 260},
+    "locations": [
+      {"id": "gate", "name": "山门", "x": 0, "y": 260},
+      {"id": "dormitory", "name": "弟子洞府", "x": -330, "y": 40},
+      {"id": "library", "name": "藏经阁", "x": 320, "y": -120},
+      {"id": "training_ground", "name": "演武场", "x": 20, "y": 0},
+      {"id": "back_mountain", "name": "后山入口", "x": 360, "y": 245}
+    ]
+  }
+}
+

@@ -1,0 +1,34 @@
+; Engine configuration file.
+; CodeDaoLab Godot Edition
+config_version=5
+
+[application]
+
+config/name="码上飞升：青云宗篇"
+config/description="东方修仙世界观下的 Python 编程 2.5D RPG Demo"
+run/main_scene="res://scenes/main/Main.tscn"
+config/icon="res://assets/icon.svg"
+
+[autoload]
+
+EventBus="*res://scripts/core/event_bus.gd"
+DataRepository="*res://scripts/core/data_repository.gd"
+GameState="*res://scripts/core/game_state.gd"
+SaveManager="*res://scripts/core/save_manager.gd"
+SceneRouter="*res://scripts/core/scene_router.gd"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/size/window_width_override=1280
+window/size/window_height_override=720
+window/stretch/mode="canvas_items"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/default_filters/use_nearest_mipmap_filter=false
+environment/defaults/default_clear_color=Color(0.025, 0.055, 0.06, 1)
+

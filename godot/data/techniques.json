@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "techniques": [
+    {"id": "true_word", "name": "真言诀", "knowledge": "print", "challenge": "awakening_word"},
+    {"id": "variable_breath", "name": "变量吐纳诀", "knowledge": "variables", "challenge": "spirit_vessel"},
+    {"id": "cycle_meridian", "name": "循环周天诀", "knowledge": "loops", "challenge": "cycle_meridian"}
+  ]
+}
+
